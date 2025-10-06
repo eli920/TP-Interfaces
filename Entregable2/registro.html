@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="estilos/style.css">
+  <link rel="stylesheet" href="estilos/registro.css">
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <link rel="shortcut icon" href="iconos/icono-logo.svg" />
+  <title>Registro - GameHub</title>
+</head>
+
+<body>
+  <header class="header-registro">
+    <div class="logo-registro">
+      <img src="imagenes/registro/Logo.png" alt="logo">
+    </div>
+  </header>
+  <main>
+
+    <section class="crear-cuenta">
+      <div class="contenedor">
+        <div class="titulo">
+          <h1>Crea tu cuenta</h1>
+          <p>Unete a la comunidad de GameHub</p>
+        </div>
+
+        <form action="" id="form-registro" class="form-registro">
+          <div class="form-item doble">
+            <div class="campo">
+              <label for="nombre">Nombre *</label>
+              <input id="nombre" type="text" name="nombre" placeholder="Ingresa tu nombre" required>
+              <section class="error"></section>
+            </div>
+            <div class="campo">
+              <label for="apellido">Apellido *</label>
+              <input id="apellido" type="text" name="apellido" placeholder="Ingresa tu apellido" required>
+              <section class="error"></section>
+            </div>
+          </div>
+          <div class="form-item">
+            <label for="alias">Nombre de Usuario <span class="opcional">(Opcional)</span></label>
+            <input id="alias" type="text" name="alias" placeholder="Ingresa nombre de usuario">
+          </div>
+          <div class="form-item">
+            <label for="edad">Edad *</label>
+            <input id="edad" type="number" name="edad" placeholder="Ingresa tu edad" required>
+            <section class="error"></section>
+          </div>
+          <div class="form-item">
+            <label for="email">Correo electrónico *</label>
+            <input id="email" type="email" name="email" placeholder="tu.correo@ejemplo.com" required>
+            <section class="error"></section>
+          </div>
+
+          <div class="form-item">
+            <label for="contrasenia">Contraseña *</label>
+            <div class="contrasenia">
+              <input id="contrasenia" type="password" name="contrasenia" placeholder="Ingresa tu contraseña" required>
+              <img src="imagenes/registro/ojo_cerrado.png" alt="ojo" class="toggle-password"
+                data-target="contrasenia" />
+            </div>
+            <section class="error"></section>
+          </div>
+
+          <div class="form-item">
+            <label for="contrasenia2">Repetir contraseña *</label>
+            <div class="contrasenia">
+              <input id="contrasenia2" type="password" name="contrasenia2" placeholder="Ingresa tu contraseña" required>
+              <img src="imagenes/registro/ojo_cerrado.png" alt="ojo" class="toggle-password"
+                data-target="contrasenia2" />
+            </div>
+            <section class="error"></section>
+          </div>
+
+          <!-- Captcha real -->
+          <div class="form-item captcha">
+            <div class="g-recaptcha" data-sitekey="6Lcj6dYrAAAAAECdaFTNgckH-uTiTZgXj1TZ2SIN"></div>
+            <section class="error"></section>
+          </div>
+
+          <button class="btn btn-xl btn-registro"><img src="imagenes/registro/registro.png"
+              alt="registro" />Registrarse</button>
+        </form>
+
+        <div class="dividir">
+          <img src="imagenes/registro/division.png" alt="línea divisoria">
+          <p>O continuar con</p>
+          <img src="imagenes/registro/division.png" alt="línea divisoria">
+        </div>
+        <div class="continuar-redes">
+          <button type="button" class="btn-social">
+            <img src="imagenes/registro/google.png" alt="Google Logo">
+            Continuar con Google
+          </button>
+          <button type="button" class="btn-social">
+            <img src="imagenes/registro/facebook.png" alt="Facebook Logo">
+            Continuar con Facebook
+          </button>
+        </div>
+
+
+        <p class="login-text">
+          ¿Ya estás registrado? Ve a <a href="/inicio-sesion.html">Iniciar sesión</a>
+        </p>
+      </div>
+
+    </section>
+    <section class="popover">
+      <div id="popover">
+        <img src="/imagenes/registro/tilde.png" alt="icono de correcto">
+        <p>Registro exitoso!</p>
+        <div>
+          <button id="popover-close">Cerrar</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="inicio-footer">
+      <div class="logo">
+        <img src="iconos/icono-logo.svg" alt="Logo GameHub" />
+        <a href="index.html">
+          <h1>GameHub</h1>
+        </a>
+      </div>
+
+      <h4 class="texto-footer">
+        La plataforma de juegos online para estudiantes de TUDAI(UNICEN).
+      </h4>
+
+      <div class="redes-footer">
+        <button class="btn-red-social">
+          <img src="iconos/icono-whatsapp.svg" />
+        </button>
+        <button class="btn-red-social">
+          <img src="iconos/icono-instagram.svg" />
+        </button>
+        <button class="btn-red-social">
+          <img src="iconos/icono-facebook.svg" />
+        </button>
+        <button class="btn-red-social">
+          <img src="iconos/icono-youtube.svg" />
+        </button>
+      </div>
+    </div>
+
+    <div class="categoria-footer">
+      <h4 class="titulo-seccion-footer">Categorías</h4>
+      <ul>
+        <li class="opcion-footer">
+          <a href="#" class="texto-footer acceso">Aventura</a>
+        </li>
+        <li class="opcion-footer">
+          <a href="#" class="texto-footer acceso">Acción</a>
+        </li>
+        <li class="opcion-footer">
+          <a href="#" class="texto-footer acceso">Deporte</a>
+        </li>
+        <li class="opcion-footer">
+          <a href="#" class="texto-footer acceso">Estrategía</a>
+        </li>
+        <li class="opcion-footer">
+          <a href="#" class="texto-footer acceso">Puzzle</a>
+        </li>
+        <li class="opcion-footer">
+          <a href="#" class="texto-footer acceso">Terror</a>
+        </li>
+        <li class="opcion-footer">
+          <a href="#" class="texto-footer acceso">RPG</a>
+        </li>
+        <li class="opcion-footer">
+          <a href="#" class="texto-footer acceso">Simulación</a>
+        </li>
+        <li class="opcion-footer">
+          <a href="#" class="texto-footer acceso">Carreras</a>
+        </li>
+        <li class="opcion-footer">
+          <a href="#" class="texto-footer acceso">Multijugador</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="soporte-footer">
+      <h4 class="titulo-seccion-footer">Soporte</h4>
+      <ul>
+        <li class="opcion-footer">
+          <a href="#" class="texto-footer acceso">Contacto</a>
+        </li>
+        <li class="opcion-footer">
+          <a href="#" class="texto-footer acceso">Preguntas frecuentes</a>
+        </li>
+        <li class="opcion-footer">
+          <a href="#" class="texto-footer acceso">Soluciones</a>
+        </li>
+        <li class="opcion-footer">
+          <a href="#" class="texto-footer acceso">Politica de privacidad</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="comunidad-footer">
+      <h4 class="titulo-seccion-footer">Comunidad</h4>
+      <ul>
+        <li class="opcion-footer">
+          <a href="#" class="texto-footer acceso">Foro</a>
+        </li>
+        <li class="opcion-footer">
+          <a href="#" class="texto-footer acceso">Blog</a>
+        </li>
+        <li class="opcion-footer">
+          <a href="#" class="texto-footer acceso">Eventos</a>
+        </li>
+        <li class="opcion-footer">
+          <a href="#" class="texto-footer acceso">Discord</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="fin-footer">
+      <p class="texto-footer">
+        &copy;2025 GameHub. Todos los derechos reservados.
+      </p>
+      <form class="buscar-juego">
+        <button>
+          <img src="iconos/icono-lupa.svg" alt="Buscar juego" />
+        </button>
+        <input type="text" name="campo-busqueda" placeholder="Buscar juegos..." id="campo-busqueda" />
+      </form>
+    </div>
+  </footer>
+
+  <!-- scripts -->
+
+  <script type="text/javascript" src="javascript/registro.js"></script>
+</body>
+
+</html>

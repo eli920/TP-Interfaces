@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="estilos/style.css" />
+  <link rel="stylesheet" href="estilos/home.css" />
+  <link rel="shortcut icon" href="iconos/icono-logo.svg" />
+  <title>Home - GameHub</title>
+</head>
+
+<body>
+  <div id="cargar-pagina">
+    <div class="spinner"></div>
+    <div id="texto-spinner">Cargando 0%</div>
+  </div>
+
+  <div class="contenido-home">
+    <header>
+      <div class="busqueda">
+        <button class="btn-hamburguesa">
+          <img src="iconos/icono-hamburguesa.svg" alt="Menú despegable" />
+        </button>
+        <button class="btn-buscar">
+          <img src="iconos/icono-lupa.svg" alt="Buscar" />
+        </button>
+      </div>
+
+      <div class="overlay"></div>
+      <nav class="menu-hamburguesa">
+        <button class="btn-cerrar-hamburguesa">
+          <img src="iconos/icono-cerrar.svg" alt="Cerrar menú" />
+        </button>
+        <ul>
+          <li class="item-menu"><a href="index.html">HOME</a></li>
+          <li class="titulo-categorias"><span>Categorias</span></li>
+          <li class="item-menu"><a href="#">Aventura</a></li>
+          <li class="item-menu"><a href="#">Acción</a></li>
+          <li class="item-menu"><a href="#">Deporte</a></li>
+          <li class="item-menu"><a href="#">Estrategía</a></li>
+          <li class="item-menu"><a href="#">Puzzle</a></li>
+          <li class="item-menu"><a href="#">Terror</a></li>
+          <li class="item-menu"><a href="#">RPG</a></li>
+          <li class="item-menu"><a href="#">Simulación</a></li>
+          <li class="item-menu"><a href="#">Carreras</a></li>
+          <li class="item-menu"><a href="#">Multijugador</a></li>
+        </ul>
+      </nav>
+
+      <div class="desplegable-busqueda">
+        <button>
+          <img src="iconos/icono-cerrar.svg" alt="Cerrar campo búsqueda" class="btn-cerrar-campo" />
+        </button>
+        <form class="buscar-juego">
+          <button>
+            <img src="iconos/icono-lupa.svg" alt="Buscar juego" />
+          </button>
+          <input type="text" name="campo-busqueda" placeholder="Buscar juegos..." id="campo-busqueda" />
+        </form>
+      </div>
+
+      <div class="logo">
+        <img src="iconos/icono-logo.svg" alt="Logo GameHub" />
+        <a href="index.html">
+          <h1>GameHub</h1>
+        </a>
+      </div>
+
+      <div class="nav-usuario">
+        <button class="btn-acceso-directo">
+          <img src="iconos/icono-corazon.svg" alt="Mis juegos" />
+        </button>
+        <button class="btn-acceso-directo">
+          <img src="iconos/icono-carrito.svg" alt="carrito" />
+        </button>
+        <button class="btn-usuario">
+          <img src="iconos/icono-usuario.svg" alt="Menú usuario" />
+        </button>
+
+        <nav class="desplegable-usuario">
+          <div class="usuario">
+            <button class="btn-cerrar-opciones">
+              <img src="iconos/icono-cerrar.svg" alt="Cerrar menú usuario" />
+            </button>
+            <img src="iconos/icono-usuario.svg" alt="Foto usuario" />
+            <p class="nickname">Juana Lopez</p>
+          </div>
+          <ul class="opciones-usuario">
+            <li class="opcion-usuario">
+              <a href="#">Mi perfil</a>
+            </li>
+            <li class="opcion-usuario">
+              <a href="#">Mis Juegos</a>
+            </li>
+            <li class="opcion-usuario">
+              <a href="#">Configuración</a>
+            </li>
+            <li class="opcion-usuario">
+              <a href="inicio-sesion.html" id="cerrar-sesion">Cerrar sesión</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="banner">
+        <!--Contenedor donde se van a renderizar dinamicamente las cards-->
+        <div class="banner-contenedor"></div>
+
+        <button class="btn-banner btn-carrusel flecha-atras" id="btn-atras-banner">
+          <img src="iconos/icono-flecha.svg" alt="" srcset="" />
+        </button>
+        <button class="btn-banner btn-carrusel flecha-siguiente" id="btn-siguiente-banner">
+          <img src="iconos/icono-flecha.svg" alt="" srcset="" />
+        </button>
+
+        <!--Aca se ubican los puntos que situan en que parte del banner estas. Los puntos se generan automaticamente-->
+        <div class="banner-puntos"></div>
+      </section>
+
+      <section class="mis-juegos">
+        <h2 class="subtitulo">Mis Juegos</h2>
+
+        <div class="mis-juegos-contendor">
+          <!--cinta desplaza las cards, como si fuese una cinta de la caja de un supermercado-->
+          <div class="cinta" id="cinta-mis-juegos"></div>
+        </div>
+
+        <button class="btn-carrusel flecha-atras" id="btn-atras-mis-juegos">
+          <img src="iconos/icono-flecha.svg" alt="" srcset="" />
+        </button>
+        <button class="btn-carrusel flecha-siguiente" id="btn-siguiente-mis-juegos">
+          <img src="iconos/icono-flecha.svg" alt="" srcset="" />
+        </button>
+      </section>
+
+      <section class="sugerencias">
+        <h2 class="subtitulo">Sugerencias</h2>
+
+        <div class="sugerencias-contendor">
+          <!--cinta desplaza las cards, como si fuese una cinta de la caja de un supermercado-->
+          <div class="cinta" id="cinta-sugerencias"></div>
+        </div>
+
+        <button class="btn-carrusel flecha-atras" id="btn-atras-sugerencias">
+          <img src="iconos/icono-flecha.svg" alt="" srcset="" />
+        </button>
+        <button class="btn-carrusel flecha-siguiente" id="btn-siguiente-sugerencias">
+          <img src="iconos/icono-flecha.svg" alt="" srcset="" />
+        </button>
+      </section>
+    </main>
+
+    <footer>
+      <div class="inicio-footer">
+        <div class="logo">
+          <img src="iconos/icono-logo.svg" alt="Logo GameHub" />
+          <a href="index.html">
+            <h1>GameHub</h1>
+          </a>
+        </div>
+
+        <h4 class="texto-footer">
+          La plataforma de juegos online para estudiantes de TUDAI(UNICEN).
+        </h4>
+
+        <div class="redes-footer">
+          <button class="btn-red-social">
+            <img src="iconos/icono-whatsapp.svg" />
+          </button>
+          <button class="btn-red-social">
+            <img src="iconos/icono-instagram.svg" />
+          </button>
+          <button class="btn-red-social">
+            <img src="iconos/icono-facebook.svg" />
+          </button>
+          <button class="btn-red-social">
+            <img src="iconos/icono-youtube.svg" />
+          </button>
+        </div>
+      </div>
+
+      <div class="categoria-footer">
+        <h4 class="titulo-seccion-footer">Categorías</h4>
+        <ul>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Aventura</a>
+          </li>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Acción</a>
+          </li>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Deporte</a>
+          </li>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Estrategía</a>
+          </li>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Puzzle</a>
+          </li>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Terror</a>
+          </li>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">RPG</a>
+          </li>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Simulación</a>
+          </li>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Carreras</a>
+          </li>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Multijugador</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="soporte-footer">
+        <h4 class="titulo-seccion-footer">Soporte</h4>
+        <ul>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Contacto</a>
+          </li>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Preguntas frecuentes</a>
+          </li>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Soluciones</a>
+          </li>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Politica de privacidad</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="comunidad-footer">
+        <h4 class="titulo-seccion-footer">Comunidad</h4>
+        <ul>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Foro</a>
+          </li>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Blog</a>
+          </li>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Eventos</a>
+          </li>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Discord</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="fin-footer">
+        <p class="texto-footer">
+          &copy;2025 GameHub. Todos los derechos reservados.
+        </p>
+        <form class="buscar-juego">
+          <button>
+            <img src="iconos/icono-lupa.svg" alt="Buscar juego" />
+          </button>
+          <input type="text" name="campo-busqueda" placeholder="Buscar juegos..." id="campo-busqueda" />
+        </form>
+      </div>
+    </footer>
+  </div>
+
+  <script src="javascript/spinner.js"></script>
+  <script type="module" src="javascript/home.js"></script>
+</body>
+
+</html>

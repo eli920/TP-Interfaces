@@ -1,0 +1,601 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap");
+
+/*ESTILOS GENERALES*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --base-primaria: #ffd700;
+  --sombra1-primaria: #e6c200;
+  --sombra2-primaria: #b39700;
+  --sombra3-primaria: #806E00;
+  --base-secundaria: #1e3a8a;
+  --luz1-secundaria: #3352a6;
+  --sombra1-secundaria: #182d6b;
+  --sombra2-secundaria: #12204d;
+  --base-acento: #6c2dc7;
+  --luz3-acento: #d1b8f0;
+  --texto-blanco: #f9fafb;
+  --texto-gris: #9da6b9;
+  --fondo: #08121b;
+  --fondo-footer-header: #1c1f27;
+  --fondo-menu-desplegable: #08121b;
+  --fondo-flecha-carrusel: #282e39;
+  --fondo-complementario: #1f2937; /*Fondo de barra de busqueda de juegos, botonera usuario*/
+}
+
+header,
+footer {
+  background-color: var(--fondo-footer-header);
+}
+
+main {
+  background-color: var(--fondo);
+}
+
+/*HEADER*/
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  width: 100%;
+  color: var(--texto-blanco);
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  font-size: 10px;
+  padding: 5px;
+}
+
+.logo a {
+  text-decoration: none;
+  color: var(--texto-blanco);
+}
+
+.header {
+  display: flex;
+  margin: 5px;
+  padding: 5px;
+}
+
+.btn-hamburguesa {
+  padding: 5px;
+}
+
+.btn-buscar {
+  padding: 5px;
+}
+
+/*Borra estilos por defecto de todos los botones, luego en cada btn especificar sus propios estilos*/
+ button {
+  all: unset; /*Borra todos los estilos por defecto del navegador */
+  cursor: pointer; /* Mantiene el puntero de botón */
+} 
+
+
+.btn {
+  color: black;
+  text-align: center;
+  border-radius: 8px;
+  font-family: "Space Grotesk";
+  font-weight: 700;
+  background-color: var(--sombra1-primaria);
+  transition: background-color 0.3s, color 0.3s ease-in;
+}
+
+.btn:hover{
+    color: var(--texto-blanco);
+    background-color: var(--sombra3-primaria);
+}
+
+
+.btn img {
+  transition: filter 0.3s ease-in; 
+}
+
+.btn:hover img {
+  filter: brightness(0) invert(1);/*pasan al estado invertido, en este caso de negro a blanco*/
+}
+
+.btn-xs {
+  width: 150px;
+  height: 40px;
+  font-size: 14px;
+}
+
+.btn-chico {
+  width: 180px;
+  height: 48px;
+  font-size: 16px;
+}
+
+.btn-mediano {
+  width: 230px;
+  height: 40px;
+  font-size: 15px;
+}
+
+.btn-grande {
+  width: 302px;
+  height: 40px;
+  font-size: 15px;
+}
+
+.btn-xl {
+  width: 448px;
+  height: 54px;
+  font-size: 18px;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/*Estilos menú hamburguesa*/
+.busqueda {
+  display: flex;
+  align-items: center;
+  order: 1;
+}
+
+header .logo {
+  order: 2;
+}
+
+.btn-hamburguesa img,
+.btn-buscar img,
+.btn-usuario img {
+  width: 25px;
+  height: 25px;
+}
+
+.btn-cerrar-hamburguesa {
+  height: 70px;
+  width: 100%;
+}
+
+.btn-cerrar-hamburguesa img {
+  width: 30px;
+  height: 30px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* fondo oscuro */
+  opacity: 0;
+  pointer-events: none; /* que no bloquee clics cuando está oculto */
+  transition: opacity 0.3s ease;
+  z-index: 10; /* asegurate que esté debajo del menú */
+}
+
+.overlay.activo {
+  opacity: 1;
+  pointer-events: all; /* ahora sí bloquea clics y permite cerrar al hacer click */
+}
+
+.menu-hamburguesa {
+  background-color: var(--fondo-menu-desplegable);
+  width: 274px;
+  height: 100%;
+  color: var(--texto-blanco);
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  position: fixed;
+  top: 0;
+  left: 0%;
+  padding-left: 10px;
+  transform: translateX(-100%);
+  z-index: 20;
+  transition: transform 0.3s ease;
+}
+
+.menu-hamburguesa.activo {
+  transform: translateX(0);
+}
+
+.item-menu,
+.titulo-categorias {
+  display: flex;
+  text-align: center;
+  align-self: center;
+  height: 30px;
+  padding: 15px;
+  margin: 5px;
+}
+
+.item-menu {
+  list-style: none;
+}
+
+.titulo-categorias {
+  border-bottom: 1px solid #5f6675;
+}
+
+/*aplico margen a la izquierda a las categorias, estos estilos no se aplican al li de HOME*/
+.item-menu:not(:first-child) {
+  margin-left: 10px;
+}
+
+.menu-hamburguesa a,
+.titulo-categorias span {
+  display: flex;
+  align-self: center;
+  color: var(--texto-blanco);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+/*Estilos barra de texto*/
+
+/*consultar suavidad apertura*/
+.desplegable-busqueda {
+  display: flex;
+  width: 300px;
+  position: fixed;
+  top: 0;
+  transform: translateY(-100%);
+  padding-right: 10px;
+  order: 4;
+}
+
+.desplegable-busqueda.abierto {
+  transform: translate(15%, 38%); /*(x, y)*/
+}
+
+.btn-buscar.cliqueado {
+  display: none;
+}
+
+.btn-cerrar-campo {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+}
+
+.buscar-juego {
+  display: flex;
+  padding: 8px;
+  width: 270px;
+  height: 40px;
+  border-radius: 6px;
+  background-color: var(--fondo-complementario);
+}
+
+#campo-busqueda {
+  background-color: transparent;
+  border: none;
+  padding-left: 5px;
+  color: var(--texto-gris);
+}
+
+/*Estilos botonera y menu de usuario*/
+
+.nav-usuario {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  order: 3;
+  padding: 10px;
+  margin: 10px;
+}
+
+.nav-usuario button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+.btn-acceso-directo {
+  margin: 5px;
+  background-color: var(--fondo-complementario);
+  border-radius: 6px;
+  transition: background-color 0.5s ease-in-out;
+}
+
+.desplegable-usuario {
+  position: absolute;
+  top: 0%;
+  right: -6%;
+  width: 240px;
+  height: 340px;
+  border-radius: 0px 0px 6px 6px;
+  background-color: var(--fondo-menu-desplegable);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.desplegable-usuario.desplegado {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.usuario {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  background-color: var(--fondo-footer-header);
+  position: relative;
+}
+
+.btn-cerrar-opciones {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.usuario img {
+  width: 35px;
+  height: 35px;
+}
+
+.opcion-usuario {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  margin: 20px 10px;
+  list-style: none;
+}
+
+.opcion-usuario a,
+.nickname {
+  color: var(--texto-blanco);
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.opcion-usuario a {
+  display: block;
+  text-decoration: none;
+  transition: color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+}
+
+#cerrar-sesion {
+  color: #ff4444;
+}
+
+@media (min-width: 768px) {
+  .busqueda {
+    order: 1;
+  }
+
+  .btn-hamburguesa img,
+  .btn-buscar img,
+  .btn-usuario img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .btn-cerrar-hamburguesa img {
+    width: 40px;
+    height: 40px;
+  }
+
+  header .logo {
+    order: 1;
+  }
+
+  .nav-usuario button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .item-menu,
+  .titulo-categorias {
+    padding: 18px;
+  }
+
+  .menu-hamburguesa a:hover {
+    color: var(--sombra2-primaria);
+  }
+
+  .btn-buscar, .btn-cerrar-campo {
+    display: none;
+  }
+
+  .desplegable-busqueda {
+    order: 2;
+    display: flex !important;
+    transform: none;
+    position: static;
+  }
+
+  .buscar-juego {
+    width: 300px;
+  }
+
+  .btn-acceso-directo:hover {
+    background-color: var(--sombra2-primaria);
+  }
+
+  .nav-usuario {
+    order: 3;
+  }
+
+  .opcion-usuario a:hover {
+    color: var(--sombra2-primaria);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* sombra suave */
+    transform: translateY(-2px); /* levanta el botón un poquito */
+  }
+
+  #cerrar-sesion:hover {
+    color: #ff6969;
+  }
+}
+
+/*BODY*/
+body {
+  padding-top: 80px;
+  overflow-x: hidden;
+}
+
+/*FOOTER*/
+footer {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: 10px;
+  padding: 10px;
+}
+
+.inicio-footer {
+  display: flex;
+  flex-direction: column;
+  grid-column: 1 / 3;
+}
+
+.titulo-seccion-footer {
+  color: var(--texto-blanco);
+  font-family: "Space Grotesk";
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.texto-footer {
+  color: var(--texto-gris);
+  font-family: "Space Grotesk";
+  font-weight: 400;
+  font-size: 10;
+  transition: color 0.4s ease-in;
+}
+
+.redes-footer {
+  margin: 5px 0;
+}
+
+.btn-red-social {
+  width: 28px;
+  height: 28px;
+}
+
+.categoria-footer {
+  grid-column: 1 / 2;
+}
+
+.opcion-footer {
+  list-style: none;
+}
+
+.acceso {
+  text-decoration: none;
+}
+
+.soporte-footer {
+  grid-column: 2 / 3;
+}
+
+.comunidad-footer {
+  grid-column: 1 / 2;
+}
+
+.fin-footer {
+  display: flex;
+  flex-direction: column-reverse;
+  padding: 10px 0;
+  border-top: 1px solid #5f6675;
+  grid-column: 1 / 3;
+}
+
+.fin-footer p {
+  padding: 5px 0;
+}
+
+@media (min-width: 768px) {
+  footer {
+    grid-template-columns: 25% 25% 25% 25%;
+    height: 566px;
+    gap: 15px;
+    padding: 20px 40px 10px 40px;
+  }
+
+  .inicio-footer {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    padding-left: 10px;
+    grid-column: 1 / 2;
+  }
+
+  .texto-footer {
+    width: 280px;
+    overflow-wrap: break-word;
+  }
+
+  .categoria-footer {
+    grid-column: 2 / 3;
+  }
+
+  .soporte-footer {
+    grid-column: 3 / 4;
+  }
+
+  .comunidad-footer {
+    grid-column: 4 / 5;
+    padding-right: 10px;
+  }
+
+  .fin-footer {
+    grid-column: 1 / 5;
+  }
+
+  .opcion-footer .texto-footer:hover {
+    color: var(--sombra2-primaria);
+  }
+
+  .opcion-footer {
+    padding: 5px 0;
+  }
+
+  .titulo-seccion-footer {
+    font-size: 18px;
+    padding: 5px 0;
+  }
+
+  .fin-footer {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  .fin-footer .texto-footer {
+    width: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    min-width: 0;
+  }
+}
