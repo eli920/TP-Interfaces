@@ -55,10 +55,19 @@ function validarCredenciales() {
 
 // Validar captcha
 function validarCaptcha() {
-  const captchaResponse = grecaptcha.getResponse();
+  
   const captchaDiv = document.querySelector(".form-item.captcha");
   const errorSection = captchaDiv.querySelector(".error");
 
+  //Si grecaptcha no existe (GH Pages), se usa el modo simulación
+  if (typeof grecaptcha === "undefined" || !grecaptcha.getResponse) {
+    console.warn("Modo simulación: captcha validado automáticamente en GH Pages.");
+    errorSection.textContent = ""; 
+    return true; 
+  }
+
+  //Si grecaptcha existe, se usa el token normal
+  const captchaResponse = grecaptcha.getResponse();
   if (captchaResponse.length === 0) {
     errorSection.textContent = "*Por favor, verifica que no eres un robot.";
     return false;
@@ -81,7 +90,7 @@ formLogin.addEventListener("submit", function (e) {
     grecaptcha.reset();
 
     // Redirección a home
-    window.location.href = "/index.html";
+    window.location.href = "index.html";
   } else {
     console.log("Error en login");
   }
