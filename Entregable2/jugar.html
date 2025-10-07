@@ -13,134 +13,135 @@
 </head>
 
 <body>
-  <main class="frame">
+  <!-- <main class="frame">
     <div id="cargar-pagina">
       <div class="spinner"></div>
       <div id="texto-spinner"></div>
     </div>
 
-    <div class="contenido-home">
-      <header>
-        <div class="busqueda">
-          <button class="btn-hamburguesa">
-            <img src="iconos/icono-hamburguesa.svg" alt="Menú despegable" />
+    <div class="contenido-home"> -->
+  <header>
+    <div class="busqueda">
+      <button class="btn-hamburguesa">
+        <img src="iconos/icono-hamburguesa.svg" alt="Menú despegable" />
+      </button>
+      <button class="btn-buscar">
+        <img src="iconos/icono-lupa.svg" alt="Buscar" />
+      </button>
+    </div>
+
+    <div class="overlay"></div>
+
+    <nav class="menu-hamburguesa">
+      <button class="btn-cerrar-hamburguesa">
+        <img src="iconos/icono-cerrar.svg" alt="Cerrar menú" />
+      </button>
+      <ul>
+        <li class="item-menu"><a href="index.html">HOME</a></li>
+        <li class="titulo-categorias"><span>Categorias</span></li>
+        <li class="item-menu"><a href="#">Aventura</a></li>
+        <li class="item-menu"><a href="#">Acción</a></li>
+        <li class="item-menu"><a href="#">Deporte</a></li>
+        <li class="item-menu"><a href="#">Estrategía</a></li>
+        <li class="item-menu"><a href="#">Puzzle</a></li>
+        <li class="item-menu"><a href="#">Terror</a></li>
+        <li class="item-menu"><a href="#">RPG</a></li>
+        <li class="item-menu"><a href="#">Simulación</a></li>
+        <li class="item-menu"><a href="#">Carreras</a></li>
+        <li class="item-menu"><a href="#">Multijugador</a></li>
+      </ul>
+    </nav>
+
+    <div class="desplegable-busqueda">
+      <button>
+        <img src="iconos/icono-cerrar.svg" alt="Cerrar campo búsqueda" class="btn-cerrar-campo" />
+      </button>
+      <form class="buscar-juego">
+        <button>
+          <img src="iconos/icono-lupa.svg" alt="Buscar juego" />
+        </button>
+        <input type="text" name="campo-busqueda" placeholder="Buscar juegos..." id="campo-busqueda" />
+      </form>
+    </div>
+
+    <div class="logo">
+      <img src="iconos/icono-logo.svg" alt="Logo GameHub" />
+      <a href="index.html">
+        <h1>GameHub</h1>
+      </a>
+    </div>
+
+    <div class="nav-usuario">
+      <button class="btn-acceso-directo">
+        <img src="iconos/icono-corazon.svg" alt="Mis juegos" />
+      </button>
+      <button class="btn-acceso-directo">
+        <img src="iconos/icono-carrito.svg" alt="carrito" />
+      </button>
+      <button class="btn-usuario">
+        <img src="iconos/icono-usuario.svg" alt="Menú usuario" />
+      </button>
+
+      <nav class="desplegable-usuario">
+        <div class="usuario">
+          <button class="btn-cerrar-opciones">
+            <img src="iconos/icono-cerrar.svg" alt="Cerrar menú usuario" />
           </button>
-          <button class="btn-buscar">
-            <img src="iconos/icono-lupa.svg" alt="Buscar" />
-          </button>
+          <img src="iconos/icono-usuario.svg" alt="Foto usuario" />
+          <p class="nickname">Juana Lopez</p>
         </div>
+        <ul class="opciones-usuario">
+          <li class="opcion-usuario">
+            <a href="#">Mi perfil</a>
+          </li>
+          <li class="opcion-usuario">
+            <a href="#">Mis Juegos</a>
+          </li>
+          <li class="opcion-usuario">
+            <a href="#">Configuración</a>
+          </li>
+          <li class="opcion-usuario">
+            <a href="inicio-sesion.html" id="cerrar-sesion">Cerrar sesión</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <!-- Aca empezaría el main -->
+  <main>
+    <div class="container-general">
+      <nav class="bread" aria-label="Navegación de migas de pan">
+        <div class="div-wrapper"><a href="#" class="text-wrapper">Sugerencias</a></div>
+        <div class="div-wrapper"><span class="text-wrapper" aria-hidden="true">/</span></div>
+        <div class="div-wrapper"><a href="#" class="text-wrapper">Puzzle</a></div>
+        <div class="div-wrapper"><span class="text-wrapper" aria-hidden="true">/</span></div>
+        <div class="div-wrapper"><span class="text-wrapper actual" aria-current="page">Peg Solitaire</span></div>
+      </nav>
 
-        <div class="overlay"></div>
+      <section class="juegar-juego">
+        <div class="juego-jugar-video">
+          <img src="imagenes/juego/peg-solitaire.png"
+            alt="Vista previa del juego Peg Solitaire con fichas de Batman y Superman">
+          <!-- <button class="btn-aadir-carrito btn-chico btn" type="button" aria-label="Añadir al carrito de compras">
+                  <span class="text-wrapper"><span class="text">Añadir al Carrito</span></span>
+                </button> -->
+        </div>
+      </section>
 
-        <nav class="menu-hamburguesa">
-          <button class="btn-cerrar-hamburguesa">
-            <img src="iconos/icono-cerrar.svg" alt="Cerrar menú" />
+      <div class="juego-pago">
+        <h1 class="titulo-juego">Peg Solitaire</h1>
+        <div class="btn-juego-pago">
+          <button class="btn-compartir" type="button" aria-label="Compartir juego">
+            <img src="iconos/compartir.svg" alt="Icono compartir" />
           </button>
-          <ul>
-            <li class="item-menu"><a href="index.html">HOME</a></li>
-            <li class="titulo-categorias"><span>Categorias</span></li>
-            <li class="item-menu"><a href="#">Aventura</a></li>
-            <li class="item-menu"><a href="#">Acción</a></li>
-            <li class="item-menu"><a href="#">Deporte</a></li>
-            <li class="item-menu"><a href="#">Estrategía</a></li>
-            <li class="item-menu"><a href="#">Puzzle</a></li>
-            <li class="item-menu"><a href="#">Terror</a></li>
-            <li class="item-menu"><a href="#">RPG</a></li>
-            <li class="item-menu"><a href="#">Simulación</a></li>
-            <li class="item-menu"><a href="#">Carreras</a></li>
-            <li class="item-menu"><a href="#">Multijugador</a></li>
-          </ul>
-        </nav>
-
-        <div class="desplegable-busqueda">
-          <button>
-            <img src="iconos/icono-cerrar.svg" alt="Cerrar campo búsqueda" class="btn-cerrar-campo" />
-          </button>
-          <form class="buscar-juego">
-            <button>
-              <img src="iconos/icono-lupa.svg" alt="Buscar juego" />
+          <a href="./index.html" class="btn-volver-link">
+            <button class="btn-volver btn btn-chico" type="button">
+              <span class="text-wrapper"><span class="text">Volver al inicio</span></span>
             </button>
-            <input type="text" name="campo-busqueda" placeholder="Buscar juegos..." id="campo-busqueda" />
-          </form>
-        </div>
-
-        <div class="logo">
-          <img src="iconos/icono-logo.svg" alt="Logo GameHub" />
-          <a href="index.html">
-            <h1>GameHub</h1>
           </a>
         </div>
-
-        <div class="nav-usuario">
-          <button class="btn-acceso-directo">
-            <img src="iconos/icono-corazon.svg" alt="Mis juegos" />
-          </button>
-          <button class="btn-acceso-directo">
-            <img src="iconos/icono-carrito.svg" alt="carrito" />
-          </button>
-          <button class="btn-usuario">
-            <img src="iconos/icono-usuario.svg" alt="Menú usuario" />
-          </button>
-
-          <nav class="desplegable-usuario">
-            <div class="usuario">
-              <button class="btn-cerrar-opciones">
-                <img src="iconos/icono-cerrar.svg" alt="Cerrar menú usuario" />
-              </button>
-              <img src="iconos/icono-usuario.svg" alt="Foto usuario" />
-              <p class="nickname">Juana Lopez</p>
-            </div>
-            <ul class="opciones-usuario">
-              <li class="opcion-usuario">
-                <a href="#">Mi perfil</a>
-              </li>
-              <li class="opcion-usuario">
-                <a href="#">Mis Juegos</a>
-              </li>
-              <li class="opcion-usuario">
-                <a href="#">Configuración</a>
-              </li>
-              <li class="opcion-usuario">
-                <a href="inicio-sesion.html" id="cerrar-sesion">Cerrar sesión</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </header>
-
-      <div class="container-general">
-        <nav class="bread" aria-label="Navegación de migas de pan">
-          <div class="div-wrapper"><a href="#" class="text-wrapper">Sugerencias</a></div>
-          <div class="div-wrapper"><span class="text-wrapper" aria-hidden="true">/</span></div>
-          <div class="div-wrapper"><a href="#" class="text-wrapper">Puzzle</a></div>
-          <div class="div-wrapper"><span class="text-wrapper" aria-hidden="true">/</span></div>
-          <div class="div-wrapper"><span class="text-wrapper actual" aria-current="page">Peg Solitaire</span></div>
-        </nav>
-
-        <section class="juegar-juego">
-          <div class="juego-jugar-video">
-            <img src="imagenes/juego/peg-solitaire.png"
-              alt="Vista previa del juego Peg Solitaire con fichas de Batman y Superman">
-            <!-- <button class="btn-aadir-carrito btn-chico btn" type="button" aria-label="Añadir al carrito de compras">
-                <span class="text-wrapper"><span class="text">Añadir al Carrito</span></span>
-              </button> -->
-          </div>
-        </section>
-
-        <div class="juego-pago">
-          <h1 class="titulo-juego">Peg Solitaire</h1>
-          <div class="btn-juego-pago">
-            <button class="btn-compartir" type="button" aria-label="Compartir juego">
-              <img src="iconos/compartir.svg" alt="Icono compartir" />
-            </button>
-            <a href="./index.html" class="btn-volver-link">
-              <button class="btn-volver btn btn-chico" type="button">
-                <span class="text-wrapper"><span class="text">Volver al inicio</span></span>
-              </button>
-            </a>
-          </div>
-        </div>
       </div>
+    </div>
     </div>
 
     <section class="informacion-juego">
@@ -155,14 +156,14 @@
               alt="Ficha de Batman en el juego Peg Solitaire" />
             <div class="img-play-container">
               <!-- <video class="img img-play" controls muted>
-                    <source src="imagenes/juego/Peg_Solitarie_ejecucion.mp4" type="video/mp4" />
-                    Tu navegador no soporta la reproducción de video.
-                  </video> -->
+                      <source src="imagenes/juego/Peg_Solitarie_ejecucion.mp4" type="video/mp4" />
+                      Tu navegador no soporta la reproducción de video.
+                    </video> -->
               <img class="img img-play" src="imagenes/juego/Peg_Solitarie_ejecucion.mp4"
                 alt="Ficha de Superman en el juego Peg Solitaire" />
               <!-- <button class="play-juego-principal" type="button" aria-label="Reproducir video del juego">
-                  <img class="play-juego" src="img/play-juego.svg" alt="Icono de reproducir" />
-                </button> -->
+                    <img class="play-juego" src="img/play-juego.svg" alt="Icono de reproducir" />
+                  </button> -->
             </div>
           </div>
 
@@ -333,7 +334,7 @@
         </div>
       </div>
     </section>
-  </main>
+  </main> <!-- Aca termina el main -->
 
   <footer>
     <div class="inicio-footer">
