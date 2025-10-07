@@ -1,9 +1,4 @@
 
-
-.sugerencias-contendor,.mis-juegos-contendor {
-  overflow: hidden;
-}
-
 /*SPINNER*/
 #cargar-pagina {
   position: fixed;
@@ -234,7 +229,7 @@ body {
 }
 
 /*ESTILOS MIS JUEGOS Y SUGERENCIAS*/
-.mis-juegos-contenedor {
+.mis-juegos-contenedor, .sugerencias-contenedor {
   position: relative;
   overflow: hidden; /* Oculta las cards que salen del contenedor */
   z-index: 1;
@@ -254,6 +249,7 @@ body {
 #btn-siguiente-sugerencias {
   position: absolute;
   transform: translateY(-50%);
+  top:50%; /*se agrega*/
   z-index: 10;
   width: 35px;
   height: 35px;
@@ -265,16 +261,6 @@ body {
   cursor: pointer;
 }
 
-#btn-atras-mis-juegos,
-#btn-siguiente-mis-juegos {
-  top: 75%;
-}
-
-#btn-atras-sugerencias,
-#btn-siguiente-sugerencias {
-  top: 110%;
-}
-
 @media (min-width: 768px) {
   #btn-atras-mis-juegos,
   #btn-siguiente-mis-juegos,
@@ -284,15 +270,6 @@ body {
     height: 45px;
   }
 
-  #btn-atras-mis-juegos,
-  #btn-siguiente-mis-juegos {
-    top: 105%;
-  }
-
-  #btn-atras-sugerencias,
-  #btn-siguiente-sugerencias {
-    top: 155%;
-  }
 }
 
 .btn-carrusel:disabled {
