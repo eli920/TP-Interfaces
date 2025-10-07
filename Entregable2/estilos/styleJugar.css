@@ -1,41 +1,63 @@
-
-
 /*  ESTILOS GLOBALES - Body y Contenedores */
 body {
     padding-top: 0 !important; /*Evita que haya mucho espacio entre header y contenido*/
     font-family: 'Space Grotesk', sans-serif;
     background-color: var(--fondo); /*Fondo oscuro*/
     margin: 0;
+    overflow-x: hidden; 
 }
 
 /* Frame principal: contenedor de toda la página */
-/* .frame {
+.frame {
     width: 100%;
-    min-width: 1055px;
+    max-width: 1440px;
+    min-width: auto;
     min-height: 2386px;
     position: relative;
     background-color: var(--fondo);
-    margin-left: 136px;  
+    margin: 0 auto;  /* Centra el contenedor horizontalmente */
     padding-top: 100px;
-} */
-
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
-  justify-content: center;
-  padding-top: 100px;
-  background-color: var(--fondo);
-  width: 100%;
-  box-sizing: border-box;
+    overflow-x: hidden;
 }
 
-/* Contenedor general que limita el ancho máximo */
+
+
+/*  header y footer centrados */
+header,
+footer {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+@media (max-width: 1440px) {
+    .frame {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    
+    .container-general,
+    .informacion-juego,
+    .ayuda-instrucciones,
+    .container-foro-mis-juegos,
+    .juegos-relacionados,
+    .bread,
+    .juego-pago,
+    .juegar-juego {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+/* Contenedor general que limita el ancho máximo  no es general es solo imagen y pago o gratis*/
 .container-general {
     max-width: 1440px;
-    margin: 0 auto;
+    
     overflow: hidden;
-    box-sizing: border-box;
+ 
+    margin-left: auto;   /* Centra horizontalmente */
+    margin-right: auto;  /* Centra horizontalmente */
 }
 
 
@@ -56,7 +78,6 @@ main {
     font-weight: 400;
     color: var(--texto-gris);
     margin-bottom: 24px;
-    text-align: justify;
 }
 
 /* Nombre de usuario en comentarios (18px) */
@@ -142,6 +163,9 @@ main {
     max-width: 1024px;
     max-height: 20px;
     margin-top: 20px;
+    max-width: 1024px;
+    margin-left: auto;   /* Centra horizontalmente */
+    margin-right: auto;  /* Centra horizontalmente */
 }
 
 .bread .div-wrapper {
@@ -171,6 +195,9 @@ main {
 /* Contenedor principal del área de juego */
 .juegar-juego {
     gap: 24px;
+    max-width: 1024px;
+    margin-left: auto;   /* Centra horizontalmente */
+    margin-right: auto;  /* Centra horizontalmente */
 }
 
 /* Video/Imagen principal del juego */
@@ -178,9 +205,11 @@ main {
     background-color: none;
     min-height: 576px;
     max-width: 1024px;
-    position: relative;
+    
     overflow: hidden;
     cursor: pointer; /* Indica que es clickeable para jugar */
+    position: relative;
+    display: inline-block;
 }
 
 .juego-jugar-video img { /*Cambio de etiqueta img por etiqueta video?????*/
@@ -196,33 +225,56 @@ main {
     transform: scale(1.05);
 }
 
-/* Overlay oscuro con texto "JUGAR AHORA" que aparece al hover */
-.juego-jugar-video::after {
-    content: 'JUGAR AHORA';
+  
+  
+  /* Overlay oscuro que aparece al hover */
+  .juego-jugar-video::before {
+    content: '';
     position: absolute;
-    inset: 0; /* Cubre todo el contenedor */
+    inset: 0;
     background: rgba(0, 0, 0, 0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 32px;
-    font-weight: 700;
-    color: var(--texto-blanco);
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    opacity: 0; /* Invisible por defecto */
+    opacity: 0;
     transition: opacity 0.4s ease;
-}
+    pointer-events: none; /* No interfiere con el botón */
+  }
+  
+  .juego-jugar-video:hover::before {
+    opacity: 1;
+  }
+  
+  /* Estilos del botón overlay */
+  .btn-hover-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 2; /* Por encima del overlay oscuro */
+    pointer-events: none; /* No clickeable por defecto */
+  }
+  
+  .juego-jugar-video:hover .btn-hover-overlay {
+    opacity: 1;
+    pointer-events: auto; /* Clickeable al hacer hover */
+  }
 
-.juego-jugar-video:hover::after {
-    opacity: 1; /* Visible al hacer hover */
-}
+  
+
+
+
+
+
+
+
+
 
 /* Barra de título y botones del juego */
 .juego-pago {
     font-size: 20px;
     color: var(--texto-blanco);
     margin: 20px 0;
-    max-width: 1080px;
+    
     max-height: 80px;
     display: flex;          
     justify-content: space-between; /* Separa título y botones */
@@ -230,6 +282,9 @@ main {
     gap: 10px;
     padding-right: 0px;
     max-width: 1024px;
+    
+    margin-left: auto;   /* Centra horizontalmente */
+    margin-right: auto;  /* Centra horizontalmente */
 }
 
 /* Contenedor de botones de acción */
@@ -247,6 +302,9 @@ main {
 .informacion-juego {
     max-width: 1024px;
     max-height: 324px;
+    
+    margin-left: auto;   /* Centra horizontalmente */
+    margin-right: auto;  /* Centra horizontalmente */
 }
 
 /* Grid que organiza las fotos y la info del juego */
@@ -281,6 +339,8 @@ main {
 
 .img.img-play {
     border-radius: 8px;
+    width: 244px;
+    height: 244px;
 }
 
 /* Botón de play centrado sobre la imagen */
@@ -314,7 +374,9 @@ main {
 
 /* AYUDA E INSTRUCCIONES*/
 .ayuda-instrucciones {
-    width: 1024px;
+    max-width: 1024px;
+    margin-left: auto;   /* Centra horizontalmente */
+    margin-right: auto;  /* Centra horizontalmente */
     height: 256px;
     margin-top: 50px;
 }
@@ -331,6 +393,9 @@ main {
     gap: 40px;
     max-width: 1024px;
     margin-top: 50px;
+    max-width: 1024px;
+    margin-left: auto;   /* Centra horizontalmente */
+    margin-right: auto;  /* Centra horizontalmente */
 }
 
 
@@ -457,7 +522,7 @@ main {
 }
 
 /* Pseudo-elemento para el efecto de onda al click */
-.comunidad-foro .btn-aadir-carrito::before {
+.comunidad-foro .btn-aadir-carrito::before, .juegar-juego .btn-aadir-carrito::before {
     content: '';
     position: absolute;
     top: 50%;
@@ -478,7 +543,7 @@ main {
 }
 
 /* Expande el círculo creando el efecto de onda */
-.comunidad-foro .btn-aadir-carrito:hover::before {
+.comunidad-foro .btn-aadir-carrito:hover::before, .juegar-juego .btn-aadir-carrito:hover::before {
     width: 300px;
     height: 300px;
 }
@@ -648,6 +713,9 @@ main {
     width: 1024px;
     height: 319px;
     margin-top: 150px;
+  
+    margin-left: auto;   /* Centra horizontalmente */
+    margin-right: auto;  /* Centra horizontalmente */
 }
 
 /* Grid de cards de juegos relacionados */
@@ -735,3 +803,4 @@ main {
     75%  { transform: rotate(-3deg); }  /* Gira 3° a la izquierda */
     100% { transform: rotate(0deg); }   /* Vuelve al centro */
 }
+

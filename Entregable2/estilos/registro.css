@@ -120,7 +120,8 @@ main button {
     border: 1px solid #374151;
     border-radius: 8px;
     padding: 14px 17px 14px 17px;
-    font-weight: 400;   
+    font-weight: 400;
+    color: var(--texto-blanco);   
 }
 
 .opcional {
