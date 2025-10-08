@@ -6,10 +6,9 @@
     align-items: center;
 }
 
-.logo-registro{
-    display: flex;
-    justify-content: center;
-    align-items: center; 
+.logo h1 {
+  color: var(--texto-blanco);
+  padding-left: 5px;
 }
 
 header, footer{
@@ -121,8 +120,16 @@ main button {
     border-radius: 8px;
     padding: 14px 17px 14px 17px;
     font-weight: 400;
-    color: var(--texto-blanco);   
+    color: var(--texto-blanco);
+    border: 2px solid transparent;  
+    transition: border-color 0.5s ease;
+    outline: none; 
 }
+
+.form-registro input:focus{
+  border-color: var(--base-primaria);
+}
+
 
 .opcional {
   color: #9ca3af; 

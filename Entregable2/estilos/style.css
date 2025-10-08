@@ -60,6 +60,7 @@ header {
 .logo a {
   text-decoration: none;
   color: var(--texto-blanco);
+  padding-left: 5px;
 }
 
 .header {

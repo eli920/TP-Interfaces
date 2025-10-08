@@ -368,6 +368,13 @@ body {
 }
 
 @media (min-width: 768px) {
+  .mis-juegos{
+    margin-bottom: 10px;
+  }
+  .sugerencias {
+    margin-bottom: 50px;
+  }
+  
   .card-juego {
     width: 268px;
     height: 264px;

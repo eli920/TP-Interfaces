@@ -21,15 +21,13 @@ body {
 }
 
 
-
 /*  header y footer centrados */
-header,
+/* header,
 footer {
     max-width: 1440px;
     margin-left: auto;
     margin-right: auto;
-}
-
+} */
 
 @media (max-width: 1440px) {
     .frame {
@@ -53,9 +51,7 @@ footer {
 /* Contenedor general que limita el ancho máximo  no es general es solo imagen y pago o gratis*/
 .container-general {
     max-width: 1440px;
-    
     overflow: hidden;
- 
     margin-left: auto;   /* Centra horizontalmente */
     margin-right: auto;  /* Centra horizontalmente */
 }
@@ -78,6 +74,7 @@ footer {
     font-weight: 400;
     color: var(--texto-gris);
     margin-bottom: 24px;
+    text-align: justify;
 }
 
 /* Nombre de usuario en comentarios (18px) */
@@ -259,14 +256,6 @@ footer {
     pointer-events: auto; /* Clickeable al hacer hover */
   }
 
-  
-
-
-
-
-
-
-
 
 
 /* Barra de título y botones del juego */
@@ -302,7 +291,6 @@ footer {
 .informacion-juego {
     max-width: 1024px;
     max-height: 324px;
-    
     margin-left: auto;   /* Centra horizontalmente */
     margin-right: auto;  /* Centra horizontalmente */
 }
@@ -721,7 +709,8 @@ footer {
 /* Grid de cards de juegos relacionados */
 .container-cards {
     display: flex;
-    justify-content: space-between; 
+    /* justify-content: space-between;  */
+    justify-content: center;;
     align-items: center;         
     gap: 50px;
 }
