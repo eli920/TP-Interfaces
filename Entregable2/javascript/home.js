@@ -49,10 +49,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnCerrarOpciones = document.querySelector(".btn-cerrar-opciones");
   const desplegableUsuario = document.querySelector(".desplegable-usuario");
   const overlay = document.querySelector('.overlay');
+  
 
   btnUsuario.addEventListener("click", () => {
     desplegableUsuario.classList.add("desplegado");
     overlay.classList.add('activo');
+    bannerCarrusel();
   });
 
   btnCerrarOpciones.addEventListener("click", () => {

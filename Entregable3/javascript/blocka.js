@@ -285,16 +285,17 @@ function aplicarEscalaGrises(contexto, x, y, ancho, alto) {
     
     // Recorre todos los píxeles (de 4 en 4 porque cada píxel tiene 4 valores)
     for (let i = 0; i < datos.length; i += 4) {
-        // Calcula el promedio de los canales Rojo, Verde y Azul
-        const promedio = (datos[i] + datos[i + 1] + datos[i + 2]) / 3;
-        // Asigna el promedio a los tres canales para crear gris
-        datos[i] = datos[i + 1] = datos[i + 2] = promedio;
-        // El canal alfa (i+3) no se modifica
+      // Calcula la luminosidad usando los coeficientes BT.601
+      const luminosidad = Math.round(datos[i] * 0.299 + datos[i + 1] * 0.587 + datos[i + 2] * 0.114);
+      
+      // Asigna la luminosidad a los tres canales para crear gris
+      datos[i] = datos[i + 1] = datos[i + 2] = luminosidad;
+      // El canal alfa (i+3) no se modifica
     }
     
     // Coloca los datos modificados de vuelta en el canvas
     contexto.putImageData(datosImagen, x, y);
-}
+  }
 
 // Función que aplica un filtro de brillo aumentado
 function aplicarBrillo(contexto, x, y, ancho, alto) {
