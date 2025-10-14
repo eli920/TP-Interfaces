@@ -25,7 +25,7 @@ main{
   align-items: center;     /* Centra vertical */
 }
 
-/* Para los botones dentro de main-registro y main-inicio, se mantengan su estilo normal, deshabilitando así el reset realizado en style.css*/
+/* Para los botones dentro de main-registro y main-inicio, se mantiene su estilo normal, deshabilitando así el reset realinado en style.css*/
 main button {
   all: revert; /* o initial */
   cursor: revert;

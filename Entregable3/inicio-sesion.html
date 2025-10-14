@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="estilos/registro.css">
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <link rel="shortcut icon" href="iconos/icono-logo.svg" />
-  <title>Registro - GameHub</title>
+  <title>Inicio de sesión - GameHub</title>
 </head>
 
 <body>
@@ -23,55 +23,30 @@
     <section class="crear-cuenta">
       <div class="contenedor">
         <div class="titulo">
-          <h1>Crea tu cuenta</h1>
-          <p>Unete a la comunidad de GameHub</p>
+          <h1>Iniciar Sesión</h1>
+          <p>Bienvenido a GameHub</p>
         </div>
 
-        <form action="" id="form-registro" class="form-registro">
-          <div class="form-item doble">
-            <div class="campo">
-              <label for="nombre">Nombre *</label>
-              <input id="nombre" type="text" name="nombre" placeholder="Ingresa tu nombre" required>
-              <section class="error"></section>
-            </div>
-            <div class="campo">
-              <label for="apellido">Apellido *</label>
-              <input id="apellido" type="text" name="apellido" placeholder="Ingresa tu apellido" required>
-              <section class="error"></section>
-            </div>
-          </div>
+        <form action="" id="form-login" class="form-registro">
           <div class="form-item">
-            <label for="alias">Nombre de Usuario <span class="opcional">(Opcional)</span></label>
-            <input id="alias" type="text" name="alias" placeholder="Ingresa nombre de usuario">
-          </div>
-          <div class="form-item">
-            <label for="edad">Edad *</label>
-            <input id="edad" type="number" name="edad" placeholder="Ingresa tu edad" required>
-            <section class="error"></section>
-          </div>
-          <div class="form-item">
-            <label for="email">Correo electrónico *</label>
-            <input id="email" type="email" name="email" placeholder="tu.correo@ejemplo.com" required>
+            <label for="email-login">Correo electrónico</label>
+            <input id="email-login" type="email" name="email-login" placeholder="tu.correo@ejemplo.com" required>
             <section class="error"></section>
           </div>
 
           <div class="form-item">
-            <label for="contrasenia">Contraseña *</label>
-            <div class="contrasenia">
-              <input id="contrasenia" type="password" name="contrasenia" placeholder="Ingresa tu contraseña" required>
-              <img src="imagenes/registro/ojo_cerrado.png" alt="ojo" class="toggle-password"
-                data-target="contrasenia" />
+            <div class="recordar">
+              <label for="contrasenia-login">Contraseña</label>
+              <a href="/.html">¿Olvidaste tu contraseña?</a>
             </div>
-            <section class="error"></section>
-          </div>
 
-          <div class="form-item">
-            <label for="contrasenia2">Repetir contraseña *</label>
             <div class="contrasenia">
-              <input id="contrasenia2" type="password" name="contrasenia2" placeholder="Ingresa tu contraseña" required>
+              <input id="contrasenia-login" type="password" name="contrasenia-login" placeholder="Ingresa tu contraseña"
+                required>
               <img src="imagenes/registro/ojo_cerrado.png" alt="ojo" class="toggle-password"
-                data-target="contrasenia2" />
+                data-target="contrasenia-login" />
             </div>
+
             <section class="error"></section>
           </div>
 
@@ -81,7 +56,8 @@
             <section class="error"></section>
           </div>
 
-          <button class="btn btn-xl btn-registro"><img src="imagenes/registro/registro.png" alt="registro" />Registrarse</button>
+          <button class="btn btn-xl btn-registro"><img src="imagenes/registro/registro.png" alt="registro" />Iniciar
+            sesión</button>
         </form>
 
         <div class="dividir">
@@ -102,18 +78,8 @@
 
 
         <p class="login-text">
-          ¿Ya estás registrado? Ve a <a href="./inicio-sesion.html">Iniciar sesión</a>
+          ¿No estás registrado? Ve a <a href="./registro.html">Registrarse</a>
         </p>
-      </div>
-
-    </section>
-    <section class="popover">
-      <div id="popover">
-        <img src="./imagenes/registro/tilde.png" alt="icono de correcto">
-        <p>Registro exitoso!</p>
-        <div>
-          <button id="popover-close">Cerrar</button>
-        </div>
       </div>
     </section>
 
@@ -234,8 +200,7 @@
   </footer>
 
   <!-- scripts -->
-
-  <script type="text/javascript" src="javascript/registro.js"></script>
+  <script type="text/javascript" src="javascript/inicio-sesion.js"></script>
 </body>
 
 </html>

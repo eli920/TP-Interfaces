@@ -77,7 +77,7 @@ function validarContrasenia() {
   const contrasenia = document.querySelector("#contrasenia");
   const patron = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
 
-  if (!patron.test(contrasenia.value)) { //test, metodo de js, sirve para probar si una cadena cumple con el patrón
+  if (!patron.test(contrasenia.value)) {
     mostrarError(
       contrasenia,
       "*La contraseña debe tener mínimo 8 caracteres, 1 mayúscula y 1 número"
@@ -131,8 +131,8 @@ function validarCaptcha() {
 // Validaciones para validar en tiempo real
 
 // Campos básicos
-document.querySelector("#nombre").addEventListener("input", validarNombre); //El evento se dispara cada vez que el usuario escribe o borra algo dentro del campo
-document.querySelector("#nombre").addEventListener("blur", validarNombre); //Se activa cuando el usuario sale del campo (hace click en otro lado). No importa si escribio o no
+document.querySelector("#nombre").addEventListener("input", validarNombre);
+document.querySelector("#nombre").addEventListener("blur", validarNombre);
 
 document.querySelector("#apellido").addEventListener("input", validarApellido);
 document.querySelector("#apellido").addEventListener("blur", validarApellido);
