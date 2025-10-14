@@ -15,19 +15,27 @@ function generarImagen(ancho, alto, tipo) {
     switch(tipo) {
         // Caso: crear un degradado lineal
         case 'gradient':
-            // Crea un degradado lineal desde esquina superior izquierda (0,0) hasta inferior derecha (ancho,alto)
-            const degradado = contexto.createLinearGradient(0, 0, ancho, alto);
-            // Añade el primer color del degradado (rojo coral) al inicio (0%)
-            degradado.addColorStop(0, '#FF6B6B');
-            // Añade el segundo color (turquesa) en la mitad (50%)
-            degradado.addColorStop(0.5, '#4ECDC4');
-            // Añade el tercer color (azul cielo) al final (100%)
-            degradado.addColorStop(1, '#45B7D1');
-            // Establece el degradado como estilo de relleno
-            contexto.fillStyle = degradado;
-            // Dibuja un rectángulo relleno con el degradado que cubre todo el canvas
-            contexto.fillRect(0, 0, ancho, alto);
-            // Sale del case
+            // Crear un objeto Image
+            const imagen = new Image();
+            
+            // Establecer el evento que se ejecuta cuando la imagen se carga
+            imagen.onload = function() {
+              // Dibujar la imagen en el canvas
+              // drawImage(imagen, x, y, ancho, alto)
+              contexto.drawImage(imagen, 0, 0, ancho, alto);
+            };
+            
+            // Manejar errores de carga
+            imagen.onerror = function() {
+              console.error('Error al cargar la imagen');
+              // Opcional: dibujar algo por defecto si falla
+              contexto.fillStyle = '#cccccc';
+              contexto.fillRect(0, 0, ancho, alto);
+            };
+            
+            // Establecer la ruta de la imagen
+            imagen.src = 'imagenes/juego/domino.png'; // Imagen de dominó
+            
             break;
             
         // Caso: crear círculos de colores aleatorios
@@ -380,10 +388,6 @@ class Juego {
     configurarEventos() {
         // Botón para iniciar el juego - muestra la selección de imágenes
         document.getElementById('btn-start').addEventListener('click', () => this.mostrarSeleccionImagen());
-        // Botón para ver las instrucciones
-        document.getElementById('btn-instructions').addEventListener('click', () => this.mostrarPantalla('instructions-screen'));
-        // Botón para volver del menú de instrucciones al menú principal
-        document.getElementById('btn-back').addEventListener('click', () => this.mostrarPantalla('menu-screen'));
         // Botón para volver al menú desde la pantalla de juego
         document.getElementById('btn-menu').addEventListener('click', () => this.volverAlMenu());
         // Botón para volver al menú desde la pantalla de victoria
@@ -459,34 +463,38 @@ class Juego {
         }, 100); // Espera 100 milisegundos
     }
     
-    // Método que muestra las miniaturas de las imágenes generadas
-    mostrarMiniaturas() {
-        // Obtiene el contenedor de miniaturas
-        const contenedor = document.getElementById('thumbnail-container');
-        // Limpia el contenido anterior del contenedor
-        contenedor.innerHTML = '';
+   // Método que muestra las miniaturas de las imágenes generadas
+mostrarMiniaturas() {
+    // Obtiene el contenedor de miniaturas
+    const contenedor = document.getElementById('thumbnail-container');
+    // Limpia el contenido anterior del contenedor
+    contenedor.innerHTML = '';
+    
+    // Recorre cada imagen generada
+    this.imagenesGeneradas.forEach((lienzoImg, indice) => {
+        // Crea un nuevo canvas para la miniatura
+        const miniatura = document.createElement('canvas');
+        // Define el ancho de la miniatura en 120px
+        miniatura.width = 120;
+        // Define el alto de la miniatura en 120px
+        miniatura.height = 120;
+        // Añade la clase CSS 'thumbnail' para el estilo
+        miniatura.className = 'thumbnail';
+        // Obtiene el contexto 2D de la miniatura
+        const contextoMiniatura = miniatura.getContext('2d');
         
-        // Recorre cada imagen generada
-        this.imagenesGeneradas.forEach((lienzoImg, indice) => {
-            // Crea un nuevo canvas para la miniatura
-            const miniatura = document.createElement('canvas');
-            // Define el ancho de la miniatura en 120px
-            miniatura.width = 120;
-            // Define el alto de la miniatura en 120px
-            miniatura.height = 120;
-            // Añade la clase CSS 'thumbnail' para el estilo
-            miniatura.className = 'thumbnail';
-            // Obtiene el contexto 2D de la miniatura
-            const contextoMiniatura = miniatura.getContext('2d');
+        // Espera un poco para que la imagen del dominó termine de cargar
+        setTimeout(() => {
             // Dibuja la imagen original escalada a 120x120
             contextoMiniatura.drawImage(lienzoImg, 0, 0, 120, 120);
-            
-            // Añade un event listener para cuando se haga click en la miniatura
-            miniatura.addEventListener('click', () => this.seleccionarImagen(indice, miniatura));
-            // Añade la miniatura al contenedor
-            contenedor.appendChild(miniatura);
-        });
-    }
+        }, indice === 0 ? 200 : 0); // Solo espera para la primera imagen (gradient/dominó)
+        
+        // Añade un event listener para cuando se haga click en la miniatura
+        miniatura.addEventListener('click', () => this.seleccionarImagen(indice, miniatura));
+        // Añade la miniatura al contenedor
+        contenedor.appendChild(miniatura);
+    });
+}
     
     // Método que maneja la selección de una imagen
     seleccionarImagen(indice, elementoMiniatura) {
