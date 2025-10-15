@@ -338,8 +338,9 @@ class Juego {
         
         // Inicializa el nivel actual en 1
         this.nivelActual = 1;
-        // Define el tamaño de la cuadrícula por defecto (2x2 = 4 piezas)
-        this.tamañoCuadricula = 2;
+        // Define las dimensiones de la cuadrícula por defecto (2 filas x 2 columnas = 4 piezas)
+        this.filasCuadricula = 2;
+        this.columnasCuadricula = 2;
         // Array que contendrá todas las piezas del rompecabezas
         this.piezas = [];
         // Referencia a la imagen actual que se está usando
@@ -393,8 +394,19 @@ class Juego {
         
         // Selector de tamaño de cuadrícula: actualiza el tamaño cuando cambia
         document.getElementById('grid-size').addEventListener('change', (e) => {
-            // Convierte el valor del selector a número entero
-            this.tamañoCuadricula = parseInt(e.target.value);
+            const valor = e.target.value;
+            // Si el valor contiene 'x', es un formato personalizado (ej: 2x3)
+            if (valor.includes('x')) {
+                const [filas, columnas] = valor.split('x').map(Number);
+                this.filasCuadricula = filas;
+                this.columnasCuadricula = columnas;
+            } else {
+                // Para compatibilidad con versiones anteriores (por si acaso)
+                const tamaño = parseInt(valor);
+                this.filasCuadricula = tamaño;
+                this.columnasCuadricula = tamaño;
+            }
+            console.log(`Nueva configuración de cuadrícula: ${this.filasCuadricula}x${this.columnasCuadricula}`);
         });
         
         // Selector de límite de tiempo: actualiza el tiempo máximo cuando cambia
@@ -532,37 +544,41 @@ mostrarMiniaturas() {
         // Renderiza el juego en el canvas
         this.renderizar();
     }
+ // Método que crea todas las piezas del rompecabezas
+ crearPiezas() {
+    // Limpia el array de piezas
+    this.piezas = [];
     
-    // Método que crea todas las piezas del rompecabezas
-    crearPiezas() {
-        // Limpia el array de piezas
-        this.piezas = [];
-        // Calcula el ancho de cada pieza dividiendo el canvas por el tamaño de cuadrícula
-        const anchoPieza = this.lienzo.width / this.tamañoCuadricula;
-        // Calcula el alto de cada pieza
-        const altoPieza = this.lienzo.height / this.tamañoCuadricula;
-        
-        // Bucle que recorre las filas
-        for (let fila = 0; fila < this.tamañoCuadricula; fila++) {
-            // Bucle que recorre las columnas
-            for (let columna = 0; columna < this.tamañoCuadricula; columna++) {
-                // Crea una nueva pieza con sus parámetros
-                const pieza = new Pieza(
-                    this.imagenActual, // Imagen original
-                    columna * anchoPieza, // X de origen en la imagen
-                    fila * altoPieza, // Y de origen en la imagen
-                    anchoPieza, // Ancho de la pieza
-                    altoPieza, // Alto de la pieza
-                    columna * anchoPieza, // X de destino en el canvas
-                    fila * altoPieza, // Y de destino en el canvas
-                    fila, // Número de fila
-                    columna // Número de columna
-                );
-                // Añade la pieza al array
-                this.piezas.push(pieza);
-            }
+    // Usa el lado más grande para calcular el tamaño de pieza cuadrada
+    const mayorDimension = Math.max(this.filasCuadricula, this.columnasCuadricula);
+    
+    // Dimensiones de ORIGEN (imagen original) - piezas cuadradas
+    const tamañoPiezaOrigen = this.imagenActual.width / mayorDimension;
+    
+    // Dimensiones de DESTINO (canvas) - piezas cuadradas
+    const tamañoPiezaDestino = this.lienzo.width / mayorDimension;
+    
+    // Bucle que recorre las filas
+    for (let fila = 0; fila < this.filasCuadricula; fila++) {
+        // Bucle que recorre las columnas
+        for (let columna = 0; columna < this.columnasCuadricula; columna++) {
+            // Crea una nueva pieza con sus parámetros
+            const pieza = new Pieza(
+                this.imagenActual,                    // Imagen original
+                columna * tamañoPiezaOrigen,          // X de origen en la imagen
+                fila * tamañoPiezaOrigen,             // Y de origen en la imagen
+                tamañoPiezaOrigen,                    // Ancho de origen (cuadrado)
+                tamañoPiezaOrigen,                    // Alto de origen (cuadrado)
+                columna * tamañoPiezaDestino,         // X de destino en el canvas
+                fila * tamañoPiezaDestino,            // Y de destino en el canvas
+                fila,                                 // Número de fila
+                columna                               // Número de columna
+            );
+            // Añade la pieza al array
+            this.piezas.push(pieza);
         }
     }
+}
     
     // Método que aplica los filtros a las piezas según el nivel
     aplicarFiltros() {
@@ -742,7 +758,7 @@ mostrarMiniaturas() {
             // Muestra las estadísticas del nivel completado
             document.getElementById('victory-stats').innerHTML = `
                 <p>Nivel ${this.nivelActual} - ${configuracionesNivel[(this.nivelActual - 1) % configuracionesNivel.length].nombre}</p>
-                <p>Grid: ${this.tamañoCuadricula}x${this.tamañoCuadricula} (${this.piezas.length} piezas)</p>
+                <p>Grid: ${this.filasCuadricula}x${this.columnasCuadricula} (${this.piezas.length} piezas)</p>
                 ${this.ayudaUsada ? '<p>⚠️ Ayuda utilizada</p>' : '<p>✨ Sin ayuda - ¡Perfecto!</p>'}
             `;
         }, 500);
