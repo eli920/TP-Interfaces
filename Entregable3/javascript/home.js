@@ -151,51 +151,43 @@ function misJuegosCarrusel() {
   const misJuegos = [
     new Juego(
       "imagenes/home/carrusel-mis-juegos/juego1.png",
-      "World of Goo 2",
-      "Puzzle",
-      true
+      "Blocka",
+      "Puzzle"
     ),
     new Juego(
       "imagenes/home/carrusel-mis-juegos/juego2.png",
       "Battlefield 6",
-      "Acción",
-      false
+      "Acción"
     ),
     new Juego(
       "imagenes/home/carrusel-mis-juegos/juego3.png",
       "Minecraft",
-      "Aventura",
-      false
+      "Aventura"
     ),
     new Juego(
       "imagenes/home/carrusel-mis-juegos/juego4.png",
       "Baldur's Gate",
-      "Estrategia",
-      false
+      "Estrategia"
     ),
     new Juego(
       "imagenes/home/carrusel-mis-juegos/juego5.png",
       "GTA V",
-      "Acción",
-      false
+      "Acción"
     ),
     new Juego(
       "imagenes/home/carrusel-mis-juegos/juego6.png",
       "Peak",
-      "Aventura",
-      true
+      "Aventura"
     ),
     new Juego(
       "imagenes/home/carrusel-mis-juegos/juego7.png",
       "Ready or Not",
-      "Estrategia",
-      false
+      "Estrategia"
     ),
     new Juego(
       "imagenes/home/carrusel-mis-juegos/juego8.png",
       "Blue Prince",
-      "Puzzle",
-      true
+      "Puzzle"
     ),
   ];
 
@@ -388,6 +380,19 @@ document.addEventListener("click", (e) => {
 
     if (titulo === "Peg Solitaire") {
       window.location.href = "jugar.html"; 
+    }
+  }
+});
+
+// Redirección del botón "Jugar ahora" para Blocka
+document.addEventListener("click", (e) => {
+  if (
+    e.target.classList.contains("btn-jugar-ahora")
+  ) {
+    const titulo = e.target.parentElement.querySelector(".juego-titulo")?.textContent?.trim();
+
+    if (titulo === "Blocka") {
+      window.location.href = "blocka.html"; 
     }
   }
 });
