@@ -544,19 +544,28 @@ mostrarMiniaturas() {
         // Renderiza el juego en el canvas
         this.renderizar();
     }
- // Método que crea todas las piezas del rompecabezas
- crearPiezas() {
+// Método que crea todas las piezas del rompecabezas
+crearPiezas() {
     // Limpia el array de piezas
     this.piezas = [];
     
     // Usa el lado más grande para calcular el tamaño de pieza cuadrada
     const mayorDimension = Math.max(this.filasCuadricula, this.columnasCuadricula);
     
+    // Calcula el tamaño del canvas basado en las piezas que realmente se usan
+    const tamañoPiezaBase = 600 / mayorDimension;
+    const anchoCanvas = this.columnasCuadricula * tamañoPiezaBase;
+    const altoCanvas = this.filasCuadricula * tamañoPiezaBase;
+    
+    // Ajusta el canvas al tamaño necesario
+    this.lienzo.width = anchoCanvas;
+    this.lienzo.height = altoCanvas;
+    
     // Dimensiones de ORIGEN (imagen original) - piezas cuadradas
     const tamañoPiezaOrigen = this.imagenActual.width / mayorDimension;
     
     // Dimensiones de DESTINO (canvas) - piezas cuadradas
-    const tamañoPiezaDestino = this.lienzo.width / mayorDimension;
+    const tamañoPiezaDestino = tamañoPiezaBase;
     
     // Bucle que recorre las filas
     for (let fila = 0; fila < this.filasCuadricula; fila++) {
