@@ -14,74 +14,51 @@ function generarImagen(ancho, alto, tipo) {
     // Evalúa el tipo de imagen a generar
     switch(tipo) {
         // Caso: crear un degradado lineal
-        case 'gradient':
+        case 'domino':
             // Crear un objeto Image
             const imagen = new Image();
-            
             // Establecer el evento que se ejecuta cuando la imagen se carga
             imagen.onload = function() {
-              // Dibujar la imagen en el canvas
-              // drawImage(imagen, x, y, ancho, alto)
-              contexto.drawImage(imagen, 0, 0, ancho, alto);
+                // Dibujar la imagen en el canvas
+                // drawImage(imagen, x, y, ancho, alto)
+                contexto.drawImage(imagen, 0, 0, ancho, alto);
             };
-            
             // Manejar errores de carga
             imagen.onerror = function() {
-              console.error('Error al cargar la imagen');
-              // Opcional: dibujar algo por defecto si falla
-              contexto.fillStyle = '#cccccc';
-              contexto.fillRect(0, 0, ancho, alto);
+                console.error('Error al cargar la imagen');
+                //  dibujar algo por defecto si falla
+                contexto.fillStyle = '#cccccc';
+                contexto.fillRect(0, 0, ancho, alto);
             };
-            
-            // Establecer la ruta de la imagen
-            imagen.src = 'imagenes/juego/domino.png'; // Imagen de dominó
-            
+            imagen.src = 'imagenes/juego/domino.png'; 
             break;
             
-        // Caso: crear círculos de colores aleatorios
-        case 'circles':
-            // Establece un color de fondo gris oscuro
-            contexto.fillStyle = '#2C3E50';
-            // Dibuja el fondo que cubre todo el canvas
-            contexto.fillRect(0, 0, ancho, alto);
-            // Array con 5 colores vibrantes para los círculos
-            const coloresCirculos = ['#E74C3C', '#F39C12', '#27AE60', '#3498DB', '#9B59B6'];
-            // Bucle que se ejecuta 20 veces para crear 20 círculos
-            for (let i = 0; i < 20; i++) {
-                // Selecciona un color del array usando módulo para ciclar los colores
-                contexto.fillStyle = coloresCirculos[i % coloresCirculos.length];
-                // Inicia un nuevo trazo
-                contexto.beginPath();
-                // Dibuja un círculo (arco completo de 360 grados)
-                contexto.arc(
-                    Math.random() * ancho, // Posición X aleatoria dentro del canvas
-                    Math.random() * alto, // Posición Y aleatoria dentro del canvas
-                    20 + Math.random() * 60, // Radio aleatorio entre 20 y 80 píxeles
-                    0, Math.PI * 2 // Ángulo inicial 0 y final 2π (círculo completo)
-                );
-                // Rellena el círculo con el color actual
-                contexto.fill();
-            }
-            // Sale del case
+        // Caso: cargar imagen de rompecabezas
+        case 'rompecabezas':
+            const imagenrompecabezas = new Image();
+            imagenrompecabezas.onload = function() {
+                contexto.drawImage(imagenrompecabezas, 0, 0, ancho, alto);
+            };
+            imagenrompecabezas.onerror = function() {
+                console.error('Error al cargar la imagen circles');
+                contexto.fillStyle = '#2C3E50';
+                contexto.fillRect(0, 0, ancho, alto);
+            };
+            imagenrompecabezas.src = 'imagenes/juego/rompecabeza.png'; // Tu imagen de circles
             break;
             
-        // Caso: crear un patrón de cuadrados de colores
-        case 'squares':
-            // Define el tamaño de cada cuadrado en píxeles
-            const tamañoCuadrado = 50;
-            // Array con 5 colores para los cuadrados
-            const coloresCuadrados = ['#1ABC9C', '#E67E22', '#34495E', '#E74C3C', '#8E44AD'];
-            // Bucle que recorre el canvas verticalmente
-            for (let y = 0; y < alto; y += tamañoCuadrado) {
-                // Bucle que recorre el canvas horizontalmente
-                for (let x = 0; x < ancho; x += tamañoCuadrado) {
-                    // Selecciona un color aleatorio del array
-                    contexto.fillStyle = coloresCuadrados[Math.floor(Math.random() * coloresCuadrados.length)];
-                    // Dibuja un cuadrado en la posición actual
-                    contexto.fillRect(x, y, tamañoCuadrado, tamañoCuadrado);
-                }
-            }
-            // Sale del case
+        // Caso: cargar imagen de tetris
+        case 'tetris':
+            const imagentetris = new Image();
+            imagentetris.onload = function() {
+                contexto.drawImage(imagentetris, 0, 0, ancho, alto);
+            };
+            imagentetris.onerror = function() {
+                console.error('Error al cargar la imagen tetris');
+                contexto.fillStyle = '#1ABC9C';
+                contexto.fillRect(0, 0, ancho, alto);
+            };
+            imagentetris.src = 'imagenes/juego/tetris.png'; 
             break;
             
         // Caso: crear un degradado radial desde el centro
@@ -187,7 +164,7 @@ const configuracionesNivel = [
 ];
 
 // Array con los tipos de imágenes que se pueden generar
-const tiposImagenes = ['gradient', 'circles', 'squares', 'radial', 'waves', 'stars'];
+const tiposImagenes = ['domino', 'rompecabezas', 'tetris', 'radial', 'waves', 'stars'];
 
 // ====== CLASE PIEZA ======
 // Clase que representa cada pieza individual del rompecabezas
@@ -293,7 +270,7 @@ function aplicarEscalaGrises(contexto, x, y, ancho, alto) {
     
     // Recorre todos los píxeles (de 4 en 4 porque cada píxel tiene 4 valores)
     for (let i = 0; i < datos.length; i += 4) {
-      // Calcula la luminosidad usando los coeficientes BT.601
+      // usa los coeficientes BT.601
       const luminosidad = Math.round(datos[i] * 0.299 + datos[i + 1] * 0.587 + datos[i + 2] * 0.114);
       
       // Asigna la luminosidad a los tres canales para crear gris
