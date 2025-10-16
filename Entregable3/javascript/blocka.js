@@ -164,10 +164,10 @@ function generarImagen(ancho, alto, tipo) {
 const configuracionesNivel = [
     // Nivel 1: aplica filtro de brillo aumentado
     { nivel: 1, filtro: 'brightness', nombre: 'Brillo' },
-    // Nivel 2: aplica filtro de escala de grises
-    { nivel: 2, filtro: 'grayscale', nombre: 'Escala de Grises' },
-    // Nivel 3: aplica filtro negativo (colores invertidos)
-    { nivel: 3, filtro: 'negative', nombre: 'Negativo' },
+    // Nivel 2: aplica filtro negativo (colores invertidos)
+    { nivel: 2, filtro: 'negative', nombre: 'Negativo' },
+    // Nivel 3: aplica filtro de escala de grises
+    { nivel: 3, filtro: 'grayscale', nombre: 'Escala de Grises' },
     // Nivel 4: aplica una mezcla de diferentes filtros
     { nivel: 4, filtro: 'mixed', nombre: 'Filtros Mixtos' }
 ];
