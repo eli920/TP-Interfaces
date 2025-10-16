@@ -115,7 +115,7 @@
                 <p class="info-text">Rota las piezas para formar la imagen completa</p>
 
                 <div id="config-options">
-                    <h3 style="text-align: center; margin-bottom: 15px;">⚙️ Configuración</h3>
+                    <h3 style="text-align: center; margin-bottom: 15px;">Configuración</h3>
                     <div class="config-row">
                         <label>Dificultad (Grid):</label>
                         <select id="grid-size">
@@ -149,7 +149,7 @@
                 <div id="loading-text" class="loading">Generando imágenes...</div>
                 <div id="thumbnail-container"></div>
                 <div class="btn-container">
-                    <button id="btn-random-image" class="btn btn-chico" style="display:none;">🎲 Imagen
+                    <button id="btn-random-image" class="btn btn-chico" style="display:none;">Imagen
                         Aleatoria</button>
                 </div>
             </div>
@@ -158,7 +158,7 @@
             <div id="game-screen" class="screen">
                 <div id="game-header">
                     <span id="level-display">Nivel: 1</span>
-                    <span id="timer-display">⏱️ 00:00</span>
+                    <span id="timer-display">00:00</span>
                     <span id="max-time-display"></span>
                 </div>
 
@@ -166,7 +166,7 @@
                     <div class="progress-fill" id="progress-fill"></div>
                 </div>
 
-                <canvas id="game-canvas" width="600" height="600"></canvas>
+                <canvas id="game-canvas"></canvas>
 
                 <div id="help-status"></div>
 
@@ -179,10 +179,10 @@
             <!-- Pantalla de victoria -->
             <div id="victory-screen" class="screen">
                 <h2>¡Nivel Completado!</h2>
-                <p id="victory-time">⏱️ Tiempo: 00:00</p>
+                <p id="victory-time">Tiempo: 00:00</p>
                 <div id="victory-stats"></div>
                 <div class="btn-container">
-                    <button id="btn-next-level" class="btn btn-xs">➡️ Siguiente Nivel</button>
+                    <button id="btn-next-level" class="btn btn-xs">Siguiente Nivel</button>
                     <button id="btn-menu-victory" class="btn btn-xs"> Menú Principal</button>
                 </div>
             </div>
@@ -192,7 +192,7 @@
                 <h2>¡Tiempo agotado!</h2>
                 <p id="defeat-message">No lograste completar el nivel a tiempo</p>
                 <div class="btn-container">
-                    <button id="btn-retry" class="btn btn-xs">🔄 Reintentar</button>
+                    <button id="btn-retry" class="btn btn-xs"> Reintentar</button>
                     <button id="btn-menu-defeat" class="btn btn-xs">Menú Principal</button>
                 </div>
             </div>
@@ -536,9 +536,8 @@
     </footer>
     </div>
 
-
-    <script src="javascript/blocka.js"></script>
-    <script src="javascript/carrusel.js"></script>
+    <script type="module" src="javascript/blocka.js"></script>
+    <script type="module" src="javascript/home.js"></script>   
     
 </body>
 

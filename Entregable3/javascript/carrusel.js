@@ -1,4 +1,6 @@
-class Juego {
+export {};
+
+export class Juego {
   constructor(foto, titulo, categoria, favorito) {
     this.foto = foto;
     this.titulo = titulo;
@@ -7,7 +9,7 @@ class Juego {
   }
 }
 
-function misJuegosCarrusel() {
+export function misJuegosCarrusel() {
   const misJuegos = [
     new Juego("imagenes/juego/rompecabeza.png", "Rompecabeza", "Puzzle", true),
     new Juego("imagenes/juego/tetris.png", "Tetris", "Puzzle", false),
@@ -73,7 +75,7 @@ misJuegosCarrusel();
 
 
 // Función para cargar juegos relacionados desde la API
-async function cargarJuegosRelacionados() {
+export async function cargarJuegosRelacionados() {
   try {
       // Llamada a la API v2
       const response = await fetch('https://vj.interfaces.jima.com.ar/api/v2');
