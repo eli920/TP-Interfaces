@@ -1,12 +1,6 @@
-"use strict"
+"use strict";
 
-// Importa TODO lo exportado de carrusel."
 import * as Carrusel from './carrusel.js';
-
-//Se usa todo lo que exportó el otro archivo:
-Carrusel.Juego;
-Carrusel.misJuegosCarrusel();
-Carrusel.cargarJuegosRelacionados();
 
 // ====== GENERADOR DE IMÁGENES ======
 // Función que genera imágenes con diferentes patrones visuales
@@ -23,7 +17,7 @@ function generarImagen(ancho, alto, tipo) {
     // Evalúa el tipo de imagen a generar
     switch(tipo) {
         // Caso: crear un degradado lineal
-        case 'domino':
+        case 'mario':
             // Crear un objeto Image
             const imagen = new Image();
             // Establecer el evento que se ejecuta cuando la imagen se carga
@@ -39,7 +33,7 @@ function generarImagen(ancho, alto, tipo) {
                 contexto.fillStyle = '#cccccc';
                 contexto.fillRect(0, 0, ancho, alto);
             };
-            imagen.src = 'imagenes/juego/domino.png'; 
+            imagen.src = 'imagenes/juego/Mario.jpg'; 
             break;
             
         // Caso: cargar imagen de rompecabezas
@@ -153,7 +147,7 @@ function generarImagen(ancho, alto, tipo) {
     // Alinea el texto al centro verticalmente
     contexto.textBaseline = 'middle';
     // Dibuja el texto en el centro del canvas
-    contexto.fillText(`Imagen ${tipo}`, ancho/2, alto/2);
+    contexto.fillText(`GameHub ${tipo}`, ancho/2, alto/2);
     
     // Retorna el canvas completo con la imagen generada
     return lienzo;
@@ -173,7 +167,7 @@ const configuracionesNivel = [
 ];
 
 // Array con los tipos de imágenes que se pueden generar
-const tiposImagenes = ['domino', 'rompecabezas', 'tetris', 'radial', 'waves', 'stars'];
+const tiposImagenes = ['mario', 'rompecabezas', 'tetris', 'radial', 'waves', 'stars'];
 
 // ====== CLASE PIEZA ======
 // Clase que representa cada pieza individual del rompecabezas
@@ -451,49 +445,49 @@ class Juego {
         // Usa setTimeout para permitir que el DOM se actualice antes de generar las imágenes
         setTimeout(() => {
             // Genera una imagen de cada tipo usando map
-            this.imagenesGeneradas = tiposImagenes.map(tipo => generarImagen(600, 600, tipo));
+            this.imagenesGeneradas = tiposImagenes.map(tipo => generarImagen(600, 600, tipo)); //Ver
             // Muestra las miniaturas de las imágenes generadas
             this.mostrarMiniaturas();
             // Oculta el texto de carga
             document.getElementById('loading-text').style.display = 'none';
             // Muestra el botón de imagen aleatoria
             document.getElementById('btn-random-image').style.display = 'inline-block';
-        }, 100); // Espera 100 milisegundos
+        }, 1000); // Espera 100 milisegundos para mostrar las 6 imágenes
     }
     
    // Método que muestra las miniaturas de las imágenes generadas
-mostrarMiniaturas() {
-    // Obtiene el contenedor de miniaturas
-    const contenedor = document.getElementById('thumbnail-container');
-    // Limpia el contenido anterior del contenedor
-    contenedor.innerHTML = '';
-    
-    // Recorre cada imagen generada
-    this.imagenesGeneradas.forEach((lienzoImg, indice) => {
-        // Crea un nuevo canvas para la miniatura
-        const miniatura = document.createElement('canvas');
-        // Define el ancho de la miniatura en 120px
-        miniatura.width = 120;
-        // Define el alto de la miniatura en 120px
-        miniatura.height = 120;
-        // Añade la clase CSS 'thumbnail' para el estilo
-        miniatura.className = 'thumbnail';
-        // Obtiene el contexto 2D de la miniatura
-        const contextoMiniatura = miniatura.getContext('2d');
+    mostrarMiniaturas() {
+        // Obtiene el contenedor de miniaturas
+        const contenedor = document.getElementById('thumbnail-container');
+        // Limpia el contenido anterior del contenedor
+        contenedor.innerHTML = '';
         
-        // Espera un poco para que la imagen del dominó termine de cargar
-        setTimeout(() => {
-            // Dibuja la imagen original escalada a 120x120
-            contextoMiniatura.drawImage(lienzoImg, 0, 0, 120, 120);
-        }, indice === 0 ? 200 : 0); // Solo espera para la primera imagen (gradient/dominó)
+        // Recorre cada imagen generada
+        this.imagenesGeneradas.forEach((lienzoImg, indice) => {
+            // Crea un nuevo canvas para la miniatura
+            const miniatura = document.createElement('canvas');
+            // Define el ancho de la miniatura en 120px
+            miniatura.width = 120;
+            // Define el alto de la miniatura en 120px
+            miniatura.height = 120;
+            // Añade la clase CSS 'thumbnail' para el estilo
+            miniatura.className = 'thumbnail';
+            // Obtiene el contexto 2D de la miniatura
+            const contextoMiniatura = miniatura.getContext('2d');
+            
+            // Espera un poco para que la imagen del dominó termine de cargar
+            setTimeout(() => {
+                // Dibuja la imagen original escalada a 120x120
+                contextoMiniatura.drawImage(lienzoImg, 0, 0, 120, 120);
+            }, indice === 0 ? 200 : 0); // Solo espera para la primera imagen (gradient/dominó)
+            
+            // Añade un event listener para cuando se haga click en la miniatura
+            miniatura.addEventListener('click', () => this.seleccionarImagen(indice, miniatura));
+            // Añade la miniatura al contenedor
+            contenedor.appendChild(miniatura);
+        });
+    }
         
-        // Añade un event listener para cuando se haga click en la miniatura
-        miniatura.addEventListener('click', () => this.seleccionarImagen(indice, miniatura));
-        // Añade la miniatura al contenedor
-        contenedor.appendChild(miniatura);
-    });
-}
-    
     // Método que maneja la selección de una imagen
     seleccionarImagen(indice, elementoMiniatura) {
         // Quita la clase 'selected' de todas las miniaturas
@@ -903,3 +897,15 @@ crearPiezas() {
 // ====== INICIALIZAR JUEGO ======
 // Crea una instancia de la clase Juego cuando se carga el script
 const juego = new Juego();
+
+
+//-============ Lista de juegos relacionados específicos de Blocka=========== VER!!!!!!!!!!!!!!!!!!!
+const misJuegos = [
+  new Carrusel.Juego("imagenes/juego/Pokemon.jpg", "Rompecabeza", "Puzzle", true),
+  new Carrusel.Juego("imagenes/juego/tetris.png", "Tetris", "Puzzle", false),
+  new Carrusel.Juego("imagenes/juego/domino.png", "Domino", "Puzzle", false),
+];
+
+// Ejecutar carrusel y cargar juegos relacionados
+misJuegosCarrusel(misJuegos);
+cargarJuegosRelacionados();

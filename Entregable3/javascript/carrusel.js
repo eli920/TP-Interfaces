@@ -9,12 +9,7 @@ export class Juego {
   }
 }
 
-export function misJuegosCarrusel() {
-  const misJuegos = [
-    new Juego("imagenes/juego/rompecabeza.png", "Rompecabeza", "Puzzle", true),
-    new Juego("imagenes/juego/tetris.png", "Tetris", "Puzzle", false),
-    new Juego("imagenes/juego/domino.png", "Domino", "Puzzle", false),
-  ];
+export function misJuegosCarrusel(misJuegos) {
 
   const cintaMisJuegos = document.querySelector("#cinta-mis-juegos");
   const btnAtrasMisJuegos = document.querySelector("#btn-atras-mis-juegos");
@@ -71,7 +66,14 @@ export function misJuegosCarrusel() {
   actualizarPosicionCard();
 }
 
-misJuegosCarrusel();
+//Lista de juegos del carrusel actual
+ const misJuegos = [
+    new Juego("imagenes/juego/rompecabeza.png", "Rompecabeza", "Puzzle", true),
+    new Juego("imagenes/juego/tetris.png", "Tetris", "Puzzle", false),
+    new Juego("imagenes/juego/domino.png", "Domino", "Puzzle", false),
+  ];
+
+misJuegosCarrusel(misJuegos);
 
 
 // Función para cargar juegos relacionados desde la API
