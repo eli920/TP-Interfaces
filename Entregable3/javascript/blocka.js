@@ -577,6 +577,8 @@ class Juego {
         this.iniciarTemporizador();
         // Actualiza la visualización del nivel
         this.actualizarVisualizacionNivel();
+        // Verifica si el rompecabezas está completado (actualiza barra)
+        this.verificarCompletado();
         // Renderiza el juego en el canvas
         this.renderizar();
     }
@@ -597,8 +599,9 @@ crearPiezas() {
     this.lienzo.width = anchoCanvas;
     this.lienzo.height = altoCanvas;
     
-    // Dimensiones de ORIGEN (imagen original) - piezas cuadradas
-    const tamañoPiezaOrigen = this.imagenActual.width / mayorDimension;
+    // Dimensiones de ORIGEN (imagen original) - usa toda la imagen
+    const anchoPiezaOrigen = this.imagenActual.width / this.columnasCuadricula;
+    const altoPiezaOrigen = this.imagenActual.height / this.filasCuadricula;
     
     // Dimensiones de DESTINO (canvas) - piezas cuadradas
     const tamañoPiezaDestino = tamañoPiezaBase;
@@ -610,21 +613,23 @@ crearPiezas() {
             // Crea una nueva pieza con sus parámetros
             const pieza = new Pieza(
                 this.imagenActual,                    // Imagen original
-                columna * tamañoPiezaOrigen,          // X de origen en la imagen
-                fila * tamañoPiezaOrigen,             // Y de origen en la imagen
-                tamañoPiezaOrigen,                    // Ancho de origen (cuadrado)
-                tamañoPiezaOrigen,                    // Alto de origen (cuadrado)
+                columna * anchoPiezaOrigen,           // X de origen en la imagen
+                fila * altoPiezaOrigen,               // Y de origen en la imagen
+                anchoPiezaOrigen,                     // Ancho de origen
+                altoPiezaOrigen,                      // Alto de origen
                 columna * tamañoPiezaDestino,         // X de destino en el canvas
                 fila * tamañoPiezaDestino,            // Y de destino en el canvas
                 fila,                                 // Número de fila
                 columna                               // Número de columna
             );
+            // Establece las dimensiones cuadradas para el destino
+            pieza.ancho = tamañoPiezaDestino;
+            pieza.alto = tamañoPiezaDestino;
             // Añade la pieza al array
             this.piezas.push(pieza);
         }
     }
 }
-    
     // Método que aplica los filtros a las piezas según el nivel
     aplicarFiltros() {
         // Obtiene la configuración del nivel actual usando módulo para ciclar los niveles
