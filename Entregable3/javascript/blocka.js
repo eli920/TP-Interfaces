@@ -5,161 +5,175 @@ import * as Carrusel from './carrusel.js';
 // ====== GENERADOR DE IMÁGENES ======
 // Función que genera imágenes con diferentes patrones visuales
 function generarImagen(ancho, alto, tipo) {
-    // Crea un nuevo elemento canvas en memoria (no visible en el DOM)
-    const lienzo = document.createElement('canvas');
-    // Define el ancho del canvas
-    lienzo.width = ancho;
-    // Define el alto del canvas
-    lienzo.height = alto;
-    // Obtiene el contexto 2D para poder dibujar en el canvas
-    const contexto = lienzo.getContext('2d');
-    
-    // Evalúa el tipo de imagen a generar
-    switch(tipo) {
-        // Caso: cargar imagen solar
-        case 'sistema-solar':
-            // Crear un objeto Image (ubicacion del recurso)
-            const imagen = new Image();
-            imagen.src = 'imagenes/juego/SistemaSolar.jpg'; 
-            // Establecer el evento que se ejecuta cuando la imagen se carga
-            imagen.onload = function() {
-                // Lllamo al metodo dibujar la imagen en el canvas
-                dibujarImagen(this);      
-            };
-            //Dibuja la imagen usando el contexto
-            function dibujarImagen(imagen){
-                 // drawImage(imagen, x, y, ancho, alto)
-                contexto.drawImage(imagen, 0, 0, ancho, alto);
-            }
+     // Retorna una promesa que se resuelve cuando la imagen está lista
+    return new Promise((resolve, reject) => {
+        // Crea un nuevo elemento canvas en memoria (no visible en el DOM)
+        const lienzo = document.createElement('canvas');
+        // Define el ancho del canvas
+        lienzo.width = ancho;
+        // Define el alto del canvas
+        lienzo.height = alto;
+        // Obtiene el contexto 2D para poder dibujar en el canvas
+        const contexto = lienzo.getContext('2d');
 
-            // Manejar errores de carga
-            imagen.onerror = function() {
-                console.error('Error al cargar la imagen');
-                //  dibujar algo por defecto si falla
-                contexto.fillStyle = '#cccccc';
+         // Función auxiliar para dibujar imagen y resolver la promesa
+        function dibujarImagen(imagen) {
+            contexto.drawImage(imagen, 0, 0, ancho, alto);
+            resolve(lienzo); // Devuelve el canvas completo
+        }
+    
+        // Evalúa el tipo de imagen a generar
+        switch(tipo) {
+            // Caso: cargar imagen solar
+            case 'sistema-solar':
+                // Crear un objeto Image (ubicacion del recurso)
+                const imagenSolar = new Image();
+                imagenSolar.src = 'imagenes/juego/SistemaSolar.jpg'; 
+                // Establecer el evento que se ejecuta cuando la imagen se carga
+                imagenSolar.onload = function() {
+                    // Lllamo al metodo dibujar la imagen en el canvas
+                    dibujarImagen(this);      
+                };
+
+                // Manejar errores de carga
+                imagenSolar.onerror = function() {
+                    console.error('Error al cargar la imagen');
+                    //  dibujar algo por defecto si falla
+                    contexto.fillStyle = '#cccccc';
+                    contexto.fillRect(0, 0, ancho, alto);
+                    resolve(lienzo);
+                };
+                
+                break;
+                
+            // Caso: cargar imagen de galaxia
+            case 'galaxia':
+                const imagenGalaxia = new Image();
+                imagenGalaxia.src = 'imagenes/juego/Galaxia.jpg';
+
+                imagenGalaxia.onload = function() {
+                    dibujarImagen(this); 
+                };
+
+                imagenGalaxia.onerror = () => {
+                    console.error('Error al cargar la imagen Galaxia.jpg');
+                    contexto.fillStyle = '#789b6fff';
+                    contexto.fillRect(0, 0, ancho, alto);
+                    resolve(lienzo);
+                };
+
+                break;
+                
+            // Caso: cargar imagen de aurora boreal
+            case 'aurora-boreal':
+                const imagenAurora = new Image();
+                imagenAurora.src = 'imagenes/juego/AuroraBoreal.jpg';
+
+                imagenAurora.onload = function() {
+                    dibujarImagen(this); 
+                };
+
+                imagenAurora.onerror = () => {
+                    console.error('Error al cargar la imagen AuroraBoreal.jpg');
+                    contexto.fillStyle = '#e88d8dff';
+                    contexto.fillRect(0, 0, ancho, alto);
+                    resolve(lienzo);
+                };
+                
+                break;
+            
+                
+            // Caso: crear un degradado radial desde el centro
+            case 'radial':
+                // Crea un degradado radial desde el centro (ancho/2, alto/2) con radio 0 hasta radio ancho/2
+                const degradadoRadial = contexto.createRadialGradient(ancho/2, alto/2, 0, ancho/2, alto/2, ancho/2);
+                // Añade color magenta en el centro (0%)
+                degradadoRadial.addColorStop(0, '#FF00FF');
+                // Añade color cian en el medio (50%)
+                degradadoRadial.addColorStop(0.5, '#00FFFF');
+                // Añade color amarillo en el exterior (100%)
+                degradadoRadial.addColorStop(1, '#FFFF00');
+                // Establece el degradado radial como estilo de relleno
+                contexto.fillStyle = degradadoRadial;
+                // Dibuja un rectángulo que cubre todo el canvas con el degradado
                 contexto.fillRect(0, 0, ancho, alto);
-            };
-            
-            break;
-            
-        // Caso: cargar imagen de galaxia
-        case 'galaxia':
-            const imagenGalaxia = new Image();
-            imagenGalaxia.src = 'imagenes/juego/Galaxia.jpg';
-
-            imagenGalaxia.onload = function() {
-                dibujarImagenGalaxia(this); 
-            };
-
-             function dibujarImagenGalaxia(imagenGalaxia){
-                contexto.drawImage(imagenGalaxia, 0, 0, ancho, alto);
-            }
-            
-            break;
-            
-        // Caso: cargar imagen de aurora boreal
-        case 'aurora-boreal':
-            const imagenAurora = new Image();
-            imagenAurora.src = 'imagenes/juego/AuroraBoreal.jpg';
-
-            imagenAurora.onload = function() {
-                dibujarImagenAurora(this); 
-            };
-
-             function dibujarImagenAurora(imagenAurora){
-                contexto.drawImage(imagenAurora, 0, 0, ancho, alto);
-            }
-            
-            break;
-           
-            
-        // Caso: crear un degradado radial desde el centro
-        case 'radial':
-            // Crea un degradado radial desde el centro (ancho/2, alto/2) con radio 0 hasta radio ancho/2
-            const degradadoRadial = contexto.createRadialGradient(ancho/2, alto/2, 0, ancho/2, alto/2, ancho/2);
-            // Añade color magenta en el centro (0%)
-            degradadoRadial.addColorStop(0, '#FF00FF');
-            // Añade color cian en el medio (50%)
-            degradadoRadial.addColorStop(0.5, '#00FFFF');
-            // Añade color amarillo en el exterior (100%)
-            degradadoRadial.addColorStop(1, '#FFFF00');
-            // Establece el degradado radial como estilo de relleno
-            contexto.fillStyle = degradadoRadial;
-            // Dibuja un rectángulo que cubre todo el canvas con el degradado
-            contexto.fillRect(0, 0, ancho, alto);
-            // Sale del case
-            break;
-            
-        // Caso: crear ondas sinusoidales
-        case 'waves':
-            // Establece un color de fondo verde azulado
-            contexto.fillStyle = '#16a085';
-            // Dibuja el fondo
-            contexto.fillRect(0, 0, ancho, alto);
-            // Establece el color de las líneas como blanco humo
-            contexto.strokeStyle = '#ecf0f1';
-            // Establece el grosor de las líneas en 5 píxeles
-            contexto.lineWidth = 5;
-            // Bucle para dibujar 10 ondas
-            for (let i = 0; i < 10; i++) {
-                // Inicia un nuevo trazo para cada onda
-                contexto.beginPath();
-                // Recorre el canvas horizontalmente en pasos de 10 píxeles
-                for (let x = 0; x <= ancho; x += 10) {
-                    // Calcula la posición Y usando función seno para crear la onda
-                    const y = alto/2 + Math.sin((x + i * 30) * 0.02) * 50;
-                    // Si es el primer punto, mueve el "lápiz" a esa posición
-                    if (x === 0) contexto.moveTo(x, y);
-                    // Si no es el primer punto, dibuja una línea hasta esa posición
-                    else contexto.lineTo(x, y);
+                resolve(lienzo);
+                // Sale del case
+                break;
+                
+            // Caso: crear ondas sinusoidales
+            case 'waves':
+                // Establece un color de fondo verde azulado
+                contexto.fillStyle = '#16a085';
+                // Dibuja el fondo
+                contexto.fillRect(0, 0, ancho, alto);
+                // Establece el color de las líneas como blanco humo
+                contexto.strokeStyle = '#ecf0f1';
+                // Establece el grosor de las líneas en 5 píxeles
+                contexto.lineWidth = 5;
+                // Bucle para dibujar 10 ondas
+                for (let i = 0; i < 10; i++) {
+                    // Inicia un nuevo trazo para cada onda
+                    contexto.beginPath();
+                    // Recorre el canvas horizontalmente en pasos de 10 píxeles
+                    for (let x = 0; x <= ancho; x += 10) {
+                        // Calcula la posición Y usando función seno para crear la onda
+                        const y = alto/2 + Math.sin((x + i * 30) * 0.02) * 50;
+                        // Si es el primer punto, mueve el "lápiz" a esa posición
+                        if (x === 0) contexto.moveTo(x, y);
+                        // Si no es el primer punto, dibuja una línea hasta esa posición
+                        else contexto.lineTo(x, y);
+                    }
+                    // Dibuja la línea completa de la onda
+                    contexto.stroke();
                 }
-                // Dibuja la línea completa de la onda
-                contexto.stroke();
-            }
-            // Sale del case
-            break;
-            
-        // Caso: crear un cielo estrellado
-        case 'stars':
-            // Establece un color de fondo azul medianoche
-            contexto.fillStyle = '#191970';
-            // Dibuja el fondo oscuro
-            contexto.fillRect(0, 0, ancho, alto);
-            // Establece el color dorado para las estrellas
-            contexto.fillStyle = '#FFD700';
-            // Bucle para dibujar 50 estrellas
-            for (let i = 0; i < 50; i++) {
-                // Calcula una posición X aleatoria
-                const x = Math.random() * ancho;
-                // Calcula una posición Y aleatoria
-                const y = Math.random() * alto;
-                // Calcula un tamaño aleatorio entre 2 y 6 píxeles
-                const tamaño = 2 + Math.random() * 4;
-                // Inicia un nuevo trazo
-                contexto.beginPath();
-                // Dibuja un círculo pequeño (estrella)
-                contexto.arc(x, y, tamaño, 0, Math.PI * 2);
-                // Rellena la estrella
-                contexto.fill();
-            }
-            // Sale del case
-            break;
-    }
-    
-    // Añade un texto identificador en el centro de la imagen
-    // Establece el color del texto como blanco semi-transparente
-    contexto.fillStyle = 'rgba(255, 255, 255, 0.8)';
-    // Define la fuente como Arial negrita de 40px
-    contexto.font = 'bold 40px Arial';
-    // Alinea el texto al centro horizontalmente
-    contexto.textAlign = 'center';
-    // Alinea el texto al centro verticalmente
-    contexto.textBaseline = 'middle';
-    // Dibuja el texto en el centro del canvas
-    contexto.fillText(`GameHub ${tipo}`, ancho/2, alto/2);
-    
-    // Retorna el canvas completo con la imagen generada
-    return lienzo;
+                resolve(lienzo);
+                // Sale del case
+                break;
+                
+            // Caso: crear un cielo estrellado
+            case 'stars':
+                // Establece un color de fondo azul medianoche
+                contexto.fillStyle = '#191970';
+                // Dibuja el fondo oscuro
+                contexto.fillRect(0, 0, ancho, alto);
+                // Establece el color dorado para las estrellas
+                contexto.fillStyle = '#FFD700';
+                // Bucle para dibujar 50 estrellas
+                for (let i = 0; i < 50; i++) {
+                    // Calcula una posición X aleatoria
+                    const x = Math.random() * ancho;
+                    // Calcula una posición Y aleatoria
+                    const y = Math.random() * alto;
+                    // Calcula un tamaño aleatorio entre 2 y 6 píxeles
+                    const tamaño = 2 + Math.random() * 4;
+                    // Inicia un nuevo trazo
+                    contexto.beginPath();
+                    // Dibuja un círculo pequeño (estrella)
+                    contexto.arc(x, y, tamaño, 0, Math.PI * 2);
+                    // Rellena la estrella
+                    contexto.fill();
+                }
+                resolve(lienzo);
+                // Sale del case
+                break;
+        }
+        
+        // Añade un texto identificador en el centro de la imagen
+        // Establece el color del texto como blanco semi-transparente
+        contexto.fillStyle = 'rgba(255, 255, 255, 0.8)';
+        // Define la fuente como Arial negrita de 40px
+        contexto.font = 'bold 40px Arial';
+        // Alinea el texto al centro horizontalmente
+        contexto.textAlign = 'center';
+        // Alinea el texto al centro verticalmente
+        contexto.textBaseline = 'middle';
+        // Dibuja el texto en el centro del canvas
+        contexto.fillText(`GameHub ${tipo}`, ancho/2, alto/2);
+        
+        // Retorna el canvas completo con la imagen generada
+        return lienzo;
+     });
 }
 
 // ====== CONFIGURACIÓN DE NIVELES ======
@@ -444,37 +458,50 @@ class Juego {
         this.generarImagenes();
     }
     
-    //Método que genera todas las imágenes disponibles
-    generarImagenes() {
-        // Muestra el texto de "Generando imágenes..."
-        document.getElementById('loading-text').style.display = 'block';
-        // Oculta el botón de imagen aleatoria mientras se generan
-        document.getElementById('btn-random-image').style.display = 'none';
-        
-        // Usa setTimeout para permitir que el DOM se actualice antes de generar las imágenes
-        setTimeout(() => {
-            // Genera una imagen de cada tipo usando map
-            this.imagenesGeneradas = tiposImagenes.map(tipo => generarImagen(600, 600, tipo)); //Ver!!!!!!!!!!!!!
-            // Muestra las miniaturas de las imágenes generadas
-            this.mostrarMiniaturas();
-            // Oculta el texto de carga
-            document.getElementById('loading-text').style.display = 'none';
-            // Muestra el botón de imagen aleatoria
-            document.getElementById('btn-random-image').style.display = 'inline-block';
-        }, 1000); // Espera 1000 milisegundos para mostrar las 6 imágenes
-    }
+  // Método que genera todas las imágenes disponibles
+    async generarImagenes() {
+        // Solo mostrar "Generando imágenes..." la primera vez
+        if (!this.imagenesCargadas) {
+            document.getElementById('loading-text').style.display = 'block';
+            // Oculta el botón de imagen aleatoria mientras se generan
+            document.getElementById('btn-random-image').style.display = 'none';
 
+            // Permite que el DOM se actualice para que el usuario vea el mensaje
+            await new Promise(resolve => setTimeout(resolve, 0));
+        }
+
+        try {
+            // Genera una imagen de cada tipo y espera a que todas estén listas
+            this.imagenesGeneradas = await Promise.all(
+                tiposImagenes.map(tipo => generarImagen(600, 600, tipo))
+            );
+
+            // Muestra las miniaturas de las imágenes generadas
+            await this.mostrarMiniaturas();
+        } catch (error) {
+            console.error('Error generando imágenes:', error);
+        } finally {
+            // Oculta el texto de carga solo la primera vez
+            if (!this.imagenesCargadas) {
+                document.getElementById('loading-text').style.display = 'none';
+                document.getElementById('btn-random-image').style.display = 'inline-block';
+                this.imagenesCargadas = true; // Marcamos que ya se mostraron las imágenes
+            }
+        }
+    }
     
    // Método que muestra las miniaturas de las imágenes generadas
-    mostrarMiniaturas() {
+    async mostrarMiniaturas() {
         // Obtiene el contenedor de miniaturas
         const contenedor = document.getElementById('thumbnail-container');
         // Limpia el contenido anterior del contenedor
         contenedor.innerHTML = '';
 
-        //Esperar antes de dibujar miniaturas (da tiempo a que se carguen las imágenes)
-        setTimeout(() => {
-            this.imagenesGeneradas.forEach((lienzoImg, indice) => {
+        // Espera a que todas las imágenes se generen (Promise.all)
+        const imagenesListas = await Promise.all(this.imagenesGeneradas);
+
+         // Crea las miniaturas
+            imagenesListas.forEach((lienzoImg, indice) => {
                 // Crea un nuevo canvas para la miniatura
                 const miniatura = document.createElement('canvas');
                 // Define el ancho de la miniatura en 120px
@@ -492,25 +519,22 @@ class Juego {
                 // Evento de click
                 miniatura.addEventListener('click', () => this.seleccionarImagen(indice, miniatura));
                 contenedor.appendChild(miniatura);
-            });
-        }, 1000); // Espera 1 segundo 
+        });    
     }
         
         
     // Método que maneja la selección de una imagen
-    seleccionarImagen(indice, elementoMiniatura) {
+   seleccionarImagen(indice, elementoMiniatura) { 
         // Quita la clase 'selected' de todas las miniaturas
-        document.querySelectorAll('.thumbnail').forEach(m => m.classList.remove('selected'));
+        document.querySelectorAll('.thumbnail').forEach(m => m.classList.remove('selected')); 
         // Añade la clase 'selected' a la miniatura clickeada
         elementoMiniatura.classList.add('selected');
-        // Guarda el índice de la imagen seleccionada
+        // Guarda el índice de la imagen seleccionada 
         this.indiceImagenSeleccionada = indice;
-        
-        // Espera 800ms antes de iniciar el juego (para que el usuario vea la selección)
+        // Espera 800ms antes de iniciar el juego (para que el usuario vea la selección) 
         setTimeout(() => {
-            // Inicia el juego
-            this.iniciarJuego();
-        }, 800);
+        // Inicia el juego
+        this.iniciarJuego(); }, 1000);
     }
     
     // Método que selecciona una imagen aleatoriamente
