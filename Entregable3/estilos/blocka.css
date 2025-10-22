@@ -874,4 +874,126 @@
     100% { transform: rotate(0deg); }   /* Vuelve al centro */
 }
 
+/*  SECCIÓN JUEGO PRINCIPAL - PORTADA HERO*/
 
+
+/* Contenedor principal del área de portada */
+.juegar-juego {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    margin: 30px 0; /* Espacio vertical */
+    width: 100%;
+    
+}
+
+/* Video/Imagen principal del juego con overlay interactivo */
+.juego-jugar-video {
+    background-color: transparent;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Imagen principal responsiva */
+.juego-jugar-video img {
+    width: 100%;
+    height: auto;
+    max-height: 576px;
+    object-fit: contain;
+    display: block;
+    border-radius: 12px;
+    transition: transform 0.6s ease;
+    
+}
+
+/* Hover: Zoom sutil en la imagen */
+.juego-jugar-video:hover img {
+    transform: scale(1.05);
+}
+
+/* Overlay oscuro que aparece al hover */
+.juego-jugar-video::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.juego-jugar-video:hover::before {
+    opacity: 1;
+}
+
+/* Estilos del botón overlay "Jugar Ahora" */
+.btn-hover-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all 0.4s ease;
+    z-index: 3; /* Por encima del overlay y la imagen */
+    pointer-events: none;
+    white-space: nowrap;
+    
+    /* Estilos visuales del botón */
+    background: linear-gradient(135deg, var(--base-primaria) 0%, var(--sombra1-primaria) 100%);
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+    border: 2px solid var(--luz3-acento);
+}
+
+/* Mostrar botón al hacer hover en el contenedor */
+.juego-jugar-video:hover .btn-hover-overlay {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+    border:none;
+}
+
+/* Hover adicional en el botón mismo */
+.juego-jugar-video:hover .btn-hover-overlay:hover {
+    background: linear-gradient(135deg, var(--sombra1-primaria) 0%, var(--sombra2-primaria) 100%);
+    box-shadow: 0 6px 30px rgba(255, 215, 0, 0.6);
+    transform: translate(-50%, -50%) scale(1.1) !important;
+    border:none;
+}
+
+/* Click effect */
+.btn-hover-overlay:active {
+    transform: translate(-50%, -50%) scale(0.95) !important;
+}
+
+/* Efecto de onda al hacer hover */
+.juegar-juego .btn-aadir-carrito::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+    z-index: -1;
+}
+
+.juego-jugar-video:hover .btn-aadir-carrito:hover::before {
+    width: 300px;
+    height: 300px;
+}
