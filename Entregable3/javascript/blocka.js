@@ -618,53 +618,78 @@ class Juego {
     }
 
     // Método que crea todas las piezas del rompecabezas
-    crearPiezas() {
-        // Limpia el array de piezas
-        this.piezas = [];
-        
-        // Usa el lado más grande para calcular el tamaño de pieza cuadrada
-        const mayorDimension = Math.max(this.filasCuadricula, this.columnasCuadricula);
-        
-        // Calcula el tamaño del canvas basado en las piezas que realmente se usan
-        const tamañoPiezaBase = 600 / mayorDimension;
-        const anchoCanvas = this.columnasCuadricula * tamañoPiezaBase;
-        const altoCanvas = this.filasCuadricula * tamañoPiezaBase;
-        
-        // Ajusta el canvas al tamaño necesario
-        this.lienzo.width = anchoCanvas;
-        this.lienzo.height = altoCanvas;
-        
-        // Dimensiones de ORIGEN (imagen original) - usa toda la imagen
-        const anchoPiezaOrigen = this.imagenActual.width / this.columnasCuadricula;
-        const altoPiezaOrigen = this.imagenActual.height / this.filasCuadricula;
-        
-        // Dimensiones de DESTINO (canvas) - piezas cuadradas
-        const tamañoPiezaDestino = tamañoPiezaBase;
-        
-        // Bucle que recorre las filas
-        for (let fila = 0; fila < this.filasCuadricula; fila++) {
-            // Bucle que recorre las columnas
-            for (let columna = 0; columna < this.columnasCuadricula; columna++) {
-                // Crea una nueva pieza con sus parámetros
-                const pieza = new Pieza(
-                    this.imagenActual,                    // Imagen original
-                    columna * anchoPiezaOrigen,           // X de origen en la imagen
-                    fila * altoPiezaOrigen,               // Y de origen en la imagen
-                    anchoPiezaOrigen,                     // Ancho de origen
-                    altoPiezaOrigen,                      // Alto de origen
-                    columna * tamañoPiezaDestino,         // X de destino en el canvas
-                    fila * tamañoPiezaDestino,            // Y de destino en el canvas
-                    fila,                                 // Número de fila
-                    columna                               // Número de columna
-                );
-                // Establece las dimensiones cuadradas para el destino
-                pieza.ancho = tamañoPiezaDestino;
-                pieza.alto = tamañoPiezaDestino;
-                // Añade la pieza al array
-                this.piezas.push(pieza);
-            }
+crearPiezas() {
+    // Limpia el array de piezas
+    this.piezas = [];
+    
+    // Usa el lado más grande para calcular el tamaño de pieza cuadrada
+    const mayorDimension = Math.max(this.filasCuadricula, this.columnasCuadricula);
+    
+    // Calcula el tamaño del canvas basado en las piezas que realmente se usan
+    const tamañoPiezaBase = 600 / mayorDimension;
+    const anchoCanvas = this.columnasCuadricula * tamañoPiezaBase;
+    const altoCanvas = this.filasCuadricula * tamañoPiezaBase;
+    
+    // Ajusta el canvas al tamaño necesario
+    this.lienzo.width = anchoCanvas;
+    this.lienzo.height = altoCanvas;
+    
+    // Calcula la relación de aspecto de la imagen y del canvas
+    const relacionImagenOriginal = this.imagenActual.width / this.imagenActual.height;
+    const relacionCanvas = this.columnasCuadricula / this.filasCuadricula;
+    
+    // Variables para el área de la imagen que vamos a usar
+    let anchoImagenUsada = this.imagenActual.width;
+    let altoImagenUsada = this.imagenActual.height;
+    let offsetX = 0;
+    let offsetY = 0;
+    
+    // Si la imagen es más alta proporcionalmente que el canvas, recortamos arriba/abajo
+    if (relacionImagenOriginal < relacionCanvas) {
+        // La imagen es más "vertical" - recortamos arriba y abajo
+        altoImagenUsada = this.imagenActual.width / relacionCanvas;
+        offsetY = (this.imagenActual.height - altoImagenUsada) / 2; // Centrado vertical
+    } 
+    // Si la imagen es más ancha proporcionalmente que el canvas, recortamos izquierda/derecha
+    else if (relacionImagenOriginal > relacionCanvas) {
+        // La imagen es más "horizontal" - recortamos los lados
+        anchoImagenUsada = this.imagenActual.height * relacionCanvas;
+        offsetX = (this.imagenActual.width - anchoImagenUsada) / 2; // Centrado horizontal
+    }
+    
+    // Dimensiones de ORIGEN (área recortada de la imagen original)
+    const anchoPiezaOrigen = anchoImagenUsada / this.columnasCuadricula;
+    const altoPiezaOrigen = altoImagenUsada / this.filasCuadricula;
+    
+    // Dimensiones de DESTINO (canvas) - piezas cuadradas
+    const tamañoPiezaDestino = tamañoPiezaBase;
+    
+    // Bucle que recorre las filas
+    for (let fila = 0; fila < this.filasCuadricula; fila++) {
+        // Bucle que recorre las columnas
+        for (let columna = 0; columna < this.columnasCuadricula; columna++) {
+            // Crea una nueva pieza con sus parámetros
+            const pieza = new Pieza(
+                this.imagenActual, // Imagen original
+                offsetX + columna * anchoPiezaOrigen, // X de origen con offset
+                offsetY + fila * altoPiezaOrigen, // Y de origen con offset
+                anchoPiezaOrigen, // Ancho de origen
+                altoPiezaOrigen, // Alto de origen
+                columna * tamañoPiezaDestino, // X de destino en el canvas
+                fila * tamañoPiezaDestino, // Y de destino en el canvas
+                fila, // Número de fila
+                columna // Número de columna
+            );
+            
+            // Establece las dimensiones cuadradas para el destino
+            pieza.ancho = tamañoPiezaDestino;
+            pieza.alto = tamañoPiezaDestino;
+            
+            // Añade la pieza al array
+            this.piezas.push(pieza);
         }
     }
+}
     
     // Método que aplica los filtros a las piezas según el nivel
     aplicarFiltros() {
@@ -832,7 +857,7 @@ class Juego {
         // Crea y muestra el mensaje de "¡GANASTE!" superpuesto
         const mensajeGanaste = document.createElement('div');
         mensajeGanaste.className = 'mensaje-ganaste';
-        mensajeGanaste.innerHTML = 'GANASTE!';
+        mensajeGanaste.innerHTML = 'NIVEL COMPLETO!';
         document.getElementById('game-screen').appendChild(mensajeGanaste);
         
         // Espera 2500ms (2.5 segundos) para que el jugador vea la imagen completa y el mensaje
