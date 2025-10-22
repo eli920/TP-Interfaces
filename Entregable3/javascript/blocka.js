@@ -816,18 +816,28 @@ crearPiezas() {
         if (todasCorrectas) {
             // Detiene el temporizador
             this.detenerTemporizador();
+            
             // Muestra la pantalla de victoria
             this.mostrarVictoria();
         }
     }
     
-    // Método que muestra la pantalla de victoria
+   // Método que muestra la pantalla de victoria
     mostrarVictoria() {
         // Renderiza el juego sin filtros para mostrar la imagen completa
         this.renderizar(false);
         
-        // Espera 500ms antes de mostrar la pantalla de victoria
+        // Crea y muestra el mensaje de "¡GANASTE!" superpuesto
+        const mensajeGanaste = document.createElement('div');
+        mensajeGanaste.className = 'mensaje-ganaste';
+        mensajeGanaste.innerHTML = 'GANASTE!';
+        document.getElementById('game-screen').appendChild(mensajeGanaste);
+        
+        // Espera 2500ms (2.5 segundos) para que el jugador vea la imagen completa y el mensaje
         setTimeout(() => {
+            // Remueve el mensaje antes de cambiar de pantalla
+            mensajeGanaste.remove();
+            
             // Cambia a la pantalla de victoria
             this.mostrarPantalla('victory-screen');
             // Calcula los minutos transcurridos
@@ -843,9 +853,9 @@ crearPiezas() {
             document.getElementById('victory-stats').innerHTML = `
                 <p>Nivel ${this.nivelActual} - ${configuracionesNivel[(this.nivelActual - 1) % configuracionesNivel.length].nombre}</p>
                 <p>Grid: ${this.filasCuadricula}x${this.columnasCuadricula} (${this.piezas.length} piezas)</p>
-                ${this.ayudaUsada ? '<p>⚠️ Ayuda utilizada</p>' : '<p>✨ Sin ayuda - ¡Perfecto!</p>'}
+                ${this.ayudaUsada ? '<p>Ayuda utilizada</p>' : '<p>Sin ayuda - ¡Perfecto!</p>'}
             `;
-        }, 500);
+        }, 2500);
     }
     
     // Método que muestra la pantalla de derrota
