@@ -21,14 +21,6 @@ body {
 }
 
 
-/*  header y footer centrados */
-/* header,
-footer {
-    max-width: 1440px;
-    margin-left: auto;
-    margin-right: auto;
-} */
-
 @media (max-width: 1440px) {
     .frame {
         padding-left: 20px;
