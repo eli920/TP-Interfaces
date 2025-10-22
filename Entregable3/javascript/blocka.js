@@ -58,19 +58,19 @@ function generarImagen(ancho, alto, tipo) {
     
         // Evalúa el tipo de imagen a generar
         switch(tipo) {
-            // Caso: cargar imagen solar
-            case 'sistema-solar':
+            // Caso: cargar imagen batman
+            case 'batman':
                 // Crear un objeto Image (ubicacion del recurso)
-                const imagenSolar = new Image();
-                imagenSolar.src = 'imagenes/juego/SistemaSolar.jpg'; 
+                const imagenBatman = new Image();
+                imagenBatman.src = 'imagenes/juego/batman.png'; 
                 // Establecer el evento que se ejecuta cuando la imagen se carga
-                imagenSolar.onload = function() {
+                imagenBatman.onload = function() {
                     // Lllamo al metodo dibujar la imagen en el canvas
                     dibujarImagen(this);      
                 };
 
                 // Manejar errores de carga
-                imagenSolar.onerror = function() {
+                imagenBatman.onerror = function() {
                     console.error('Error al cargar la imagen');
                     //  dibujar algo por defecto si falla
                     contexto.fillStyle = '#cccccc';
@@ -80,18 +80,18 @@ function generarImagen(ancho, alto, tipo) {
                 
                 break;
                 
-            // Caso: cargar imagen de galaxia
-            case 'galaxia':
-                const imagenGalaxia = new Image();
-                imagenGalaxia.src = 'imagenes/juego/Galaxia.jpg';
+            // Caso: cargar imagen de superman
+            case 'superman':
+                const imagenSuperman = new Image();
+                imagenSuperman.src = 'imagenes/juego/superman.jpg';
 
-                imagenGalaxia.onload = function() {
+                imagenSuperman.onload = function() {
                     dibujarImagen(this); 
                 };
 
-                imagenGalaxia.onerror = () => {
-                    console.error('Error al cargar la imagen Galaxia.jpg');
-                    contexto.fillStyle = '#789b6fff';
+                imagenSuperman.onerror = () => {
+                    console.error('Error al cargar la imagen');
+                    contexto.fillStyle = '#cccccc';
                     contexto.fillRect(0, 0, ancho, alto);
                     resolve(lienzo);
                 };
@@ -99,17 +99,17 @@ function generarImagen(ancho, alto, tipo) {
                 break;
                 
             // Caso: cargar imagen de aurora boreal
-            case 'aurora-boreal':
-                const imagenAurora = new Image();
-                imagenAurora.src = 'imagenes/juego/AuroraBoreal.jpg';
+            case 'batman-superman':
+                const imagenBatmanSuperman = new Image();
+                imagenBatmanSuperman.src = 'imagenes/juego/batman-superman.jpg';
 
-                imagenAurora.onload = function() {
+                imagenBatmanSuperman.onload = function() {
                     dibujarImagen(this); 
                 };
 
-                imagenAurora.onerror = () => {
-                    console.error('Error al cargar la imagen AuroraBoreal.jpg');
-                    contexto.fillStyle = '#e88d8dff';
+                imagenBatmanSuperman.onerror = () => {
+                    console.error('Error al cargar la imagen');
+                    contexto.fillStyle = '#cccccc';
                     contexto.fillRect(0, 0, ancho, alto);
                     resolve(lienzo);
                 };
@@ -122,11 +122,11 @@ function generarImagen(ancho, alto, tipo) {
                 // Crea un degradado radial desde el centro (ancho/2, alto/2) con radio 0 hasta radio ancho/2
                 const degradadoRadial = contexto.createRadialGradient(ancho/2, alto/2, 0, ancho/2, alto/2, ancho/2);
                 // Añade color magenta en el centro (0%)
-                degradadoRadial.addColorStop(0, '#FF00FF');
+                degradadoRadial.addColorStop(0, '#F2C335');
                 // Añade color cian en el medio (50%)
-                degradadoRadial.addColorStop(0.5, '#00FFFF');
+                degradadoRadial.addColorStop(0.5, '#b92020ff');
                 // Añade color amarillo en el exterior (100%)
-                degradadoRadial.addColorStop(1, '#FFFF00');
+                degradadoRadial.addColorStop(1, '#263385ff');
                 // Establece el degradado radial como estilo de relleno
                 contexto.fillStyle = degradadoRadial;
                 // Dibuja un rectángulo que cubre todo el canvas con el degradado
@@ -138,11 +138,11 @@ function generarImagen(ancho, alto, tipo) {
             // Caso: crear ondas sinusoidales
             case 'waves':
                 // Establece un color de fondo verde azulado
-                contexto.fillStyle = '#16a085';
+                contexto.fillStyle = '#F2C335';
                 // Dibuja el fondo
                 contexto.fillRect(0, 0, ancho, alto);
                 // Establece el color de las líneas como blanco humo
-                contexto.strokeStyle = '#ecf0f1';
+                contexto.strokeStyle = '#1B1F2B';
                 // Establece el grosor de las líneas en 5 píxeles
                 contexto.lineWidth = 5;
                 // Bucle para dibujar 10 ondas
@@ -203,7 +203,7 @@ function generarImagen(ancho, alto, tipo) {
         // Alinea el texto al centro verticalmente
         contexto.textBaseline = 'middle';
         // Dibuja el texto en el centro del canvas
-        contexto.fillText(`GameHub ${tipo}`, ancho/2, alto/2);
+        contexto.fillText(`GameHub- Blocka- ${tipo}`, ancho/2, alto/2);
         
         // Retorna el canvas completo con la imagen generada
         return lienzo;
@@ -224,7 +224,7 @@ const configuracionesNivel = [
 ];
 
 // Array con los tipos de imágenes que se pueden generar
-const tiposImagenes = ['sistema-solar', 'galaxia', 'aurora-boreal', 'radial', 'waves', 'stars'];
+const tiposImagenes = ['batman', 'superman', 'batman-superman', 'radial', 'waves', 'stars'];
 
 // ====== CLASE PIEZA ======
 // Clase que representa cada pieza individual del rompecabezas
@@ -616,54 +616,56 @@ class Juego {
         // Renderiza el juego en el canvas
         this.renderizar();
     }
-// Método que crea todas las piezas del rompecabezas
-crearPiezas() {
-    // Limpia el array de piezas
-    this.piezas = [];
-    
-    // Usa el lado más grande para calcular el tamaño de pieza cuadrada
-    const mayorDimension = Math.max(this.filasCuadricula, this.columnasCuadricula);
-    
-    // Calcula el tamaño del canvas basado en las piezas que realmente se usan
-    const tamañoPiezaBase = 600 / mayorDimension;
-    const anchoCanvas = this.columnasCuadricula * tamañoPiezaBase;
-    const altoCanvas = this.filasCuadricula * tamañoPiezaBase;
-    
-    // Ajusta el canvas al tamaño necesario
-    this.lienzo.width = anchoCanvas;
-    this.lienzo.height = altoCanvas;
-    
-    // Dimensiones de ORIGEN (imagen original) - usa toda la imagen
-    const anchoPiezaOrigen = this.imagenActual.width / this.columnasCuadricula;
-    const altoPiezaOrigen = this.imagenActual.height / this.filasCuadricula;
-    
-    // Dimensiones de DESTINO (canvas) - piezas cuadradas
-    const tamañoPiezaDestino = tamañoPiezaBase;
-    
-    // Bucle que recorre las filas
-    for (let fila = 0; fila < this.filasCuadricula; fila++) {
-        // Bucle que recorre las columnas
-        for (let columna = 0; columna < this.columnasCuadricula; columna++) {
-            // Crea una nueva pieza con sus parámetros
-            const pieza = new Pieza(
-                this.imagenActual,                    // Imagen original
-                columna * anchoPiezaOrigen,           // X de origen en la imagen
-                fila * altoPiezaOrigen,               // Y de origen en la imagen
-                anchoPiezaOrigen,                     // Ancho de origen
-                altoPiezaOrigen,                      // Alto de origen
-                columna * tamañoPiezaDestino,         // X de destino en el canvas
-                fila * tamañoPiezaDestino,            // Y de destino en el canvas
-                fila,                                 // Número de fila
-                columna                               // Número de columna
-            );
-            // Establece las dimensiones cuadradas para el destino
-            pieza.ancho = tamañoPiezaDestino;
-            pieza.alto = tamañoPiezaDestino;
-            // Añade la pieza al array
-            this.piezas.push(pieza);
+
+    // Método que crea todas las piezas del rompecabezas
+    crearPiezas() {
+        // Limpia el array de piezas
+        this.piezas = [];
+        
+        // Usa el lado más grande para calcular el tamaño de pieza cuadrada
+        const mayorDimension = Math.max(this.filasCuadricula, this.columnasCuadricula);
+        
+        // Calcula el tamaño del canvas basado en las piezas que realmente se usan
+        const tamañoPiezaBase = 600 / mayorDimension;
+        const anchoCanvas = this.columnasCuadricula * tamañoPiezaBase;
+        const altoCanvas = this.filasCuadricula * tamañoPiezaBase;
+        
+        // Ajusta el canvas al tamaño necesario
+        this.lienzo.width = anchoCanvas;
+        this.lienzo.height = altoCanvas;
+        
+        // Dimensiones de ORIGEN (imagen original) - usa toda la imagen
+        const anchoPiezaOrigen = this.imagenActual.width / this.columnasCuadricula;
+        const altoPiezaOrigen = this.imagenActual.height / this.filasCuadricula;
+        
+        // Dimensiones de DESTINO (canvas) - piezas cuadradas
+        const tamañoPiezaDestino = tamañoPiezaBase;
+        
+        // Bucle que recorre las filas
+        for (let fila = 0; fila < this.filasCuadricula; fila++) {
+            // Bucle que recorre las columnas
+            for (let columna = 0; columna < this.columnasCuadricula; columna++) {
+                // Crea una nueva pieza con sus parámetros
+                const pieza = new Pieza(
+                    this.imagenActual,                    // Imagen original
+                    columna * anchoPiezaOrigen,           // X de origen en la imagen
+                    fila * altoPiezaOrigen,               // Y de origen en la imagen
+                    anchoPiezaOrigen,                     // Ancho de origen
+                    altoPiezaOrigen,                      // Alto de origen
+                    columna * tamañoPiezaDestino,         // X de destino en el canvas
+                    fila * tamañoPiezaDestino,            // Y de destino en el canvas
+                    fila,                                 // Número de fila
+                    columna                               // Número de columna
+                );
+                // Establece las dimensiones cuadradas para el destino
+                pieza.ancho = tamañoPiezaDestino;
+                pieza.alto = tamañoPiezaDestino;
+                // Añade la pieza al array
+                this.piezas.push(pieza);
+            }
         }
     }
-}
+    
     // Método que aplica los filtros a las piezas según el nivel
     aplicarFiltros() {
         // Obtiene la configuración del nivel actual usando módulo para ciclar los niveles
