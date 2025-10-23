@@ -150,7 +150,7 @@ function misJuegosCarrusel() {
   //Arreglo carrusel mis juegos
   const misJuegos = [
     new Juego(
-      "imagenes/home/carrusel-mis-juegos/juego1.png",
+      "imagenes/home/carrusel-mis-juegos/blocka-juego.jpg",
       "Blocka",
       "Puzzle"
     ),
