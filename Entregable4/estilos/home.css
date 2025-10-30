@@ -1,0 +1,430 @@
+
+/*SPINNER*/
+#cargar-pagina {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 9999;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 6px solid rgba(255, 215, 0, 0.2);
+  border-left-color: #ffd700;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  animation: girar 1s linear 5;
+}
+
+@keyframes girar {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#texto-spinner {
+  color: var(--texto-blanco);
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.contenido-home {
+  display: none;
+}
+
+/*ESTILOS GENERALES*/
+body {
+  padding-top: 50px;
+  overflow-x: hidden;
+  background-color: var(--fondo);
+}
+
+/*Flechas izq y der de todos los carruseles*/
+.btn-carrusel {
+  width: 35px;
+  height: 35px;
+  background-color: var(--fondo-flecha-carrusel);
+  color: var(--texto-blanco);
+  border-radius: 50%;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-carrusel.flecha-atras {
+  left: 5px;
+}
+
+.btn-carrusel.flecha-atras img {
+  /*Gira la imagen para que la flecha sea izquierda*/
+  transform: rotate(180deg);
+}
+
+.btn-carrusel.flecha-siguiente {
+  right: 5px;
+}
+
+@media (min-width: 768px) {
+  .btn-carrusel {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+/*BANNER*/
+.banner {
+  position: relative;
+  width: 100%;
+  overflow: hidden; /*oculta contenido que se sale del banner*/
+  margin: 20px 0;
+  z-index: 1;
+}
+
+.banner-contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 250px;
+  perspective: 800px;
+  overflow: visible;
+}
+
+/*Cards banner*/
+.card-banner {
+  position: absolute;
+  width: 80%;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.6s ease;
+  margin: 10px 0;
+  font-family: "Space Grotesk";
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.card-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  filter: brightness(0.6) blur(1px);
+}
+
+.titulo-juego {
+  width: 100px;
+  position: absolute;
+  bottom: 50px;
+  left: 30px;
+  color: var(--texto-blanco);
+  z-index: 2;
+  overflow-wrap: break-word;
+  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
+}
+
+.btn-jugar {
+  position: absolute;
+  bottom: 40px;
+  right: 30px;
+  z-index: 2;
+  background-color: var(--sombra1-primaria);
+  color: black;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Card activa */
+.card-banner.active {
+  transform: translateX(0) scale(1) rotateY(0deg);
+  z-index: 3;
+  opacity: 1;
+}
+
+/* Card anterior */
+.card-banner.atras {
+  transform: translateX(-30%) scale(0.8) rotateY(10deg);
+  z-index: 2;
+  opacity: 0.6;
+}
+
+/* Card siguiente */
+.card-banner.siguiente {
+  transform: translateX(30%) scale(0.8) rotateY(-10deg);
+  z-index: 2;
+  opacity: 0.6;
+}
+
+/*Botones banner*/
+.btn-banner {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.banner-puntos {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  padding-bottom: 10px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+}
+
+.banner-puntos span {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--fondo-footer-header);
+  cursor: pointer;
+}
+
+.banner-puntos span.activo {
+  background: var(--base-primaria);
+}
+
+@media (min-width: 768px) {
+  .banner-contenedor {
+    width: 720px;
+    height: 415px;
+    margin: 0 auto;
+  }
+
+  .card-banner {
+    width: inherit;
+    height: inherit;
+  }
+
+  .banner-puntos span {
+    width: 12px;
+    height: 12px;
+  }
+
+  .titulo-juego {
+    width: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    min-width: 0;
+  }
+
+  .btn-jugar {
+    width: 300px;
+  }
+}
+
+/*ESTILOS MIS JUEGOS Y SUGERENCIAS*/
+.mis-juegos-contenedor, .sugerencias-contenedor {
+  position: relative;
+  overflow: hidden; /* Oculta las cards que salen del contenedor */
+  z-index: 1;
+}
+
+#cinta-mis-juegos,
+#cinta-sugerencias {
+  display: flex; /* Alinea las cards en fila */
+  transition: transform 0.5s ease; /* Para el efecto de deslizamiento */
+  padding: 10px;
+  margin: 0 10px;
+}
+
+#btn-atras-mis-juegos,
+#btn-siguiente-mis-juegos,
+#btn-atras-sugerencias,
+#btn-siguiente-sugerencias {
+  position: absolute;
+  transform: translateY(-50%);
+  top:50%; /*se agrega*/
+  z-index: 10;
+  width: 35px;
+  height: 35px;
+  background-color: var(--fondo-flecha-carrusel);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  #btn-atras-mis-juegos,
+  #btn-siguiente-mis-juegos,
+  #btn-atras-sugerencias,
+  #btn-siguiente-sugerencias {
+    width: 45px;
+    height: 45px;
+  }
+
+}
+
+.btn-carrusel:disabled {
+  background-color: #3a3f4d; /* un gris más oscuro que el normal */
+  opacity: 0.5; /* da sensación de deshabilitado */
+  cursor: not-allowed;
+}
+
+.btn-carrusel:disabled img {
+  filter: brightness(0.5); /* icono más apagado */
+}
+
+.subtitulo {
+  color: var(--texto-blanco);
+  font-family: "Space Grotesk";
+  font-weight: 700;
+  font-size: 20px;
+  padding: 0 15px;
+}
+
+.card-juego {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  flex: 0 0 auto;
+  margin: 10px;
+  width: 200px;
+  height: 180px;
+  margin: 10px;
+  border-radius: 10px;
+  /*background-color: black;*/
+  background-color: var(--fondo-complementario);
+  color: var(--texto-blanco);
+  font-family: "Space Grotesk";
+}
+
+.card-juego img {
+  width: 100%;
+  height: 70%;
+  object-fit: cover;
+  border-radius: inherit;
+  display: block;
+  filter: brightness(0.6) blur(1px);
+}
+
+.juego-titulo,
+.juego-categoria,
+.gratis {
+  position: absolute;
+  left: 10px;
+  z-index: 2;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+.juego-titulo {
+  bottom: 80px;
+}
+
+.juego-categoria {
+  font-size: 16px;
+  bottom: 60px;
+  color: var(--texto-gris);
+}
+
+.btn-jugar-ahora {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 20px;
+  background-color: var(--sombra1-primaria);
+  color: black;
+  font-weight: bold;
+  border-radius: 8px;
+  padding: 6px 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gratis {
+  left: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 65px;
+  height: 30px;
+  margin: 5px;
+  background-color: var(--base-acento);
+  border-radius: 15px;
+  color: var(--texto-blanco);
+  font-family: "Space Grotesk";
+  font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  .mis-juegos{
+    margin-bottom: 10px;
+  }
+  .sugerencias {
+    margin-bottom: 50px;
+  }
+  
+  .card-juego {
+    width: 268px;
+    height: 264px;
+  }
+
+  .sugerencias .card-juego{
+    overflow: visible;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: efecto-pulso 4s ease-in-out infinite;  
+  }
+
+  .sugerencias .card-juego:hover{ /*la card crece un 3 % al instante y se resalta con sombr*/
+    box-shadow: 0 0 10px 4px var(--sombra3-primaria);
+    transform: scale(1.03);
+  }
+
+  /* Animación para las cards sugerencias */
+  @keyframes efecto-pulso {
+    0%, 100% { /*al inicio y fin de la animacion la escala de la card es la normal*/
+      transform: scale(1);
+    }
+    50% { /*a la mitad de la animacion la escala de la card es un #% mas grande*/
+      transform: scale(1.03);
+    }
+  }
+
+  .subtitulo {
+    font-size: 25px;
+  }
+
+  .juego-titulo {
+    bottom: 120px;
+    font-size: 20px;
+  }
+
+  .juego-categoria {
+    bottom: 100px;
+    font-size: 18px;
+  }
+
+  .gratis {
+    width: 80px;
+    height: 38px;
+    border-radius: 20px;
+    left: 165px;
+  }
+
+  .btn-jugar-ahora {
+    height: 35px;
+    width: 85%;
+    font-size: 15px;
+  }
+}
