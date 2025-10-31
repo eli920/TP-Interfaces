@@ -1,5 +1,11 @@
 
 
+// Configuración global del juego
+const configuracionJuego = {
+    fondoActual: 0,
+    estiloFichas: 0
+};
+
 // PORTADA DEL JUEGO - Transición al juego
 document.addEventListener('DOMContentLoaded', function() {
     const btnJugarAhora = document.getElementById('btn-jugar-ahora');
@@ -40,17 +46,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const btnStart = document.getElementById('btn-start');
     if (btnStart) {
         btnStart.addEventListener('click', function() {
+            // Guardar configuración seleccionada
+            configuracionJuego.fondoActual = parseInt(document.getElementById('selector-fondo').value);
+            configuracionJuego.estiloFichas = parseInt(document.getElementById('selector-fichas').value);
+            
             // Ocultar menú y mostrar pantalla de juego
             menuScreen.classList.remove('active');
             gameScreen.classList.add('active');
             
-            // Aplicar configuración seleccionada
-            const fondoSeleccionado = parseInt(document.getElementById('selector-fondo').value);
-            const fichasSeleccionadas = parseInt(document.getElementById('selector-fichas').value);
-            
+            // Aplicar configuración guardada
             if (juegoGlobal) {
-                juegoGlobal.cambiarFondo(fondoSeleccionado);
-                juegoGlobal.cambiarEstiloFichas(fichasSeleccionadas);
+                juegoGlobal.cambiarFondo(configuracionJuego.fondoActual);
+                juegoGlobal.cambiarEstiloFichas(configuracionJuego.estiloFichas);
             }
         });
     }
@@ -61,6 +68,10 @@ document.addEventListener('DOMContentLoaded', function() {
         menuBtn.addEventListener('click', function() {
             gameScreen.classList.remove('active');
             menuScreen.classList.add('active');
+            
+            // Restaurar valores en los selectores
+            document.getElementById('selector-fondo').value = configuracionJuego.fondoActual;
+            document.getElementById('selector-fichas').value = configuracionJuego.estiloFichas;
             
             // Pausar el juego
             if (juegoGlobal) {
