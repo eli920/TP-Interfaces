@@ -10,9 +10,9 @@ body {
 /* Frame principal: contenedor de toda la página */
 .frame {
     width: 70%;
-    /* max-width: 1440px;
-     min-width: auto;
-    /* min-height: 2386px; */
+    max-width: 1440px;
+    min-width: auto;
+    min-height: 2386px;
     position: relative; 
     background-color: var(--fondo);
     margin: 0 auto;  /* Centra el contenedor horizontalmente */
@@ -947,10 +947,9 @@ body {
 /* Grid de cards de juegos relacionados */
 .container-cards {
     display: flex;
-    /* justify-content: space-between;  */
-    justify-content: center;;
+    justify-content: center;
     align-items: center;         
-    gap: 50px;
+    gap: 30px; 
 }
 
 /* Card individual de cada juego */
