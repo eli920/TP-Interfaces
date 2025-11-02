@@ -109,7 +109,7 @@ export async function cargarJuegosRelacionados() {
       });
       
   } catch (error) {
-      console.error('Error al cargar juegos relacionados:', error);
+      console.error(error);
   }
 }
 
