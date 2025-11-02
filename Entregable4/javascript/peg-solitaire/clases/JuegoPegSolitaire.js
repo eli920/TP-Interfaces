@@ -407,7 +407,7 @@ export class JuegoPegSolitaire {
 
     if (gameOver && title && message) {
       if (victoria) {
-        title.textContent = '🎉 ¡VICTORIA! 🎉';
+        title.textContent = 'VICTORIA!';
         message.textContent = `¡Ganaste en ${this.movimientos} movimientos!`;
       } else if (this.tiempoRestante === 0) {
         title.textContent = '⏰ Tiempo Agotado';
@@ -416,7 +416,14 @@ export class JuegoPegSolitaire {
         title.textContent = '🎮 Fin del Juego';
         message.textContent = `No hay más movimientos. Quedaron ${this.tablero.piezas.length} fichas`;
       }
-      gameOver.classList.add('show');
+
+      //Agrega las clases según resultado
+      if (victoria) {
+        gameOver.className = "mensaje-ganaste show";
+      } else {
+          gameOver.className = "game-over show";
+      }
+
     }
   }
 
@@ -433,7 +440,9 @@ export class JuegoPegSolitaire {
 
     const gameOver = document.getElementById('gameOver');
     if (gameOver) {
-      gameOver.classList.remove('show');
+      // Se oculta y vuelve a la clase base
+      gameOver.className = "game-over";
+      // gameOver.classList.remove('show');
     }
 
     this.actualizarUI();
