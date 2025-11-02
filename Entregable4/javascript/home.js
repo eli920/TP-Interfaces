@@ -379,7 +379,7 @@ document.addEventListener("click", (e) => {
     const titulo = e.target.parentElement.querySelector(".titulo-juego, .juego-titulo")?.textContent?.trim();
 
     if (titulo === "Peg Solitaire") {
-      window.location.href = "jugar.html"; 
+      window.location.href = "peg-solitaire.html"; 
     }
   }
 });

@@ -1,4 +1,3 @@
-
 body {
     padding-top: 0px;
 }
@@ -17,7 +16,7 @@ main{
 /*  SECCIÓN JUEGO PRINCIPAL - PORTADA JUEGO ---------------------------------------------------------------------------------------*/
 
 /* Contenedor principal del área de portada */
-.juegar-juego {
+.jugar-juego {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -119,7 +118,7 @@ main{
 }
 
 /* Efecto de onda al hacer hover */
-.juegar-juego .btn-aadir-carrito::before {
+.jugar-juego .btn-aadir-carrito::before {
     content: '';
     position: absolute;
     top: 50%;
@@ -762,7 +761,7 @@ main{
 }
 
 /* Pseudo-elemento para el efecto de onda al click */
-.comunidad-foro .btn-aadir-carrito::before, .juegar-juego .btn-aadir-carrito::before {
+.comunidad-foro .btn-aadir-carrito::before, .jugar-juego .btn-aadir-carrito::before {
     content: '';
     position: absolute;
     top: 50%;
@@ -783,7 +782,7 @@ main{
 }
 
 /* Expande el círculo creando el efecto de onda */
-.comunidad-foro .btn-aadir-carrito:hover::before, .juegar-juego .btn-aadir-carrito:hover::before {
+.comunidad-foro .btn-aadir-carrito:hover::before, .jugar-juego .btn-aadir-carrito:hover::before {
     width: 300px;
     height: 300px;
 }

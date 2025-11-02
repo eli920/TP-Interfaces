@@ -59,7 +59,7 @@ function generarImagen(ancho, alto, tipo) {
             case 'batman':
                 // Crear un objeto Image (ubicacion del recurso)
                 const imagenBatman = new Image();
-                imagenBatman.src = 'imagenes/juego/batman.png'; 
+                imagenBatman.src = 'imagenes/juego/blocka/batman.png'; 
                 // Establecer el evento que se ejecuta cuando la imagen se carga
                 imagenBatman.onload = function() {
                     // Lllamo al metodo dibujar la imagen en el canvas
@@ -80,7 +80,7 @@ function generarImagen(ancho, alto, tipo) {
             // Caso: cargar imagen de superman
             case 'superman':
                 const imagenSuperman = new Image();
-                imagenSuperman.src = 'imagenes/juego/superman.jpg';
+                imagenSuperman.src = 'imagenes/juego/blocka/superman.jpg';
 
                 imagenSuperman.onload = function() {
                     dibujarImagen(this); 
@@ -98,7 +98,7 @@ function generarImagen(ancho, alto, tipo) {
             // Caso: cargar imagen de batman-superman
             case 'batman-superman':
                 const imagenBatmanSuperman = new Image();
-                imagenBatmanSuperman.src = 'imagenes/juego/batman-superman.jpg';
+                imagenBatmanSuperman.src = 'imagenes/juego/blocka/batman-superman.jpg';
 
                 imagenBatmanSuperman.onload = function() {
                     dibujarImagen(this); 
@@ -833,9 +833,9 @@ const juego = new Juego();
 
 //-============ Lista de juegos relacionados específicos de Blocka===========================================================
 const misJuegos = [
-  new Carrusel.Juego("imagenes/juego/Pokemon.jpg", "Pokemon", "Puzzle", true),
-  new Carrusel.Juego("imagenes/juego/Guardian.jpg", "Guardian", "Puzzle", false),
-  new Carrusel.Juego("imagenes/juego/Sokoban.jpg", "Sokoban", "Puzzle", false),
+  new Carrusel.Juego("imagenes/juego/pokemon.jpg", "Pokemon", "Puzzle", true),
+  new Carrusel.Juego("imagenes/juego/guardian.jpg", "Guardian", "Puzzle", false),
+  new Carrusel.Juego("imagenes/juego/sokoban.jpg", "Sokoban", "Puzzle", false),
 ];
 
 // Esperar a que el DOM esté completamente cargado

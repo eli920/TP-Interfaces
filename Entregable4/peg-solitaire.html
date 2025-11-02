@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="estilos/style.css" />
-  <link rel="stylesheet" href="estilos/styleJugar.css" />
+  <link rel="stylesheet" href="estilos/peg-solitaire.css" />
   <link rel="shortcut icon" href="iconos/icono-logo.svg" />
   <title>Peg Solitaire - GameHub</title>
   <meta name="description"
@@ -115,9 +115,9 @@
           <div class="div-wrapper"><span class="text-wrapper actual" aria-current="page">Peg Solitaire</span></div>
         </nav>
         <!-- PORTADA -->
-        <section id="portada-juego" class="juegar-juego">
+        <section id="portada-juego" class="jugar-juego">
           <div class="juego-jugar-video">
-            <img src="imagenes/juego/peg-solitaire.png"
+            <img src="imagenes/juego/peg-solitaire/peg-solitaire.png"
               alt="Vista previa del juego Peg Solitaire con fichas de Batman y Superman">
 
             <!-- Botón que aparece al hover -->
@@ -141,16 +141,16 @@
                     <label>Elige tu fondo:</label>
                     <select id="selector-fondo">
                       <option value="0">Clásico</option>
-                      <option value="1">otro</option>
-                      <option value="2">otro 2</option>
+                      <option value="1">Superman - Batman</option>
+                      <option value="2">Batman - Superman</option>
                     </select>
                   </div>
                   <div class="config-row">
                     <label for="selector-fichas">Elige tus Fichas:</label>
                     <select id="selector-fichas">
-                      <option value="0">Clásicas</option>
-                      <option value="1">otras</option>
-                      <option value="2">otras 2</option>
+                      <option value="0">Blancas</option>
+                      <option value="1">Oscuras</option>
+                      <option value="2">Coloridas</option>
                     </select>
                       
                   </div>
@@ -195,6 +195,34 @@
             </div>
           </div>
         </div>
+
+        <!-- Modal de confirmación para guardar partida -->
+        <div id="modal-guardar-partida" class="modal-overlay" style="display: none;">
+          <div class="modal-contenido">
+            <h3>¿Deseas guardar tu partida?</h3>
+            <p>Puedes continuar donde lo dejaste la próxima vez que juegues.</p>
+            <div class="modal-botones">
+              <button id="btn-guardar-si" class="btn btn-xs btn-primary">Guardar y salir</button>
+              <button id="btn-guardar-no" class="btn btn-xs btn-secondary">No guardar</button>
+              <button id="btn-cancelar" class="btn btn-xs">Cancelar</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal para continuar partida guardada -->
+        <div id="modal-continuar-partida" class="modal-overlay" style="display: none;">
+          <div class="modal-contenido">
+            <h3>🎮 Partida Guardada Encontrada</h3>
+            <p>Tienes una partida en progreso. ¿Deseas continuarla?</p>
+            <div id="info-partida-guardada" class="info-partida">
+              <!-- Se llenará dinámicamente con JavaScript -->
+            </div>
+            <div class="modal-botones">
+              <button id="btn-continuar-si" class="btn btn-xs btn-primary">Continuar Partida</button>
+              <button id="btn-continuar-no" class="btn btn-xs btn-secondary">Nueva Partida</button>
+            </div>
+          </div>
+        </div>
       </div>
       </div>
         <!-- Fin canva -->
@@ -223,11 +251,12 @@
 
         <div class="container-fotos-info">
           <div class="container-fotos">
-            <img class="img-img" src="imagenes/juego/peg-solitaire.png"
+            <img class="img-img" src="imagenes/juego/peg-solitaire/peg-solitaire.png"
               alt="Ficha de Batman en el juego Peg Solitaire" />
             <div class="img-play-container">
-              <video class="img img-play" muted>
-                <source src="imagenes/juego/Peg_Solitarie_ejecucion.mp4" type="video/mp4" />
+              <video class="img img-play" autoplay muted loop>
+                <source src="imagenes/juego/peg-solitaire/Peg_Solitarie_ejecucion.mp4" type="video/mp4" />
+                <source src="imagenes/juego/peg-solitaire/Peg_Solitarie_ejecucionwebm" type="video/webm" />
                 Tu navegador no soporta la reproducción de video.
               </video>
             </div>
