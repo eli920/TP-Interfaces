@@ -1,0 +1,424 @@
+/* ============================================
+   ANIMACIONES KEYFRAME PARA FLAPPY BIRD
+   ============================================ */
+
+/* Animación de entrada del murciélago */
+@keyframes batEntrance {
+    0% {
+        transform: scale(0) rotate(-180deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) rotate(10deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+/* Animación de aleteo del murciélago */
+@keyframes batFlap {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Animación de rotación para coleccionables */
+@keyframes itemRotate {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    50% {
+        transform: rotate(180deg) scale(1.1);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+/* Animación de pulso para items */
+@keyframes itemPulse {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(255, 215, 0, 0.9);
+    }
+}
+
+/* Animación de explosión */
+@keyframes explode {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+}
+
+/* Animación de parpadeo para invulnerabilidad */
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.3;
+    }
+}
+
+/* Animación de sacudida cuando hay colisión */
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-5px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(5px);
+    }
+}
+
+/* Animación de deslizamiento de nubes */
+@keyframes cloudFloat {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100px);
+    }
+}
+
+/* Animación de parpadeo de estrellas */
+@keyframes starTwinkle {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.3;
+        transform: scale(0.8);
+    }
+}
+
+/* Animación de aparición de obstáculos */
+@keyframes obstacleSlideIn {
+    0% {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Animación de texto game over */
+@keyframes gameOverText {
+    0% {
+        transform: scale(0) rotate(-45deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) rotate(5deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+/* Animación de aparición del HUD */
+@keyframes hudSlideDown {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Animación de rebote para botones */
+@keyframes buttonBounce {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Animación de ondas para el escudo */
+@keyframes shieldWave {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Animación de partículas flotantes */
+@keyframes particleFloat {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-50px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Animación de advertencia de tiempo */
+@keyframes timeWarning {
+    0%, 100% {
+        color: #ff4444;
+        transform: scale(1);
+    }
+    50% {
+        color: #ff0000;
+        transform: scale(1.1);
+    }
+}
+
+/* Animación de contador de puntos */
+@keyframes scoreIncrement {
+    0% {
+        transform: scale(1);
+        color: #ffd700;
+    }
+    50% {
+        transform: scale(1.3);
+        color: #ffed4e;
+    }
+    100% {
+        transform: scale(1);
+        color: #ffd700;
+    }
+}
+
+/* Aplicar animaciones a elementos del canvas */
+.canvas-container {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+
+/* Estilos adicionales para el canvas del juego */
+#gameCanvas {
+    display: block;
+    margin: 0 auto;
+    border-radius: 15px;
+    box-shadow: 
+        0 0 20px rgba(100, 181, 246, 0.3),
+        0 0 40px rgba(100, 181, 246, 0.2),
+        inset 0 0 60px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(180deg, #08121b 0%, #1a1f3a 100%);
+}
+
+#gameCanvas:hover {
+    box-shadow: 
+        0 0 30px rgba(100, 181, 246, 0.5),
+        0 0 60px rgba(100, 181, 246, 0.3),
+        inset 0 0 60px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.3s ease;
+}
+
+/* Animación del cursor sobre el canvas */
+#gameCanvas {
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+#gameCanvas:active {
+    transform: scale(0.99);
+}
+
+/* Estilos para el panel de información del juego */
+.info-panel {
+    animation: hudSlideDown 0.6s ease-out;
+}
+
+/* Estilos para efectos de colisión */
+.collision-effect {
+    animation: shake 0.5s ease-in-out;
+}
+
+/* Estilos para los botones del juego */
+#resetBtn, #menuBtn {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+#resetBtn:hover, #menuBtn:hover {
+    animation: buttonBounce 0.5s ease-in-out infinite;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+#resetBtn::before, #menuBtn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+#resetBtn:active::before, #menuBtn:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Animación para el menú de inicio */
+#menu-screen.active {
+    animation: fadeIn 0.5s ease-in;
+}
+
+#menu-screen h1 {
+    animation: gameOverText 0.8s ease-out;
+}
+
+/* Animación para el texto de información */
+.info-text {
+    animation: fadeIn 1s ease-in 0.3s both;
+}
+
+/* Animación para las opciones de configuración */
+#config-options {
+    animation: fadeIn 1s ease-in 0.5s both;
+}
+
+/* Efecto hover en los selectores */
+#selector-fondo, #selector-fichas {
+    transition: all 0.3s ease;
+}
+
+#selector-fondo:hover, #selector-fichas:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(100, 181, 246, 0.5);
+}
+
+/* Animación para el botón de comenzar */
+#btn-start {
+    animation: buttonBounce 2s ease-in-out infinite;
+}
+
+#btn-start:hover {
+    animation: none;
+    transform: scale(1.1);
+}
+
+/* Estilos para mensajes de victoria */
+.victory-message {
+    animation: gameOverText 1s ease-out, itemPulse 1.5s ease-in-out infinite 1s;
+}
+
+/* Animación para el fondo de parallax */
+.parallax-layer {
+    animation: cloudFloat 30s linear infinite;
+}
+
+/* Efecto de partículas en el fondo */
+@keyframes backgroundParticle {
+    0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) translateX(50px);
+        opacity: 0;
+    }
+}
+
+/* Responsividad para pantallas más pequeñas */
+@media (max-width: 900px) {
+    #gameCanvas {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* Animación de carga inicial */
+@keyframes initialLoad {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+        filter: blur(10px);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+#game-container {
+    animation: initialLoad 0.8s ease-out;
+}
+
+/* Efecto de brillo en coleccionables */
+@keyframes collectibleGlow {
+    0%, 100% {
+        filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5));
+    }
+    50% {
+        filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.9));
+    }
+}
+
+/* Animación para el contador de tiempo cuando está por acabarse */
+.time-critical {
+    animation: timeWarning 0.5s ease-in-out infinite;
+}
+
+/* Efecto de ondas en el escudo de protección */
+.shield-active::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60px;
+    height: 60px;
+    border: 3px solid rgba(100, 181, 246, 0.6);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: shieldWave 1s ease-out infinite;
+}
+#game-screen {
+    transform: translate(-25px, -25px);
+}

@@ -1,0 +1,1077 @@
+/*  ESTILOS GLOBALES - Body y Contenedores */
+body {
+    padding-top: 0 !important; /*Evita que haya mucho espacio entre header y contenido*/
+    font-family: 'Space Grotesk', sans-serif;
+    background-color: var(--fondo); /*Fondo oscuro*/
+    margin: 0;
+    overflow-x: hidden; 
+}
+
+/* Frame principal: contenedor de toda la página */
+.frame {
+    width: 70%;
+    /* max-width: 1440px;  */
+    /* min-height: auto; */
+    position: relative; 
+    background-color: var(--fondo);
+    margin: 0 auto;  /* Centra el contenedor horizontalmente */
+    padding-top: 100px;
+    overflow-x: hidden;
+}
+
+
+@media (max-width: 1440px) {
+    .frame {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    
+    .container-general,
+    .informacion-juego,
+    .ayuda-instrucciones,
+    .container-foro-mis-juegos,
+    .juegos-relacionados,
+    .bread,
+    .juego-pago,
+    .jugar-juego {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+/* Contenedor general que limita el ancho máximo  no es general es solo imagen y pago o gratis*/
+.container-general {
+    max-width: 1440px;
+    overflow: hidden;
+    margin-left: auto;  
+    margin-right: auto; 
+} 
+
+/* CANVA -------------------------------------------------------------------------------------------------------------------------------*/
+
+#game-container {
+    display: flex;
+    justify-content: center;
+    max-height: 580px; 
+    align-items: center;
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: inset 0 0 50px var(--sombra3-primaria);
+    width: 100%;
+}
+
+ #gameCanvas {
+     border: 3px solid rgba(100, 181, 246, 0.5);
+     border-radius: 15px;
+     box-shadow: 0 0 40px rgba(100, 181, 246, 0.3);
+     cursor: pointer;
+     display: block;
+     margin: 0 auto;
+ }
+
+.screen {
+    display: none;
+}
+
+.screen.active {
+    display: block;
+    min-height: 300px; 
+}
+
+.screen.active h1,  .screen.active h2{
+    text-align: center;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 24px;
+    padding: 10px;
+}
+
+.btn-container {
+    justify-content: center;
+    text-align: center;
+    margin: 20px 0;
+}
+
+
+ #config-options {
+    background: #f8f8f8;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.config-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.config-row label {
+    font-weight: bold;
+    color: #333;
+}
+
+.config-row select {
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: 2px solid var(--luz3-acento);
+    box-shadow: inset 0 0 50px var(--luz3-acento);
+    font-size: 1em;
+}
+
+
+.game-over {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.95);
+    border: 3px solid #64b5f6;
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    z-index: 1000;
+    box-shadow: 0 0 50px rgba(100, 181, 246, 0.5); 
+}
+
+
+ .game-over h2 {
+     font-size: 2.5em;
+     margin-bottom: 20px;
+     color: #64b5f6;
+ } 
+
+
+ .game-over.show {
+     display: block;
+ }
+
+ .info-panel {
+    display: flex;
+    justify-content: space-around;
+    background: rgba(33, 37, 41, 0.9);
+    padding: 12px;
+    border-radius: 10px;
+    margin: 0 auto 20px;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+
+.info-box {
+    text-align: center;
+    padding: 0 15px;
+}
+
+.info-label {
+    color: #adb5bd;
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+}
+
+.info-value {
+    color: #f8f9fa;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+#timer {
+    color: #20c997;
+}
+
+/* Mensaje de victoria superpuesto*/
+.mensaje-ganaste {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background: linear-gradient(135deg, var(--base-primaria) 0%, var(--sombra1-primaria) 100%);
+    color: white;
+    font-size: 20px;
+    font-weight: 800;
+    padding: 40px 80px;
+    border-radius: 20px;
+    box-shadow: 0 10px 50px rgba(255, 215, 0, 0.6),
+                0 0 100px rgba(255, 215, 0, 0.4);
+    border: 4px solid var(--luz3-acento);
+    animation: victoryPopIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+               victoryPulse 1s ease-in-out 0.6s infinite;
+    text-align: center;
+    letter-spacing: 3px;
+}
+
+/* Animación de entrada del mensaje */
+@keyframes victoryPopIn {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+        rotate: -180deg;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+        rotate: 0deg;
+    }
+}
+
+/* Efecto de pulso continuo mientras está visible */
+@keyframes victoryPulse {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        box-shadow: 0 10px 50px rgba(255, 215, 0, 0.6),
+                    0 0 100px rgba(255, 215, 0, 0.4);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.05);
+        box-shadow: 0 15px 60px rgba(255, 215, 0, 0.8),
+                    0 0 120px rgba(255, 215, 0, 0.6);
+    }
+}
+
+/* FIN CANVA-------------------------------------------------------------------------------------------------------------------------*/
+
+/* TIPOGRAFÍA - Clases de texto*/
+/* Título de sección (24px) */
+.text-wrapper-2 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--texto-blanco);
+    margin-bottom: 24px;
+}
+
+/* Texto descriptivo gris (16px) */
+.div-wrapper {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--texto-gris);
+    margin-bottom: 24px;
+    text-align: justify;
+}
+
+/* Nombre de usuario en comentarios (18px) */
+.text-wrapper-4 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--texto-blanco);
+}
+
+/* Fecha/timestamp en comentarios (12px) */
+.text-wrapper-5 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--texto-gris);
+}
+
+/* Contenido de comentario (14px) */
+.text-wrapper-6 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--texto-blanco);
+}
+
+
+/* BOTONES - Estilos base y tamaños*/
+
+.btn-volver {
+    background-color: var(--base-secundaria);
+    margin-right: 15px;
+}
+
+/* Hover: Eleva el botón y agrega sombra para dar profundidad */
+.btn-volver:hover {
+    transform: translateY(-2px);
+    box-shadow: 8px 8px 16px var(--sombra2-secundaria); 
+    background-color: var(--base-secundaria);
+}
+
+/* Active: Simula el click volviendo a la posición original */
+.btn-volver:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px var(--sombra2-secundaria);
+}
+
+/* Botón de compartir (cuadrado con ícono) */
+.btn-compartir {
+    width: 48px;
+    height: 48px;  
+    border: none; 
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-compartir img {
+    width: 48px;
+    height: 48px;
+    background-color: var(--fondo);
+}
+
+/* Hover: Rota y agranda ligeramente el botón */
+.btn-compartir:hover {
+    transform: rotate(5deg) scale(1.1);
+    background-color: var(--fondo-footer-header);
+}
+
+/* Active: Vuelve a posición normal */
+.btn-compartir:active {
+    transform: rotate(0deg) scale(1.0);
+}
+
+
+/* BREADCRUMB - Navegación de migas de pan*/
+/* Muestra la ruta: Sugerencias / Puzzle / Peg Solitaire */
+.bread {
+    display: flex;
+    align-items: center;
+    padding: 16px 0px;
+    font-size: 14px;
+    color: var(--texto-gris);
+    max-width: 1024px;
+    max-height: 20px;
+    margin-top: 20px;
+    max-width: 1024px;
+    margin-left: auto;   /* Centra horizontalmente */
+    margin-right: auto;  /* Centra horizontalmente */
+}
+
+.bread .div-wrapper {
+    display: inline;
+}
+
+.bread .text-wrapper {
+    color: var(--texto-gris);
+    text-decoration: none;
+    margin: 0 4px;
+    transition: color 0.3s ease-in-out;
+}
+
+/* Hover: Cambia el color de los links al pasar el mouse */
+.bread .text-wrapper:not(.actual):hover {
+    color: var(--sombra2-primaria);
+}
+
+/* Página actual: se muestra en blanco y en negrita */
+.bread .actual {
+    color: var(--texto-blanco);
+    font-weight: 500;
+}
+
+
+/* SECCIÓN JUEGO PRINCIPAL */
+/* Contenedor principal del área de juego */
+.jugar-juego {
+    gap: 24px;
+    max-width: 1024px;
+    margin-left: auto;   /* Centra horizontalmente */
+    margin-right: auto;  /* Centra horizontalmente */
+}
+
+
+.juego-jugar-video {
+    /* background-color: transparent; */
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.juego-jugar-video img {
+    width: 100%;
+    height: auto;
+    max-height: 576px;
+    object-fit: contain;
+    /* object-fit: cover; */
+    display: block;
+    border-radius: 12px;
+    transition: transform 0.6s ease;
+    
+}
+
+/* Hover: Zoom sutil en la imagen */
+.juego-jugar-video:hover img {
+    transform: scale(1.10);
+}
+
+.juego-jugar-video::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+  
+  .juego-jugar-video:hover::before {
+    opacity: 1;
+  }
+  
+  /* Estilos del botón overlay */
+  .btn-hover-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 2; /* Por encima del overlay oscuro */
+    pointer-events: none; /* No clickeable por defecto */
+  }
+  
+  .juego-jugar-video:hover .btn-hover-overlay {
+    opacity: 1;
+    pointer-events: auto; /* Clickeable al hacer hover */
+  }
+
+
+
+/* Barra de título y botones del juego */
+.juego-pago {
+    font-size: 20px;
+    color: var(--texto-blanco);
+    margin: 20px 0;
+    
+    max-height: 80px;
+    display: flex;          
+    justify-content: space-between; /* Separa título y botones */
+    align-items: center;
+    gap: 10px;
+    padding-right: 0px;
+    max-width: 1024px;
+    
+    margin-left: auto;   /* Centra horizontalmente */
+    margin-right: auto;  /* Centra horizontalmente */
+}
+
+/* Contenedor de botones de acción */
+.btn-juego-pago {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-juego-pago a{
+    text-decoration: none;
+}
+
+
+/* INFORMACIÓN DEL JUEGO*/
+.informacion-juego {
+    max-width: 1024px;
+    max-height: 324px;
+    margin-left: auto;   /* Centra horizontalmente */
+    margin-right: auto;  /* Centra horizontalmente */
+}
+
+/* Grid que organiza las fotos y la info del juego */
+.container-fotos-info {
+    display: grid;
+    grid-template-columns: auto auto 1fr; /* Dos columnas de fotos + info */
+    max-height: 276px;
+}
+
+/* Contenedor de las 4 imágenes pequeñas del juego */
+.container-fotos {
+    display: grid;
+    grid-template-columns: repeat(2, 244px); /* 2 columnas de 244px */
+    gap: 11px;
+}
+
+.container-fotos img {
+    width: 244px;
+    height: 244px;
+}
+
+/* Hover en imágenes pequeñas del juego */
+.container-fotos .img-img:hover {
+    transform: scale(1.07);
+    transition: transform 0.3s ease;
+}
+
+/* Imagen con botón de play superpuesto */
+.img-play-container {
+    position: relative;
+}
+
+.img.img-play {
+    border-radius: 8px;
+    width: 244px;
+    height: 244px;
+}
+
+/* Botón de play centrado sobre la imagen */
+.play-juego-principal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centra  el botón */
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    z-index: 2;
+    padding: 0;
+    line-height: 0;
+}
+
+.play-juego-principal img {
+    width: 48px;
+    height: 48px;
+    display: block;
+}
+
+/* Panel de información textual del juego */
+.info {
+    max-width: 496px;
+    min-width: 496px;
+    max-height: 276px;
+    margin: 10px 10px 10px 20px;
+}
+
+
+/* AYUDA E INSTRUCCIONES*/
+.ayuda-instrucciones {
+    max-width: 1024px;
+    margin-left: auto;   /* Centra horizontalmente */
+    margin-right: auto;  /* Centra horizontalmente */
+    height: 256px;
+    margin-top: 50px;
+}
+
+.instrucciones-item {
+    margin-left: 24px;
+    margin-right: 0px;
+}
+
+
+/* Contenedor que agrupa Comunidad/Foro y Mis Juegos */
+.container-foro-mis-juegos {
+    display: flex;
+    gap: 40px;
+    max-width: 1024px;
+    margin-top: 50px;
+    max-width: 1024px;
+    margin-left: auto;   /* Centra horizontalmente */
+    margin-right: auto;  /* Centra horizontalmente */
+}
+
+
+/* COMUNIDAD Y FORO*/
+.comunidad-foro {
+    flex: 1;
+    max-width: 50%;
+    min-width: 50%;
+    max-height: none; /* Removemos restricción de altura */
+}
+
+/* Contenedor de todos los comentarios */
+.comunidad-foro .container-comentarios {
+    max-width: 100%; /* Se adapta al contenedor */
+}
+
+/* Cada comentario individual */
+.container-comentario {
+    max-height: 48px;
+    display: flex;
+    gap: 1rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    opacity: 0;
+    animation: comentarioSlideIn 0.6s ease-out forwards;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Delay para que aparezcan uno después del otro */
+.container-comentario:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.container-comentario:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+/* Avatar del usuario que comenta */
+.container-comentario .img-2 {
+    max-width: 48px;
+    max-height: 48px;
+    flex-shrink: 0; /* Evita que el avatar se encoja */
+}
+
+/* Contenedor del texto del comentario */
+.container-texto-comentario {
+    flex: 1;
+    width: 900px;
+}
+
+/* Header del comentario (nombre + fecha) */
+.paragraph {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Área de texto para escribir comentarios */
+.comunidad-foro .textarea, 
+.comunidad-foro #comment, 
+.comunidad-foro .form {
+    max-width: 100%; /* Se adapta al contenedor */
+    width: 100%;
+    max-height: 144px;
+    min-height: 144px;
+    border-radius: 8px;
+    background-color: var(--fondo-footer-header);
+    border: 2px solid transparent; /* Borde transparente por defecto */
+}
+
+.comunidad-foro #comment {
+    margin: 0px;
+    height: 144px;
+}
+
+/* Estilo del placeholder del textarea */
+.comunidad-foro #comment::placeholder {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--texto-gris);
+}
+
+/* Focus: Borde dorado cuando el usuario está escribiendo */
+.comunidad-foro #comment:focus {
+    outline: none;
+    border-color: var(--base-primaria);
+    transition: border-color 0.5s ease;
+}
+
+.comunidad-foro .conteiner-escribir {
+    padding-top: 20px;
+    padding-left: 15px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--texto-blanco);
+}
+
+/* alinear el botón de enviar a la derecha */
+.comunidad-foro .btn-aadir-carrito-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+    position: relative;
+}
+
+.comunidad-foro .btn-aadir-carrito {
+    position: static; /* Anula el position absolute */
+    margin-left: 0;
+    margin-top: 20px;
+    bottom: auto;
+    right: auto;
+    /* Degradado diagonal del dorado claro al oscuro para profundidad */
+    background: linear-gradient(135deg, var(--base-primaria) 0%, var(--sombra1-primaria) 100%);
+    /* Curva de animación suave con efecto de rebote sutil */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden; /* Oculta el efecto de onda cuando está fuera */
+    /* Sombra dorada que hace que el botón "flote" */
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+/* Pseudo-elemento para el efecto de onda al click */
+.comunidad-foro .btn-aadir-carrito::before, .jugar-juego .btn-aadir-carrito::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%; /* Círculo perfecto */
+    background: rgba(255, 255, 255, 0.3); /* Onda blanca semitransparente */
+    transform: translate(-50%, -50%); /* Centra el círculo */
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+/* Hover: Eleva el botón y lo agranda */
+.comunidad-foro .btn-aadir-carrito:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 30px rgba(255, 215, 0, 0.5);
+    background: linear-gradient(135deg, var(--sombra1-primaria) 0%, var(--sombra2-primaria) 100%);
+}
+
+/* Expande el círculo creando el efecto de onda */
+.comunidad-foro .btn-aadir-carrito:hover::before, .jugar-juego .btn-aadir-carrito:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Active: Reduce la elevación al hacer click (simula presión) */
+.comunidad-foro .btn-aadir-carrito:active {
+    transform: translateY(-1px) scale(1.02);
+}
+
+
+/* MIS JUEGOS */
+.mis-juegos {
+    flex: 1;
+    max-width: 50%;
+    min-width: 50%;
+    position: relative;
+    padding-top: 0;
+}
+
+.mis-juegos .subtitulo {
+    margin-bottom: 20px;
+}
+
+.mis-juegos .text-wrapper-2 {
+    margin-left: 130px;
+}
+
+.mis-juegos-contendor {
+    position: relative;
+    overflow: hidden;
+    height: 270px; 
+    margin: 20px 0;
+}
+
+#cinta-mis-juegos {
+    display: flex;
+    flex-direction: column; 
+    transition: transform 0.8s ease;  
+    padding: 10px 0;
+    margin: 0;
+}
+
+/* Cards estilo Juegos Relacionados */
+.card-juego {
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto;
+    width: 100%; /* Ocupa todo el ancho disponible */
+    max-width: 325px;
+    height: 239px; /* Mismo alto que juegos relacionados */
+    border-radius: 8px;
+    background-color: transparent;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.card-juego img {
+    width: 100%;
+    height: 182px; /* Mismo alto que juegos relacionados */
+    object-fit: cover;
+    border-radius: 8px;
+    filter: none; /* Removemos el blur y brightness */
+    display: block;
+}
+
+/* Hover en cards (mismo efecto que juegos relacionados) */
+.card-juego:hover {
+    transform: scale(1.05);
+}
+
+.card-juego:active {
+    transform: scale(1.0);
+}
+
+/* Textos debajo de la imagen (como juegos relacionados) */
+.juego-titulo {
+    position: static; /* Ya no es absolute */
+    margin-top: 12px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--texto-blanco);
+    text-shadow: none;
+}
+
+.juego-categoria {
+    position: static; /* Ya no es absolute */
+    margin-top: 4px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--texto-gris);
+    text-shadow: none;
+}
+
+.gratis {
+    display: none; /* Ocultamos el badge gratis para que se vea como juegos relacionados */
+}
+
+/* FLECHAS DEL CARRUSEL - Arriba y Abajo */
+#btn-atras-mis-juegos,
+#btn-siguiente-mis-juegos {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Flecha ARRIBA */
+#btn-atras-mis-juegos {
+    top: 50px; /* Por encima del contenedor */
+}
+
+#btn-atras-mis-juegos img {
+    width: 48px;
+    height: 48px;
+}
+
+/* Flecha ABAJO */
+#btn-siguiente-mis-juegos {
+    bottom: 0px; /* Por debajo del contenedor */
+}
+
+#btn-siguiente-mis-juegos img {
+    width: 48px;
+    height: 48px;
+}
+
+/* Hover en flechas */
+#btn-atras-mis-juegos:hover,
+#btn-siguiente-mis-juegos:hover {
+    transform: translateX(-50%) scale(1.1);
+}
+
+#btn-atras-mis-juegos:active,
+#btn-siguiente-mis-juegos:active {
+    transform: translateX(-50%) scale(0.95);
+}
+
+/* Estado deshabilitado */
+.btn-carrusel:disabled {
+    background-color: #3a3f4d;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-carrusel:disabled:hover {
+    transform: translateX(-50%) scale(1); /* Sin efecto hover cuando está deshabilitado */
+}
+
+.btn-carrusel:disabled img {
+    filter: brightness(0.5);
+}
+
+
+/* JUEGOS RELACIONADOS*/
+
+.juegos-relacionados {
+    width: 100%;
+    width: 1024px;
+    height: 319px;
+    margin-top: 150px;
+    margin-left: auto;   /* Centra horizontalmente */
+    margin-right: auto;  /* Centra horizontalmente */
+    margin-bottom: 30px;
+}
+
+/* Grid de cards de juegos relacionados */
+.container-cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+/* Card individual de cada juego */
+.card-juegos {
+    width: 325px;
+    height: 239px;
+    flex: 1; /* Distribuye el ancho equitativamente */
+    transition: transform 0.3s ease;
+}
+
+/* Hover en cards de juegos relacionados: zoom y sombra */
+.card-juegos:hover {
+    transform: scale(1.1);
+}
+
+.card-juegos:active {
+    transform: scale(1.0);
+}
+
+/* Imágenes de las cards */
+.card-juegos .img, 
+.card-juegos .img-2, 
+.card-juegos .img-3, 
+.card-juegos .img-4 {
+    width: 325px;
+    height: 182px;
+    border-radius: 8px;
+}
+
+
+/* ANIMACIONES*/
+
+/* ANIMACIÓN 1: Título del foro con brillo dorado */
+.comunidad-foro .text-wrapper-2 {
+    background: linear-gradient(135deg, #Ffffff 0%, #B39700 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: titleShine 3s ease-in-out infinite;
+}
+
+/* Keyframe que hace que el título brille suavemente */
+@keyframes titleShine {
+    0%, 100% {
+        filter: brightness(1);
+    }
+    50% {
+        filter: brightness(1.9); /* Aumenta el brillo a la mitad de la animación */
+    }
+}
+
+/* ANIMACIÓN 2: Comentarios que aparecen deslizándose */
+/* Keyframe que desliza el comentario desde la izquierda */
+@keyframes comentarioSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ANIMACIÓN 3: Botón de enviar comentario con efecto de onda */
+/* Los estilos están integrados en la sección .comunidad-foro .btn-aadir-carrito */
+
+/* ANIMACIÓN 4: Balanceo de la imagen con play */
+.container-fotos .img-play-container {
+    animation: balanceo 6s ease-in-out infinite;
+}
+
+/* Keyframe que hace un balanceo sutil de la imagen */
+@keyframes balanceo {
+    0%   { transform: rotate(0deg); }
+    25%  { transform: rotate(3deg); }   /* Gira 3° a la derecha */
+    75%  { transform: rotate(-3deg); }  /* Gira 3° a la izquierda */
+    100% { transform: rotate(0deg); }   /* Vuelve al centro */
+}
+
+
+/* Modal de guardar partida */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Valor muy alto para estar encima de todo */
+  backdrop-filter: blur(5px);
+}
+
+.modal-contenido {
+  background: linear-gradient(135deg, #1a1f3a 0%, #2d3561 100%);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  max-width: 450px;
+  text-align: center;
+  border: 2px solid rgba(100, 181, 246, 0.3);
+  animation: modalEntrada 0.3s ease-out;
+}
+
+@keyframes modalEntrada {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-contenido h3 {
+  color: #fff;
+  margin-bottom: 15px;
+  font-size: 1.5em;
+}
+
+.modal-contenido p {
+  color: #b0b8d4;
+  margin-bottom: 25px;
+  font-size: 0.95em;
+  line-height: 1.5;
+}
+
+.info-partida {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(100, 181, 246, 0.2);
+}
+
+.info-partida p {
+  margin: 8px 0;
+  color: #64b5f6;
+  font-size: 0.9em;
+}
+
+.info-partida strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+.modal-botones {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+}
+

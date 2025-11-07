@@ -1,0 +1,341 @@
+/*Estilos globales---------------------------------------------------------------------------------------------------------------------------*/
+.header-registro {
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo h1 {
+  color: var(--texto-blanco);
+  padding-left: 5px;
+}
+
+header, footer{
+    width: 100%;
+}
+
+footer{
+    height: 546px;
+}
+
+main{
+  display: flex;
+  justify-content: center; /* Centra horizontal */
+  align-items: center;     /* Centra vertical */
+}
+
+/* Para los botones dentro de main-registro y main-inicio, se mantiene su estilo normal, deshabilitando así el reset realinado en style.css*/
+main button {
+  all: revert; /* o initial */
+  cursor: revert;
+}
+
+/*Contenedores flex generales---------------------------------------------------------------------------------------------------------------------------*/
+.contenedor,
+.form-registro,
+.form-item,
+.form-item.doble .campo {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.btn-registro,
+.dividir,
+.continuar-redes,
+.btn-social,
+.login-text {
+    display: flex;            /*Por defecto es flex-direction:row */
+    align-items: center;      /* Centra verticalmente */
+    justify-content: center;  /* Centra todo horizontalmente dentro del botón */
+}
+
+.crear-cuenta {
+    width: 512px;
+    display: flex;
+    justify-content: center; 
+    align-items: flex-start; 
+    background-color: #1F2937;
+    border-radius: 16px;
+    margin-top: 34.5px;
+    margin-bottom: 34.5px;
+}
+
+.contenedor{
+    align-items: center; 
+    font-family: 'Plus Jakarta Sans';
+    font-size: 16px; 
+    color: var(--texto-gris); 
+}
+
+.titulo{
+    margin-top: 35px; 
+}
+
+.titulo h1{
+    font-size: 36px;
+    font-weight:800;
+    color: var(--texto-blanco);
+}
+
+.titulo p {
+    text-align: center;
+}
+
+/*Formulario-----------------------------------------------------------------------------------------------------------------------------------*/
+
+.form-registro {
+    width: 448px;
+    gap: 20px; 
+    margin-top: 50px; 
+    margin-bottom: 50px;
+}
+
+.form-item{
+    width: 100%;
+}
+
+/* Bloque especial para nombre y apellido */
+.form-item.doble {
+   flex-direction: row; 
+   gap: 16px; 
+}
+
+.form-item.doble .campo{
+    flex: 1; /* Ocupar todo el espacio disponible */
+}
+
+
+.form-registro label{
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 5px;;
+}
+
+.form-registro input{
+    height: 47px;
+    background-color: #374151;
+    border: 1px solid #374151;
+    border-radius: 8px;
+    padding: 14px 17px 14px 17px;
+    font-weight: 400;
+    color: var(--texto-blanco);
+    border: 2px solid transparent;  
+    transition: border-color 0.5s ease;
+    outline: none; 
+}
+
+.form-registro input:focus{
+  border-color: var(--base-primaria);
+}
+
+
+.opcional {
+  color: #9ca3af; 
+  font-size: 12px;      
+  font-weight: normal; 
+  opacity: 0.6;  
+  margin-left: 4px;     
+}
+
+.contrasenia {
+  display: flex;
+  align-items: center; 
+  gap:20px;
+}
+
+.contrasenia input{
+    width: 388px;
+}
+
+.contrasenia img{
+    width: 24px;
+    height: 24px;
+    object-fit: contain; 
+    cursor: pointer; /* Indica que se puede hacer click */
+}
+
+/* reCaptcha original */
+.form-item.captcha{
+    justify-content:center;
+    align-items: flex-end;   
+}
+
+.g-recaptcha {
+  transform: scale(0.80);     /* Lo llevo a 80% de su tamaño original*/
+  transform-origin: right; 
+}
+
+.form-item .error{
+    color: #DC2626;
+    font-size: 12px;
+    padding-top: 2px;
+}
+
+
+.btn-registro{
+    gap:10px;
+    cursor: pointer;
+    position: relative;  /* necesario para que el ripple se posicione dentro */
+}
+
+/* Animación  Button registrarse-------------------------------------------------------------------------------------------------------------*/
+.btn-registro:focus::after{ /*cuando se hace foco se crea el pseudoelemento after con contenido vacio*/
+  content: "";
+  position: absolute;
+  left: 50%; /* left 50% y top 50% lleva la esquina superior izquierda del elemento al centro del botón*/
+  top: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%; /*hace que el pseudoe (onda) sea circular*/
+  transform: translate(-50%, -50%); /* corrige el punto de referencia del elemento. Mueve el elemento la mitad de su ancho/alto hacia atrás*/
+  animation: onda 1.5s ease-out; /*ease-out la animación empieza rápido, termina lento*/
+}
+
+@keyframes onda {
+  from {
+    width: 0;
+    height: 0;
+    opacity: 0.6;
+  }
+  to {
+    width: 1000px;
+    height: 1000px;
+    opacity: 0;
+  }
+}
+
+/* Animación Popover "Registro exitoso"-----------------------------------------------------------------------------------------------------*/
+.popover {
+  position: fixed; /*El elemento sale del flujo normal de la página(ya no ocupa espacio como los demás)
+                    Se ancla directamente a la ventana del navegador (viewport), no al resto del contenido*/
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;           /* oculto por defecto */
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.7); /* overlay oscuro */
+  z-index: 1000;
+}
+
+.popover img{
+  width: 50px;
+  height: 50px;
+}
+
+.popover > div {
+  padding: 20px 30px;
+  background-color: var(--texto-blanco);
+  border: 3px solid var(--sombra2-primaria);
+  border-radius: 12px;
+  text-align: center;
+  max-width: 320px;
+  width: 90%;
+  /* transform: scale(0.7); 
+  opacity: 0;*/
+  animation: popIn 0.3s ease forwards; /*ease controla la suavidad de la velocidad de la animación (inicio y final suaves (por defecto)).
+                                        forwards hace que cuando la animación termine, conserve el estilo final*/
+  box-shadow: inset 0 0 25px var(--sombra3-primaria); /*inset hace que la sombra aparezca dentro del elemento, no fuera*/
+  font-weight: 600;
+}
+
+@keyframes popIn {
+  from { transform:
+     scale(0.5); 
+     opacity: 0; 
+    }
+  to { transform:
+     scale(1); 
+     opacity: 1; }
+}
+
+.popover button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #374151;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.popover button:hover {
+  background-color: #1f2937;
+}
+
+/*Continuar con redes--------------------------------------------------------------------------------------------------------------------------*/
+
+.dividir{  
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.dividir img{
+    width: 150px;
+}
+
+
+.continuar-redes{  
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+
+.btn-social {
+    gap: 12px;
+    width: 211px;
+    height: 72px;
+    background-color: #374151;
+    border: 1px solid #374151;
+    border-radius: 8px;
+    padding: 14px 17px;
+    color: var(--texto-blanco);
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-social img {
+  width: 20px;
+  height: 26px;
+  object-fit: contain; 
+}
+
+.login-text{ 
+    gap: 10px; 
+    margin-bottom: 32px;  
+}
+
+a {
+    color: var(--base-primaria);
+    font-size: 14px;
+    text-decoration: none;
+    
+}
+
+a:hover {
+  color:var(--luz1-primaria);
+  text-decoration: underline; 
+}
+
+
+/*Adicional para pagina inicio-sesion------------------------------------------------------------------------------------------------------------*/
+
+.recordar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 388px;
+  gap:20px;
+}
+
+.recordar a {
+  padding-bottom:10px;
+}
+
+
+
+
