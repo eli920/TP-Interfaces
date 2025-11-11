@@ -240,6 +240,7 @@
     background: linear-gradient(180deg, #08121b 0%, #1a1f3a 100%);
 }
 
+
 #gameCanvas:hover {
     box-shadow: 
         0 0 30px rgba(100, 181, 246, 0.5),
@@ -254,9 +255,7 @@
     transition: transform 0.1s ease;
 }
 
-#gameCanvas:active {
-    transform: scale(0.99);
-}
+    
 
 /* Estilos para el panel de información del juego */
 .info-panel {

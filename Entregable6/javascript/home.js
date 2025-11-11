@@ -155,8 +155,8 @@ function misJuegosCarrusel() {
       "Puzzle"
     ),
     new Juego(
-      "imagenes/home/carrusel-mis-juegos/juego2.png",
-      "Battlefield 6",
+      "imagenes/home/carrusel-mis-juegos/flappy-bird.jpg",
+      "Flappy Batman",
       "Acción"
     ),
     new Juego(
