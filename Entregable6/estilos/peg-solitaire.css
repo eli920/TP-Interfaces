@@ -15,8 +15,7 @@ body {
     position: relative; 
     background-color: var(--fondo);
     margin: 0 auto;  /* Centra el contenedor horizontalmente */
-    padding-top: 100px;
-    overflow-x: hidden;
+    padding-top: 100px
 }
 
 
