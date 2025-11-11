@@ -396,4 +396,16 @@ document.addEventListener("click", (e) => {
     }
   }
 });
+// Redirección del botón "Jugar ahora" para flappy
+document.addEventListener("click", (e) => {
+  if (
+    e.target.classList.contains("btn-jugar-ahora")
+  ) {
+    const titulo = e.target.parentElement.querySelector(".juego-titulo")?.textContent?.trim();
+
+    if (titulo === "Flappy Batman") {
+      window.location.href = "flappy-bird.html"; 
+    }
+  }
+});
 
