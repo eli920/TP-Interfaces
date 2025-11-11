@@ -361,6 +361,14 @@ export class Juego {
   }
 
   reiniciar() {
+    // Limpiar el canvas
+    this.contexto.clearRect(0, 0, this.lienzo.width, this.lienzo.height);
+    
+    // Restablecer propiedades del contexto
+    this.contexto.setTransform(1, 0, 0, 1, 0, 0);
+    this.contexto.font = 'bold 24px Space Grotesk';
+    
+    // Reiniciar el juego
     this.iniciarJuego();
   }
 
