@@ -178,21 +178,25 @@
               </div>
             </div>
 
-            <canvas id="gameCanvas" width="800" height="800"></canvas>
+            <div class="tablero-contenedor">
+
+
+              <canvas id="gameCanvas" width="800" height="800"></canvas>
+              
+              <!-- Avisos de victoria/derrota-->
+              <div id="gameOver" class="game-over">
+                <h2 id="gameOverTitle"></h2>
+                <p id="gameOverMessage"></p>
+                <!-- <button onclick="reiniciarJuego()">Jugar de nuevo</button> -->
+              </div>
+
             
-            <!-- Avisos de victoria/derrota-->
-            <div id="gameOver" class="game-over">
-              <h2 id="gameOverTitle"></h2>
-              <p id="gameOverMessage"></p>
-              <!-- <button onclick="reiniciarJuego()">Jugar de nuevo</button> -->
-            </div>
+              <div class="btn-container">
+                <button id="resetBtn" class="btn btn-xs">Reiniciar Juego</button>
+                <button id="menuBtn" class="btn btn-xs">Menú</button>
 
-           
-            <div class="btn-container">
-              <button id="resetBtn" class="btn btn-xs">Reiniciar Juego</button>
-              <button id="menuBtn" class="btn btn-xs">Menú</button>
-
-            </div>
+              </div>
+             </div> 
           </div>
         </div>
 

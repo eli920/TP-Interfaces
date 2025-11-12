@@ -29,12 +29,12 @@ export class JuegoPegSolitaire {
     this.tipoFichaActual = 0;
     this.tablero = new Tablero(imagenes);
 
-    this.canvas.width = 350;
-    this.canvas.height = 350;
+    this.canvas.width = 600;
+    this.canvas.height = 550;
 
-    this.tamanioCelda = 50;
-    this.offsetX = 25;
-    this.offsetY = 25;
+    this.tamanioCelda = 75;
+    this.offsetX = 62;
+    this.offsetY = 50;
 
     this.piezaSeleccionada = null;
     this.arrastrando = false;
