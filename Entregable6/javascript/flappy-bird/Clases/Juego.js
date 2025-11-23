@@ -1,7 +1,7 @@
 import { Jugador } from './Jugador.js';
 import { Obstaculo } from './Obstaculo.js';
 import { Coleccionable } from './Coleccionable.js';
-import { Fondo } from './Parallax.js';
+import {Parallax} from './Parallax.js';
 import {
   CONFIG,
   COLLECTIBLE_TYPES,
@@ -16,8 +16,8 @@ export class Juego {
   constructor() {
     this.lienzo = document.getElementById('gameCanvas');
     this.contexto = this.lienzo.getContext('2d');
-    this.lienzo.width = CONFIG.CANVAS_WIDTH;
-    this.lienzo.height = CONFIG.CANVAS_HEIGHT;
+    // this.lienzo.width = CONFIG.CANVAS_WIDTH;
+    // this.lienzo.height = CONFIG.CANVAS_HEIGHT;
 
     // Elementos del juego
     this.jugador = null;
@@ -107,7 +107,7 @@ export class Juego {
 
     // Parallax
     this.parallax = new Parallax();
-    this.parallax.inicializar();
+    this.parallax.inicializar(); 
 
     this.obstaculos = [];
     this.coleccionables = [];
