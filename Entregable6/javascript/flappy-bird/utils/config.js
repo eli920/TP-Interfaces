@@ -3,7 +3,7 @@
 // ============================================
 
 export const CONFIG = {
-  CANVAS_WIDTH: 800,
+  CANVAS_WIDTH: 1200,
   CANVAS_HEIGHT: 500,
   GRAVITY: 0.5,
   JUMP_FORCE: -6,

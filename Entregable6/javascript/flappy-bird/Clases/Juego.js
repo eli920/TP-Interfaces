@@ -1,7 +1,7 @@
 import { Jugador } from './Jugador.js';
 import { Obstaculo } from './Obstaculo.js';
 import { Coleccionable } from './Coleccionable.js';
-import { Fondo } from './Fondo.js';
+import { Fondo } from './Parallax.js';
 import {
   CONFIG,
   COLLECTIBLE_TYPES,
@@ -21,7 +21,8 @@ export class Juego {
 
     // Elementos del juego
     this.jugador = null;
-    this.fondo = null;
+    // this.fondo = null;
+    this.parallax= null;
     this.obstaculos = [];
     this.coleccionables = [];
 
@@ -103,7 +104,11 @@ export class Juego {
       CONFIG.CANVAS_HEIGHT / 2,
       this.lienzo
     );
-    this.fondo = new Fondo(this.lienzo);
+
+    // Parallax
+    this.parallax = new Parallax();
+    this.parallax.inicializar();
+
     this.obstaculos = [];
     this.coleccionables = [];
 
@@ -149,7 +154,8 @@ export class Juego {
     this.contadorCuadros++;
 
     // Actualizar background
-    this.fondo.actualizar();
+    // this.fondo.actualizar();
+    this.parallax.actualizar();
 
     // Actualizar jugador
     this.jugador.actualizar();
@@ -259,12 +265,13 @@ export class Juego {
 
   renderizar() {
     // Limpiar canvas
-    this.contexto.fillStyle = '#08121b';
-    this.contexto.fillRect(0, 0, CONFIG.CANVAS_WIDTH, CONFIG.CANVAS_HEIGHT);
+    this.contexto.clearRect(0, 0, CONFIG.CANVAS_WIDTH, CONFIG.CANVAS_HEIGHT);
+    // this.contexto.fillStyle = '#08121b';
+    // this.contexto.fillRect(0, 0, CONFIG.CANVAS_WIDTH, CONFIG.CANVAS_HEIGHT);
 
     // Dibujar background
-    this.fondo.dibujar();
-
+    // this.fondo.dibujar();
+  
     // Dibujar obstáculos
     this.obstaculos.forEach((obstaculo) => obstaculo.dibujar());
 
