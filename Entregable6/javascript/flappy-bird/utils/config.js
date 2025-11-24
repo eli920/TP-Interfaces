@@ -15,12 +15,12 @@ export const CONFIG = {
   EXPLOSION_PARTICLES: 30,
 };
 
-export const COLLECTIBLE_TYPES = ['coin', 'shield', 'star'];
+export const COLLECTIBLE_TYPES = ['moneda', 'escudo', 'estrella'];
 
 export const COLLECTIBLE_VALUES = {
-  coin: { score: 50 },
-  shield: { invulnerability: 180 },
-  star: { score: 100, timeBonus: 5 },
+  moneda: { score: 50 },
+  escudo: { invulnerability: 180 },
+  estrella: { score: 100, timeBonus: 5 },
 };
 
 export const OBSTACLE_CONFIG = {

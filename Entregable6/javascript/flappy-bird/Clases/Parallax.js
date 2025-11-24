@@ -3,28 +3,26 @@ export class Parallax {
     this.scroll = 0;
     this.inicializado = false;
     this.layers = [];
+    this.andando = false;
   }
 
   inicializar() {
-    // Buscar las 12 capas del parallax (de layer1 a layer12) con velocidades progresivas
-    this.layers = [
-      { el: document.querySelector('.layer1'), speed: 0.1 },   // Cielo más lejano
-      { el: document.querySelector('.layer2'), speed: 0.2 },   
-      { el: document.querySelector('.layer3'), speed: 0.3 },   
-      { el: document.querySelector('.layer4'), speed: 0.5 },   
-      { el: document.querySelector('.layer5'), speed: 0.7 },   
-      { el: document.querySelector('.layer6'), speed: 0.9 },   
-      { el: document.querySelector('.layer7'), speed: 1.1 },   
-      { el: document.querySelector('.layer8'), speed: 1.3 },   
-      { el: document.querySelector('.layer9'), speed: 1.5 },   
-      { el: document.querySelector('.layer10'), speed: 1.7 },  
-      { el: document.querySelector('.layer11'), speed: 1.9 },  
-      { el: document.querySelector('.layer12'), speed: 2.1 },  // Primer plano más cercano
-    ];
-    
-    // Resetear posición y duplicar imágenes para loop infinito
+    this.andando = true;
     this.scroll = 0;
-    this.layers.forEach(layer => {
+
+    this.limpiarAnterior();
+
+    //Obtener todas las capas del DOM
+    const layerElementos = document.querySelectorAll('.parallax-bg img');
+    this.layers = Array.from(layerElementos).map((el, index) => ({
+      el: el,
+      speed: (index + 1) * 0.4, //Velocidad que aumenta por capa
+      clone: null,
+      width: 0,
+    }));
+
+    // Resetear posición y duplicar imágenes para loop infinito
+    this.layers.forEach((layer) => {
       if (layer.el) {
         layer.el.style.transform = 'translateX(0px)';
         
@@ -32,6 +30,7 @@ export class Parallax {
         const clone = layer.el.cloneNode(true);
         clone.classList.add('layer-clone');
         layer.el.parentElement.appendChild(clone);
+
         layer.clone = clone;
         layer.width = layer.el.offsetWidth;
       }
@@ -41,22 +40,31 @@ export class Parallax {
   }
 
   actualizar() {
-    if (!this.inicializado) return;
+    if (!this.andando || !this.inicializado) return;
     
-    this.scroll -= 2;
+    this.scroll++;
     
-    this.layers.forEach(layer => {
+    this.layers.forEach((layer) => {
       if (layer.el && layer.clone) {
-        const movement = this.scroll * layer.speed;
-        const width = layer.width;
-        
-        // Calcular posición con loop infinito
-        const position = movement % width;
+        const offset = -(this.scroll * layer.speed) % layer.width;
         
         // Mover ambas imágenes (original y clon)
-        layer.el.style.transform = `translateX(${position}px)`;
-        layer.clone.style.transform = `translateX(${position + width}px)`;
+        layer.el.style.transform = `translateX(${offset}px)`;
+        layer.clone.style.transform = `translateX(${offset + layer.width}px)`;
       }
     });
+  }
+
+  detener() {
+    this.andando = false;
+    this.limpiarAnterior();
+  }
+
+  limpiarAnterior() {
+    document
+      .querySelectorAll('.layer-clone')
+      .forEach((clone) => clone.remove());
+    this.layers = [];
+    this.inicializado = false;
   }
 }

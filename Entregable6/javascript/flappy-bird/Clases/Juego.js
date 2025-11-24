@@ -16,13 +16,10 @@ export class Juego {
   constructor() {
     this.lienzo = document.getElementById('gameCanvas');
     this.contexto = this.lienzo.getContext('2d');
-    // this.lienzo.width = CONFIG.CANVAS_WIDTH;
-    // this.lienzo.height = CONFIG.CANVAS_HEIGHT;
 
     // Elementos del juego
     this.jugador = null;
-    // this.fondo = null;
-    this.parallax= null;
+    this.parallax = null;
     this.obstaculos = [];
     this.coleccionables = [];
 
@@ -34,52 +31,47 @@ export class Juego {
     this.juegoGanado = false;
     this.estaEjecutando = false;
 
+    this.loopId = null; //Id que identifica si se esta ejecutando el loop del parallax
     // Timer
     this.ultimoTiempo = Date.now();
-
-    this.configurarEventos();
-  }
-
-  configurarEventos() {
-    document
-      .getElementById('btn-start')
-      .addEventListener('click', () => this.iniciarJuego());
-    document
-      .getElementById('resetBtn')
-      .addEventListener('click', () => this.reiniciar());
-    document
-      .getElementById('menuBtn')
-      .addEventListener('click', () => this.volverAlMenu());
-    document
-      .getElementById('btn-jugar-ahora')
-      ?.addEventListener('click', () => this.mostrarMenu());
 
     this.configurarControles();
   }
 
   configurarControles() {
-    const manejarSalto = () => {
+    this.saltarTeclado = (e) => {
+      /*Se evita que al finalizar el juego se haga scroll con alguna de las teclas*/
+      if (e.code === 'Space' || e.code === 'ArrowUp') {
+        e.preventDefault();
+      }
+
+      if (
+        (e.code === 'Space' || e.code === 'ArrowUp') &&
+        this.estaEjecutando &&
+        !this.juegoTerminado
+      ) {
+        e.preventDefault();
+        this.jugador.saltar();
+      }
+    };
+
+    this.saltarClick = (e) => {
       if (this.estaEjecutando && !this.juegoTerminado) {
         this.jugador.saltar();
       }
     };
 
-    // Teclado
-    document.addEventListener('keydown', (e) => {
-      if (e.code === 'Space' || e.code === 'ArrowUp') {
-        e.preventDefault();
-        manejarSalto();
-      }
-    });
-
-    // Click en canvas
-    this.lienzo.addEventListener('click', manejarSalto);
-
     // Touch para móviles
-    this.lienzo.addEventListener('touchstart', (e) => {
+    this.saltarTouch = (e) => {
       e.preventDefault();
-      manejarSalto();
-    });
+      if (this.estaEjecutando && !this.juegoTerminado) {
+        this.jugador.saltar();
+      }
+    };
+
+    document.addEventListener('keydown', this.saltarTeclado);
+    this.lienzo.addEventListener('click', this.saltarClick);
+    this.lienzo.addEventListener('touchstart', this.saltarTouch);
   }
 
   mostrarPantalla(idPantalla) {
@@ -89,25 +81,24 @@ export class Juego {
     document.getElementById(idPantalla)?.classList.add('active');
   }
 
-  mostrarMenu() {
+  /*mostrarMenu() {
     document.getElementById('portada-juego').style.display = 'none';
     document.getElementById('game-container').style.display = 'block';
     this.mostrarPantalla('menu-screen');
-  }
+  }*/
 
   iniciarJuego() {
     this.mostrarPantalla('game-screen');
 
+    //Si hay parallax anterior, entonces hay que detenerlo
+    if (this.parallax) this.parallax.detener();
+
     // Crear elementos del juego
-    this.jugador = new Jugador(
-      100,
-      CONFIG.CANVAS_HEIGHT / 2,
-      this.lienzo
-    );
+    this.jugador = new Jugador(100, CONFIG.CANVAS_HEIGHT / 2, this.lienzo);
 
     // Parallax
     this.parallax = new Parallax();
-    this.parallax.inicializar(); 
+    this.parallax.inicializar();
 
     this.obstaculos = [];
     this.coleccionables = [];
@@ -118,6 +109,9 @@ export class Juego {
     this.contadorCuadros = 0;
     this.juegoTerminado = false;
     this.juegoGanado = false;
+
+    /*Se crea un obstaculo para que aparezca más cerca a la hora de iniciar el juego*/
+    this.obstaculos.push(new Obstaculo(CONFIG.CANVAS_WIDTH - 200, this.lienzo));
 
     this.iniciar();
   }
@@ -145,7 +139,7 @@ export class Juego {
     this.actualizar();
     this.renderizar();
 
-    requestAnimationFrame(() => this.buclePrincipal());
+    this.loopId = requestAnimationFrame(() => this.buclePrincipal());
   }
 
   actualizar() {
@@ -154,7 +148,6 @@ export class Juego {
     this.contadorCuadros++;
 
     // Actualizar background
-    // this.fondo.actualizar();
     this.parallax.actualizar();
 
     // Actualizar jugador
@@ -175,10 +168,7 @@ export class Juego {
       obstaculo.actualizar();
 
       // Verificar colisión
-      if (
-        obstaculo.colisionaCon(this.jugador) &&
-        !this.jugador.invulnerable
-      ) {
+      if (obstaculo.colisionaCon(this.jugador) && !this.jugador.invulnerable) {
         this.jugador.morir();
         this.terminarJuego();
       }
@@ -208,9 +198,7 @@ export class Juego {
 
   generarColeccionable() {
     const tipo =
-      COLLECTIBLE_TYPES[
-        Math.floor(Math.random() * COLLECTIBLE_TYPES.length)
-      ];
+      COLLECTIBLE_TYPES[Math.floor(Math.random() * COLLECTIBLE_TYPES.length)];
 
     // Encontrar una posición Y segura (evitar obstáculos)
     let y = 100 + Math.random() * (CONFIG.CANVAS_HEIGHT - 200);
@@ -223,10 +211,7 @@ export class Juego {
       for (let obstaculo of this.obstaculos) {
         if (obstaculo.x > CONFIG.CANVAS_WIDTH - 200) {
           // Si el coleccionable estaría en la zona del obstáculo
-          if (
-            y < obstaculo.alturaSuperior ||
-            y > obstaculo.yInferior - 30
-          ) {
+          if (y < obstaculo.alturaSuperior || y > obstaculo.yInferior - 30) {
             esSegura = false;
             y =
               obstaculo.alturaSuperior +
@@ -250,13 +235,13 @@ export class Juego {
     const valor = COLLECTIBLE_VALUES[item.tipo];
 
     switch (item.tipo) {
-      case 'coin':
+      case 'moneda':
         this.puntuacion += valor.score;
         break;
-      case 'shield':
+      case 'escudo':
         this.jugador.hacerInvulnerable(valor.invulnerability);
         break;
-      case 'star':
+      case 'estrella':
         this.puntuacion += valor.score;
         this.tiempoRestante += valor.timeBonus;
         break;
@@ -266,12 +251,7 @@ export class Juego {
   renderizar() {
     // Limpiar canvas
     this.contexto.clearRect(0, 0, CONFIG.CANVAS_WIDTH, CONFIG.CANVAS_HEIGHT);
-    // this.contexto.fillStyle = '#08121b';
-    // this.contexto.fillRect(0, 0, CONFIG.CANVAS_WIDTH, CONFIG.CANVAS_HEIGHT);
 
-    // Dibujar background
-    // this.fondo.dibujar();
-  
     // Dibujar obstáculos
     this.obstaculos.forEach((obstaculo) => obstaculo.dibujar());
 
@@ -290,6 +270,7 @@ export class Juego {
     }
   }
 
+  /*VER REINICIO*/
   dibujarHUD() {
     // Panel superior
     this.contexto.fillStyle = 'rgba(28, 31, 39, 0.8)';
@@ -298,7 +279,7 @@ export class Juego {
     // Puntuación
     this.contexto.fillStyle = '#ffd700';
     this.contexto.font = 'bold 24px Space Grotesk';
-    this.contexto.fillText(`Puntos: ${this.puntuacion}`, 20, 35);
+    this.contexto.fillText(`Puntos: ${this.puntuacion}`, 30, 30);
 
     // Tiempo
     const minutos = Math.floor(this.tiempoRestante / 60);
@@ -314,11 +295,7 @@ export class Juego {
     // Estado de invulnerabilidad
     if (this.jugador.invulnerable) {
       this.contexto.fillStyle = '#64b5f6';
-      this.contexto.fillText(
-        '🛡️ PROTEGIDO',
-        CONFIG.CANVAS_WIDTH - 180,
-        35
-      );
+      this.contexto.fillText('🛡️ PROTEGIDO', CONFIG.CANVAS_WIDTH - 200, 30);
     }
   }
 
@@ -335,7 +312,7 @@ export class Juego {
     this.contexto.fillText(
       mensaje,
       CONFIG.CANVAS_WIDTH / 2,
-      CONFIG.CANVAS_HEIGHT / 2 - 50
+      CONFIG.CANVAS_HEIGHT / 2 - 40
     );
 
     // Puntuación final
@@ -344,7 +321,7 @@ export class Juego {
     this.contexto.fillText(
       `Puntuación Final: ${this.puntuacion}`,
       CONFIG.CANVAS_WIDTH / 2,
-      CONFIG.CANVAS_HEIGHT / 2 + 20
+      CONFIG.CANVAS_HEIGHT / 2 + 10
     );
 
     // Instrucciones
@@ -353,7 +330,7 @@ export class Juego {
     this.contexto.fillText(
       'Presiona el botón Reiniciar para jugar de nuevo',
       CONFIG.CANVAS_WIDTH / 2,
-      CONFIG.CANVAS_HEIGHT / 2 + 80
+      CONFIG.CANVAS_HEIGHT / 2 + 60
     );
   }
 
@@ -368,21 +345,31 @@ export class Juego {
   }
 
   reiniciar() {
-    // Limpiar el canvas
-    this.contexto.clearRect(0, 0, this.lienzo.width, this.lienzo.height);
-    
-    // Restablecer propiedades del contexto
-    this.contexto.setTransform(1, 0, 0, 1, 0, 0);
-    this.contexto.font = 'bold 24px Space Grotesk';
-    
+    this.estaEjecutando = false;
+    if (this.loopId != null) {
+      cancelAnimationFrame(this.loopId);
+      this.loopId = null;
+    }
+
     // Reiniciar el juego
     this.iniciarJuego();
   }
 
   volverAlMenu() {
-    if (this.estaEjecutando) {
-      this.estaEjecutando = false;
-    }
+    this.detener();
     this.mostrarPantalla('menu-screen');
+  }
+
+  detener() {
+    this.estaEjecutando = false;
+
+    if (this.loopId !== null) {
+      cancelAnimationFrame(this.loopId);
+      this.loopId = null;
+    }
+
+    if (this.parallax) {
+      this.parallax.detener();
+    }
   }
 }

@@ -11,7 +11,7 @@ export class Coleccionable {
     this.y = y;
     this.ancho = 30;
     this.alto = 30;
-    this.tipo = tipo; // 'coin', 'shield', 'star'
+    this.tipo = tipo; // 'moneda', 'escudo', 'estrella'
     this.recolectado = false;
     this.cuadroAnimacion = 0;
     this.desplazamientoFlotante = 0;
@@ -48,13 +48,13 @@ export class Coleccionable {
 
   dibujarFormaItem() {
     switch (this.tipo) {
-      case 'coin':
+      case 'moneda':
         this.dibujarMoneda();
         break;
-      case 'shield':
+      case 'escudo':
         this.dibujarEscudo();
         break;
-      case 'star':
+      case 'estrella':
         this.dibujarEstrella();
         break;
     }
@@ -115,9 +115,9 @@ export class Coleccionable {
 
   obtenerColor(alpha) {
     const colores = {
-      coin: `rgba(255, 215, 0, ${alpha})`,
-      shield: `rgba(100, 181, 246, ${alpha})`,
-      star: `rgba(255, 107, 157, ${alpha})`,
+      moneda: `rgba(255, 215, 0, ${alpha})`,
+      escudo: `rgba(100, 181, 246, ${alpha})`,
+      estrella: `rgba(255, 107, 157, ${alpha})`,
     };
     return colores[this.tipo];
   }

@@ -1,514 +1,682 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="estilos/style.css" />
+    <link rel="stylesheet" href="estilos/peg-solitaire.css" />
+    <link rel="stylesheet" href="estilos/flappy-bird.css" />
+    <link rel="shortcut icon" href="iconos/icono-logo.svg" />
+    <title>Flappy Batman - GameHub</title>
+    <meta
+      name="description"
+      content="Juega Flappy Batman, un emocionante juego de habilidad. Controla al murciélago y evita los obstáculos."
+    />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="estilos/style.css" />
-  <link rel="stylesheet" href="estilos/peg-solitaire.css" />
-  <link rel="stylesheet" href="estilos/flappy-bird.css" />
-  <link rel="shortcut icon" href="iconos/icono-logo.svg" />
-  <title>Flappy Batman - GameHub</title>
-  <meta name="description"
-    content="Juega Flappy Batman, un emocionante juego de habilidad. Controla al murciélago y evita los obstáculos." />
-</head>
-
-<header>
-  <div class="busqueda">
-    <button class="btn-hamburguesa">
-      <img src="iconos/icono-hamburguesa.svg" alt="Menú despegable" />
-    </button>
-    <button class="btn-buscar">
-      <img src="iconos/icono-lupa.svg" alt="Buscar" />
-    </button>
-  </div>
-
-  <div class="overlay"></div>
-
-  <nav class="menu-hamburguesa">
-    <button class="btn-cerrar-hamburguesa">
-      <img src="iconos/icono-cerrar.svg" alt="Cerrar menú" />
-    </button>
-    <ul>
-      <li class="item-menu"><a href="index.html">HOME</a></li>
-      <li class="titulo-categorias"><span>Categorias</span></li>
-      <li class="item-menu"><a href="#">Aventura</a></li>
-      <li class="item-menu"><a href="#">Acción</a></li>
-      <li class="item-menu"><a href="#">Deporte</a></li>
-      <li class="item-menu"><a href="#">Estrategía</a></li>
-      <li class="item-menu"><a href="#">Puzzle</a></li>
-      <li class="item-menu"><a href="#">Terror</a></li>
-      <li class="item-menu"><a href="#">RPG</a></li>
-      <li class="item-menu"><a href="#">Simulación</a></li>
-      <li class="item-menu"><a href="#">Carreras</a></li>
-      <li class="item-menu"><a href="#">Multijugador</a></li>
-    </ul>
-  </nav>
-
-  <div class="desplegable-busqueda">
-    <button>
-      <img src="iconos/icono-cerrar.svg" alt="Cerrar campo búsqueda" class="btn-cerrar-campo" />
-    </button>
-    <form class="buscar-juego">
-      <button>
-        <img src="iconos/icono-lupa.svg" alt="Buscar juego" />
+  <header>
+    <div class="busqueda">
+      <button class="btn-hamburguesa">
+        <img src="iconos/icono-hamburguesa.svg" alt="Menú despegable" />
       </button>
-      <input type="text" name="campo-busqueda" placeholder="Buscar juegos..." id="campo-busqueda" />
-    </form>
-  </div>
+      <button class="btn-buscar">
+        <img src="iconos/icono-lupa.svg" alt="Buscar" />
+      </button>
+    </div>
 
-  <div class="logo">
-    <img src="iconos/icono-logo.svg" alt="Logo GameHub" />
-    <a href="index.html">
-      <h1>GameHub</h1>
-    </a>
-  </div>
+    <div class="overlay"></div>
 
-  <div class="nav-usuario">
-    <button class="btn-acceso-directo">
-      <img src="iconos/icono-corazon.svg" alt="Mis juegos" />
-    </button>
-    <button class="btn-acceso-directo">
-      <img src="iconos/icono-carrito.svg" alt="carrito" />
-    </button>
-    <button class="btn-usuario">
-      <img src="iconos/icono-usuario.svg" alt="Menú usuario" />
-    </button>
-
-    <nav class="desplegable-usuario">
-      <div class="usuario">
-        <button class="btn-cerrar-opciones">
-          <img src="iconos/icono-cerrar.svg" alt="Cerrar menú usuario" />
-        </button>
-        <img src="iconos/icono-usuario.svg" alt="Foto usuario" />
-        <p class="nickname">Juani</p>
-      </div>
-      <ul class="opciones-usuario">
-        <li class="opcion-usuario">
-          <a href="#">Mi perfil</a>
-        </li>
-        <li class="opcion-usuario">
-          <a href="#">Mis Juegos</a>
-        </li>
-        <li class="opcion-usuario">
-          <a href="#">Configuración</a>
-        </li>
-        <li class="opcion-usuario">
-          <a href="inicio-sesion.html" id="cerrar-sesion">Cerrar sesión</a>
-        </li>
+    <nav class="menu-hamburguesa">
+      <button class="btn-cerrar-hamburguesa">
+        <img src="iconos/icono-cerrar.svg" alt="Cerrar menú" />
+      </button>
+      <ul>
+        <li class="item-menu"><a href="index.html">HOME</a></li>
+        <li class="titulo-categorias"><span>Categorias</span></li>
+        <li class="item-menu"><a href="#">Aventura</a></li>
+        <li class="item-menu"><a href="#">Acción</a></li>
+        <li class="item-menu"><a href="#">Deporte</a></li>
+        <li class="item-menu"><a href="#">Estrategía</a></li>
+        <li class="item-menu"><a href="#">Puzzle</a></li>
+        <li class="item-menu"><a href="#">Terror</a></li>
+        <li class="item-menu"><a href="#">RPG</a></li>
+        <li class="item-menu"><a href="#">Simulación</a></li>
+        <li class="item-menu"><a href="#">Carreras</a></li>
+        <li class="item-menu"><a href="#">Multijugador</a></li>
       </ul>
     </nav>
-  </div>
-</header>
 
-<body>
-  <main class="frame">
-
-
-    <div class="contenido-home">
-
-      <div class="container-general">
-        <nav class="bread" aria-label="Navegación de migas de pan">
-          <div class="div-wrapper"><a href="#" class="text-wrapper">Sugerencias</a></div>
-          <div class="div-wrapper"><span class="text-wrapper" aria-hidden="true">/</span></div>
-          <div class="div-wrapper"><a href="#" class="text-wrapper">Acción</a></div>
-          <div class="div-wrapper"><span class="text-wrapper" aria-hidden="true">/</span></div>
-          <div class="div-wrapper"><span class="text-wrapper actual" aria-current="page">Flappy Batman</span></div>
-        </nav>
-        <!-- PORTADA -->
-        <section id="portada-juego" class="jugar-juego">
-          <div class="juego-jugar-video">
-            <img src="imagenes/juego/flappy-bird.png"
-              alt="Vista previa del juego Flappy Batman con Batman volando">
-
-            <!-- Botón que aparece al hover -->
-            <button id="btn-jugar-ahora" class="btn-aadir-carrito btn-chico btn btn-hover-overlay" type="button">
-              <span class="text-wrapper"><span class="text-2">Jugar Ahora</span></span>
-            </button>
-          </div>
-        </section>
-
-       <!-- CONTENEDOR DEL JUEGO -->
-<div id="game-container" style="display:none">
-
-  <!-- Pantalla de inicio -->
-  <div id="menu-screen" class="screen">
-      <h1>Flappy Batman</h1>
-      <p class="info-text">Controla al murciélago y evita los obstáculos. ¡Sobrevive 2 minutos para ganar!</p>
-
-      <div id="config-options">
-          <h3 style="text-align: center; margin-bottom: 15px;">Controles</h3>
-          <div class="config-row">
-            <p style="text-align: center; width: 100%; color: #666;">
-              🖱️ Click / 📱 Touch / ⌨️ Espacio o ↑
-            </p>
-          </div>
-          <div class="config-row">
-            <p style="text-align: center; width: 100%; color: #666;">
-              💰 Monedas: +50 puntos<br>
-              🛡️ Escudo: Invulnerabilidad<br>
-              ⭐ Estrella: +100 puntos + tiempo
-            </p>
-          </div>
-      </div>
-
-      <div class="btn-container">
-          <button id="btn-start" class="btn btn-xs">Comenzar</button>
-      </div>
-  </div>
-
-  <!-- Pantalla de juego -->
-  <div id="game-screen" class="screen">
-
-     <!-- parallax -->
-              <div class="parallax-bg">
-                   <img src="./imagenes/juego/flappy-bird/parallax/01_Sky.png" class="layer1">
-                   <img src="./imagenes/juego/flappy-bird/parallax/02_Stars.png" class="layer2">
-                   <img src="./imagenes/juego/flappy-bird/parallax/03_Moon.png" class="layer3">
-                   <img src="./imagenes/juego/flappy-bird/parallax/04_Cloud.png" class="layer4">
-                   <img src="./imagenes/juego/flappy-bird/parallax/05_Cloud.png" class="layer5">
-                   <img src="./imagenes/juego/flappy-bird/parallax/06_Cloud.png" class="layer6">
-                   <img src="./imagenes/juego/flappy-bird/parallax/07_Cloud.png" class="layer7">
-                   <img src="./imagenes/juego/flappy-bird/parallax/08_Cloud.png" class="layer8">
-                   <img src="./imagenes/juego/flappy-bird/parallax/09_Cloudsmall.png" class="layer9">
-                   <img src="./imagenes/juego/flappy-bird/parallax/10_Cloudsmall.png" class="layer10">
-                   <img src="./imagenes/juego/flappy-bird/parallax/11_Mountains.png" class="layer11">
-                   <img src="./imagenes/juego/flappy-bird/parallax/12_Desert.png" class="layer12">
-              </div>
-              
-    <canvas id="gameCanvas" width="1200" height="500"></canvas>
-    
-    <div class="btn-container">
-      <button id="resetBtn" class="btn btn-xs">Reiniciar</button>
-      <button id="menuBtn" class="btn btn-xs">Menú</button>
-    </div>
-  </div>
-</div>
-        
-        <!-- Fin canva -->
-
-        <div class="juego-pago">
-          <h1 class="titulo-juego">Flappy Batman</h1>
-          <div class="btn-juego-pago">
-            <button class="btn-compartir" type="button" aria-label="Compartir juego">
-              <img src="iconos/compartir.svg" alt="Icono compartir" />
-            </button>
-            <a href="index.html" class="btn-volver-link">
-              <button class="btn-volver btn btn-chico" type="button">
-                <span class="text-wrapper"><span class="text">Volver al inicio</span></span>
-              </button>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <section class="informacion-juego">
-      <div class="informacion-juego">
-        <div class="div-wrapper">
-          <h2 class="text-wrapper-2">Información del Juego</h2>
-        </div>
-
-        <div class="container-fotos-info">
-          <div class="container-fotos">
-            <img class="img-img" src="imagenes/juego/flappy-bird.png"
-              alt="Captura del juego Flappy Batman" />
-            <div class="img-play-container">
-              <video class="img img-play" autoplay muted loop>
-                <source src="imagenes/juego/flappy-bird.png" type="video/mp4" />
-                <source src="imagenes/juego/peg-solitaire/Peg_Solitarie_ejecucionwebm" type="video/webm" />
-                Tu navegador no soporta la reproducción de video.
-              </video>
-            </div>
-          </div>
-
-          <div class="info">
-            <div class="div-wrapper">
-              <p class="p">
-                Flappy Batman es una emocionante versión del popular juego arcade. En este juego, controlas a Batman 
-                transformado en murciélago mientras vuela a través de una ciudad llena de obstáculos peligrosos. 
-                El objetivo es sobrevivir el mayor tiempo posible y acumular la mayor cantidad de puntos.
-              </p>
-            </div>
-            <div class="div-wrapper">
-              <p class="p">
-                El juego requiere reflejos rápidos y concentración constante. Recoge monedas para sumar puntos, 
-                escudos para protegerte temporalmente y estrellas que te dan bonificaciones especiales. 
-                ¡Desafía tus límites y conviértete en el mejor piloto de Gotham!
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="ayuda-instrucciones">
-      <div class="div-wrapper">
-        <h2 class="text-wrapper-2">Ayuda / Instrucciones</h2>
-      </div>
-      <div class="div-wrapper">
-        <ul class="instrucciones">
-          <li class="instrucciones-item">
-            <strong class="span">Objetivo</strong><span class="text-wrapper-3">: Sobrevive 2 minutos evitando los 
-            obstáculos y acumula la mayor cantidad de puntos posible.</span>
-          </li>
-          <li class="instrucciones-item">
-            <strong class="span">Preparación</strong><span class="text-wrapper-3">: Batman comienza en el centro de la 
-            pantalla. Usa los controles para mantenerlo en el aire sin chocar con las tuberías ni el suelo.</span>
-          </li>
-          <li class="instrucciones-item">
-            <strong class="span">Movimiento</strong><span class="text-wrapper-3">: Presiona el ratón (click), toca la 
-            pantalla (touch) o usa las teclas espacio/flecha arriba para hacer que Batman vuele hacia arriba. Suelta 
-            para que caiga por gravedad.</span>
-          </li>
-          <li class="instrucciones-item">
-            <strong class="span">Reglas</strong><span class="text-wrapper-3">: Evita chocar con las tuberías verdes que 
-            aparecen desde arriba y abajo. No toques el suelo ni el techo. Recoge power-ups para ventajas especiales.</span>
-          </li>
-          <li class="instrucciones-item">
-            <strong class="span">Fin del juego</strong><span class="text-wrapper-3">: El juego termina si chocas con 
-            un obstáculo o si completas los 2 minutos de supervivencia.</span>
-          </li>
-          <li class="instrucciones-item">
-            <strong class="span">Cómo ganar</strong><span class="text-wrapper-3">: Ganas si logras sobrevivir los 2 
-            minutos completos y obtienes la mayor puntuación posible.</span>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-
-    <div class="container-foro-mis-juegos">
-      <section class="comunidad-foro">
-        <div class="div-wrapper">
-          <h2 class="text-wrapper-2">Comunidad / Foro</h2>
-        </div>
-
-        <div class="container-comentarios">
-          <article class="container-comentario">
-            <img class="img-2" src="imagenes/juego/sofia-avatar.png" alt="Avatar de Sofía" />
-            <div class="container-texto-comentario">
-              <header-comentario class="paragraph">
-                <h3 class="text-wrapper-4">Sofía</h3>
-                <time class="text-wrapper-5" datetime="2024-01-01">Hace 2 días</time>
-              </header-comentario>
-              <div class="div-wrapper">
-                <p class="text-wrapper-6">¡Me encanta este juego! Es muy desafiante.</p>
-              </div>
-            </div>
-          </article>
-
-          <article class="container-comentario">
-            <img class="img-2" src="imagenes/juego/martin-avatar.png" alt="Avatar de Martín" />
-            <div class="container-texto-comentario">
-              <header-comentario class="paragraph">
-                <h3 class="text-wrapper-4">Martín</h3>
-                <time class="text-wrapper-5" datetime="2024-01-01">Hace 3 días</time>
-              </header-comentario>
-              <div class="div-wrapper">
-                <p class="text-wrapper-6">Es un buen juego para pasar el rato!</p>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <form class="form" action="#" method="post">
-          <div class="textarea">
-            <textarea id="comment" name="comment" class="conteiner-escribir" placeholder="Escribe tu comentario..."
-              rows="6" required aria-describedby="comment-help"></textarea>
-          </div>
-          <div class="btn-aadir-carrito-wrapper">
-            <button class="btn-aadir-carrito btn-chico btn" type="submit">
-              <span class="text-wrapper"><span class="text-2">Enviar comentario</span></span>
-            </button>
-          </div>
-        </form>
-      </section>
-
-      <section class="mis-juegos">
-        <h2 class="text-wrapper-2">Juegos Relacionados</h2>
-        <div class="mis-juegos-contendor">
-          <!--cinta desplaza las cards, como si fuese una cinta de la caja de un supermercado-->
-          <div class="cinta" id="cinta-mis-juegos"></div>
-        </div>
-        <button class="btn-carrusel flecha-atras" id="btn-atras-mis-juegos">
-          <img src="iconos/Flecha-arriba.svg" alt="" srcset="">
-        </button>
-        <button class="btn-carrusel flecha-siguiente" id="btn-siguiente-mis-juegos">
-          <img src="iconos/Flecha-abajo.svg" alt="" srcset="">
-        </button>
-      </section>
-    </div>
-
-    <section class="juegos-relacionados">
-      <div class="div-2">
-        <div class="div-wrapper">
-          <h2 class="text-wrapper-2">Otros juegos</h2>
-        </div>
-        <div class="container-cards">
-          <article class="card-juegos">
-            <div class="image-2" role="img" aria-label="Imagen del juego Domino">
-              <img class="img" src="imagenes/juego/domino.png" alt="relacionados" />
-            </div>
-            <div class="container-11">
-              <div class="div-wrapper">
-                <h3 class="text-wrapper-4">Domino</h3>
-              </div>
-              <div class="div-wrapper">
-                <p class="text-wrapper-5">Un clásico juego de estrategia.</p>
-              </div>
-            </div>
-          </article> 
-
-          <article class="card-juegos">
-            <div class="image-3" role="img" aria-label="Imagen del juego Rompecabezas">
-              <img class="img" src="imagenes/juego/rompecabeza.png" alt="relacionados" />
-            </div>
-            <div class="container-11">
-              <div class="div-wrapper">
-                <h3 class="text-wrapper-4">Rompecabezas</h3>
-              </div>
-              <div class="div-wrapper">
-                <p class="text-wrapper-5">Un desafío numérico</p>
-              </div>
-            </div>
-          </article> 
-
-          <article class="card-juegos">
-            <div class="image-4" role="img" aria-label="Imagen del juego Tetris">
-              <img class="img" src="imagenes/juego/tetris.png" alt="relacionados" />
-            </div>
-            <div class="container-11">
-              <div class="div-wrapper">
-                <h3 class="text-wrapper-4">Tetris</h3>
-              </div>
-              <div class="div-wrapper">
-                <p class="text-wrapper-5">Rompecabeza de estrategia combinada</p>
-              </div>
-            </div>
-          </article> 
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="inicio-footer">
-      <div class="logo">
-        <img src="iconos/icono-logo.svg" alt="Logo GameHub" />
-        <a href="index.html">
-          <h1>GameHub</h1>
-        </a>
-      </div>
-
-      <h4 class="texto-footer">
-        La plataforma de juegos online para estudiantes de TUDAI(UNICEN).
-      </h4>
-
-      <div class="redes-footer">
-        <button class="btn-red-social">
-          <img src="iconos/icono-whatsapp.svg" />
-        </button>
-        <button class="btn-red-social">
-          <img src="iconos/icono-instagram.svg" />
-        </button>
-        <button class="btn-red-social">
-          <img src="iconos/icono-facebook.svg" />
-        </button>
-        <button class="btn-red-social">
-          <img src="iconos/icono-youtube.svg" />
-        </button>
-      </div>
-    </div>
-
-    <div class="categoria-footer">
-      <h4 class="titulo-seccion-footer">Categorías</h4>
-      <ul>
-        <li class="opcion-footer">
-          <a href="#" class="texto-footer acceso">Aventura</a>
-        </li>
-        <li class="opcion-footer">
-          <a href="#" class="texto-footer acceso">Acción</a>
-        </li>
-        <li class="opcion-footer">
-          <a href="#" class="texto-footer acceso">Deporte</a>
-        </li>
-        <li class="opcion-footer">
-          <a href="#" class="texto-footer acceso">Estrategía</a>
-        </li>
-        <li class="opcion-footer">
-          <a href="#" class="texto-footer acceso">Puzzle</a>
-        </li>
-        <li class="opcion-footer">
-          <a href="#" class="texto-footer acceso">Terror</a>
-        </li>
-        <li class="opcion-footer">
-          <a href="#" class="texto-footer acceso">RPG</a>
-        </li>
-        <li class="opcion-footer">
-          <a href="#" class="texto-footer acceso">Simulación</a>
-        </li>
-        <li class="opcion-footer">
-          <a href="#" class="texto-footer acceso">Carreras</a>
-        </li>
-        <li class="opcion-footer">
-          <a href="#" class="texto-footer acceso">Multijugador</a>
-        </li>
-      </ul>
-    </div>
-
-    <div class="soporte-footer">
-      <h4 class="titulo-seccion-footer">Soporte</h4>
-      <ul>
-        <li class="opcion-footer">
-          <a href="#" class="texto-footer acceso">Contacto</a>
-        </li>
-        <li class="opcion-footer">
-          <a href="#" class="texto-footer acceso">Preguntas frecuentes</a>
-        </li>
-        <li class="opcion-footer">
-          <a href="#" class="texto-footer acceso">Soluciones</a>
-        </li>
-        <li class="opcion-footer">
-          <a href="#" class="texto-footer acceso">Politica de privacidad</a>
-        </li>
-      </ul>
-    </div>
-
-    <div class="comunidad-footer">
-      <h4 class="titulo-seccion-footer">Comunidad</h4>
-      <ul>
-        <li class="opcion-footer">
-          <a href="#" class="texto-footer acceso">Foro</a>
-        </li>
-        <li class="opcion-footer">
-          <a href="#" class="texto-footer acceso">Blog</a>
-        </li>
-        <li class="opcion-footer">
-          <a href="#" class="texto-footer acceso">Eventos</a>
-        </li>
-        <li class="opcion-footer">
-          <a href="#" class="texto-footer acceso">Discord</a>
-        </li>
-      </ul>
-    </div>n 
-
-    <div class="fin-footer">
-      <p class="texto-footer">
-        &copy;2025 GameHub. Todos los derechos reservados.
-      </p>
+    <div class="desplegable-busqueda">
+      <button>
+        <img
+          src="iconos/icono-cerrar.svg"
+          alt="Cerrar campo búsqueda"
+          class="btn-cerrar-campo"
+        />
+      </button>
       <form class="buscar-juego">
         <button>
           <img src="iconos/icono-lupa.svg" alt="Buscar juego" />
         </button>
-        <input type="text" name="campo-busqueda" placeholder="Buscar juegos..." id="campo-busqueda" />
+        <input
+          type="text"
+          name="campo-busqueda"
+          placeholder="Buscar juegos..."
+          id="campo-busqueda"
+        />
       </form>
     </div>
-  </footer>
- 
-  <script type="module" src="javascript/flappy-bird/utils/flappy-bird.js"></script>
-  <script type="module" src="javascript/carrusel.js"></script>
-  <script type="module" src="javascript/home.js"></script>
-</body>
 
+    <div class="logo">
+      <img src="iconos/icono-logo.svg" alt="Logo GameHub" />
+      <a href="index.html">
+        <h1>GameHub</h1>
+      </a>
+    </div>
+
+    <div class="nav-usuario">
+      <button class="btn-acceso-directo">
+        <img src="iconos/icono-corazon.svg" alt="Mis juegos" />
+      </button>
+      <button class="btn-acceso-directo">
+        <img src="iconos/icono-carrito.svg" alt="carrito" />
+      </button>
+      <button class="btn-usuario">
+        <img src="iconos/icono-usuario.svg" alt="Menú usuario" />
+      </button>
+
+      <nav class="desplegable-usuario">
+        <div class="usuario">
+          <button class="btn-cerrar-opciones">
+            <img src="iconos/icono-cerrar.svg" alt="Cerrar menú usuario" />
+          </button>
+          <img src="iconos/icono-usuario.svg" alt="Foto usuario" />
+          <p class="nickname">Juani</p>
+        </div>
+        <ul class="opciones-usuario">
+          <li class="opcion-usuario">
+            <a href="#">Mi perfil</a>
+          </li>
+          <li class="opcion-usuario">
+            <a href="#">Mis Juegos</a>
+          </li>
+          <li class="opcion-usuario">
+            <a href="#">Configuración</a>
+          </li>
+          <li class="opcion-usuario">
+            <a href="inicio-sesion.html" id="cerrar-sesion">Cerrar sesión</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <body>
+    <main class="frame">
+      <div class="contenido-home" id="contenido-juego">
+        <div class="container-general">
+          <nav class="bread" aria-label="Navegación de migas de pan">
+            <div class="div-wrapper">
+              <a href="#" class="text-wrapper">Sugerencias</a>
+            </div>
+            <div class="div-wrapper">
+              <span class="text-wrapper" aria-hidden="true">/</span>
+            </div>
+            <div class="div-wrapper">
+              <a href="#" class="text-wrapper">Acción</a>
+            </div>
+            <div class="div-wrapper">
+              <span class="text-wrapper" aria-hidden="true">/</span>
+            </div>
+            <div class="div-wrapper">
+              <span class="text-wrapper actual" aria-current="page"
+                >Flappy Batman</span
+              >
+            </div>
+          </nav>
+          <!-- PORTADA -->
+          <section id="portada-juego" class="jugar-juego">
+            <div class="juego-jugar-video">
+              <img
+                src="imagenes/juego/flappy-bird.png"
+                alt="Vista previa del juego Flappy Batman con Batman volando"
+              />
+
+              <!-- Botón que aparece al hover -->
+              <button
+                id="btn-jugar-ahora"
+                class="btn-aadir-carrito btn-chico btn btn-hover-overlay"
+                type="button"
+              >
+                <span class="text-wrapper"
+                  ><span class="text-2">Jugar Ahora</span></span
+                >
+              </button>
+            </div>
+          </section>
+
+          <!-- CONTENEDOR DEL JUEGO -->
+          <div id="game-container" style="display: none">
+            <!-- Pantalla de inicio -->
+            <div id="menu-screen" class="screen">
+              <h1>Flappy Batman</h1>
+              <p class="info-text">
+                Controla al murciélago y evita los obstáculos. ¡Sobrevive 2
+                minutos para ganar!
+              </p>
+
+              <div id="config-options">
+                <h3>
+                  Controles
+                </h3>
+                <div class="config-row">
+                  <p>
+                    🖱️ Click / 📱 Touch / ⌨️ Espacio o ↑
+                  </p>
+                </div>
+                <div class="config-row">
+                  <p>
+                    💰 Monedas: +50 puntos<br />
+                    🛡️ Escudo: Invulnerabilidad<br />
+                    ⭐ Estrella: +100 puntos + tiempo
+                  </p>
+                </div>
+              </div>
+
+              <div class="btn-container">
+                <button id="btn-start" class="btn btn-xs">Comenzar</button>
+              </div>
+            </div>
+
+            <!-- Pantalla de juego -->
+            <div id="game-screen" class="screen">
+              <div id="game-canvas-wrapper">
+                <!-- parallax -->
+                <div class="parallax-bg">
+                  <img
+                    src="./imagenes/juego/flappy-bird/parallax/01_Sky.png"
+                    class="layer1"
+                  />
+                  <img
+                    src="./imagenes/juego/flappy-bird/parallax/02_Stars.png"
+                    class="layer2"
+                  />
+                  <img
+                    src="./imagenes/juego/flappy-bird/parallax/03_Moon.png"
+                    class="layer3"
+                  />
+                  <img
+                    src="./imagenes/juego/flappy-bird/parallax/04_Cloud.png"
+                    class="layer4"
+                  />
+                  <img
+                    src="./imagenes/juego/flappy-bird/parallax/05_Cloud.png"
+                    class="layer5"
+                  />
+                  <img
+                    src="./imagenes/juego/flappy-bird/parallax/06_Cloud.png"
+                    class="layer6"
+                  />
+                  <!--<img
+                    src="./imagenes/juego/flappy-bird/parallax/07_Cloud.png"
+                    class="layer7"
+                  />
+                  <img
+                    src="./imagenes/juego/flappy-bird/parallax/08_Cloud.png"
+                    class="layer8"
+                  />-->
+                  <img
+                    src="./imagenes/juego/flappy-bird/parallax/09_Cloudsmall.png"
+                    class="layer9"
+                  />
+                  <!--<img
+                    src="./imagenes/juego/flappy-bird/parallax/10_Cloudsmall.png"
+                    class="layer10"
+                  />
+                  <img
+                    src="./imagenes/juego/flappy-bird/parallax/11_Mountains.png"
+                    class="layer11"
+                  />
+                  <img
+                    src="./imagenes/juego/flappy-bird/parallax/12_Desert.png"
+                    class="layer12"
+                  />-->
+                </div>
+
+                <canvas id="gameCanvas" width="1200" height="500"></canvas>
+              </div>
+
+              <div class="btn-container">
+                <button id="resetBtn" class="btn btn-xs">Reiniciar</button>
+                <button id="menuBtn" class="btn btn-xs">Menú</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fin canva -->
+
+          <div class="juego-pago">
+            <h1 class="titulo-juego">Flappy Batman</h1>
+            <div class="btn-juego-pago">
+              <button
+                class="btn-compartir"
+                type="button"
+                aria-label="Compartir juego"
+              >
+                <img src="iconos/compartir.svg" alt="Icono compartir" />
+              </button>
+              <a href="index.html" class="btn-volver-link">
+                <button class="btn-volver btn btn-chico" type="button">
+                  <span class="text-wrapper"
+                    ><span class="text">Volver al inicio</span></span
+                  >
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section class="informacion-juego">
+        <div class="informacion-juego">
+          <div class="div-wrapper">
+            <h2 class="text-wrapper-2">Información del Juego</h2>
+          </div>
+
+          <div class="container-fotos-info">
+            <div class="container-fotos">
+              <img
+                class="img-img"
+                src="imagenes/juego/flappy-bird.png"
+                alt="Captura del juego Flappy Batman"
+              />
+              <div class="img-play-container">
+                <video class="img img-play" autoplay muted loop>
+                  <source
+                    src="imagenes/juego/flappy-bird.png"
+                    type="video/mp4"
+                  />
+                  <source
+                    src="imagenes/juego/peg-solitaire/Peg_Solitarie_ejecucionwebm"
+                    type="video/webm"
+                  />
+                  Tu navegador no soporta la reproducción de video.
+                </video>
+              </div>
+            </div>
+
+            <div class="info">
+              <div class="div-wrapper">
+                <p class="p">
+                  Flappy Batman es una emocionante versión del popular juego
+                  arcade. En este juego, controlas a Batman transformado en
+                  murciélago mientras vuela a través de una ciudad llena de
+                  obstáculos peligrosos. El objetivo es sobrevivir el mayor
+                  tiempo posible y acumular la mayor cantidad de puntos.
+                </p>
+              </div>
+              <div class="div-wrapper">
+                <p class="p">
+                  El juego requiere reflejos rápidos y concentración constante.
+                  Recoge monedas para sumar puntos, escudos para protegerte
+                  temporalmente y estrellas que te dan bonificaciones
+                  especiales. ¡Desafía tus límites y conviértete en el mejor
+                  piloto de Gotham!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="ayuda-instrucciones">
+        <div class="div-wrapper">
+          <h2 class="text-wrapper-2">Ayuda / Instrucciones</h2>
+        </div>
+        <div class="div-wrapper">
+          <ul class="instrucciones">
+            <li class="instrucciones-item">
+              <strong class="span">Objetivo</strong
+              ><span class="text-wrapper-3"
+                >: Sobrevive 2 minutos evitando los obstáculos y acumula la
+                mayor cantidad de puntos posible.</span
+              >
+            </li>
+            <li class="instrucciones-item">
+              <strong class="span">Preparación</strong
+              ><span class="text-wrapper-3"
+                >: Batman comienza en el centro de la pantalla. Usa los
+                controles para mantenerlo en el aire sin chocar con las tuberías
+                ni el suelo.</span
+              >
+            </li>
+            <li class="instrucciones-item">
+              <strong class="span">Movimiento</strong
+              ><span class="text-wrapper-3"
+                >: Presiona el ratón (click), toca la pantalla (touch) o usa las
+                teclas espacio/flecha arriba para hacer que Batman vuele hacia
+                arriba. Suelta para que caiga por gravedad.</span
+              >
+            </li>
+            <li class="instrucciones-item">
+              <strong class="span">Reglas</strong
+              ><span class="text-wrapper-3"
+                >: Evita chocar con las tuberías verdes que aparecen desde
+                arriba y abajo. No toques el suelo ni el techo. Recoge power-ups
+                para ventajas especiales.</span
+              >
+            </li>
+            <li class="instrucciones-item">
+              <strong class="span">Fin del juego</strong
+              ><span class="text-wrapper-3"
+                >: El juego termina si chocas con un obstáculo o si completas
+                los 2 minutos de supervivencia.</span
+              >
+            </li>
+            <li class="instrucciones-item">
+              <strong class="span">Cómo ganar</strong
+              ><span class="text-wrapper-3"
+                >: Ganas si logras sobrevivir los 2 minutos completos y obtienes
+                la mayor puntuación posible.</span
+              >
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="container-foro-mis-juegos">
+        <section class="comunidad-foro">
+          <div class="div-wrapper">
+            <h2 class="text-wrapper-2">Comunidad / Foro</h2>
+          </div>
+
+          <div class="container-comentarios">
+            <article class="container-comentario">
+              <img
+                class="img-2"
+                src="imagenes/juego/sofia-avatar.png"
+                alt="Avatar de Sofía"
+              />
+              <div class="container-texto-comentario">
+                <header-comentario class="paragraph">
+                  <h3 class="text-wrapper-4">Sofía</h3>
+                  <time class="text-wrapper-5" datetime="2024-01-01"
+                    >Hace 2 días</time
+                  >
+                </header-comentario>
+                <div class="div-wrapper">
+                  <p class="text-wrapper-6">
+                    ¡Me encanta este juego! Es muy desafiante.
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <article class="container-comentario">
+              <img
+                class="img-2"
+                src="imagenes/juego/martin-avatar.png"
+                alt="Avatar de Martín"
+              />
+              <div class="container-texto-comentario">
+                <header-comentario class="paragraph">
+                  <h3 class="text-wrapper-4">Martín</h3>
+                  <time class="text-wrapper-5" datetime="2024-01-01"
+                    >Hace 3 días</time
+                  >
+                </header-comentario>
+                <div class="div-wrapper">
+                  <p class="text-wrapper-6">
+                    Es un buen juego para pasar el rato!
+                  </p>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <form class="form" action="#" method="post">
+            <div class="textarea">
+              <textarea
+                id="comment"
+                name="comment"
+                class="conteiner-escribir"
+                placeholder="Escribe tu comentario..."
+                rows="6"
+                required
+                aria-describedby="comment-help"
+              ></textarea>
+            </div>
+            <div class="btn-aadir-carrito-wrapper">
+              <button class="btn-aadir-carrito btn-chico btn" type="submit">
+                <span class="text-wrapper"
+                  ><span class="text-2">Enviar comentario</span></span
+                >
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <section class="mis-juegos">
+          <h2 class="text-wrapper-2">Juegos Relacionados</h2>
+          <div class="mis-juegos-contendor">
+            <!--cinta desplaza las cards, como si fuese una cinta de la caja de un supermercado-->
+            <div class="cinta" id="cinta-mis-juegos"></div>
+          </div>
+          <button class="btn-carrusel flecha-atras" id="btn-atras-mis-juegos">
+            <img src="iconos/Flecha-arriba.svg" alt="" srcset="" />
+          </button>
+          <button
+            class="btn-carrusel flecha-siguiente"
+            id="btn-siguiente-mis-juegos"
+          >
+            <img src="iconos/Flecha-abajo.svg" alt="" srcset="" />
+          </button>
+        </section>
+      </div>
+
+      <section class="juegos-relacionados">
+        <div class="div-2">
+          <div class="div-wrapper">
+            <h2 class="text-wrapper-2">Otros juegos</h2>
+          </div>
+          <div class="container-cards">
+            <article class="card-juegos">
+              <div
+                class="image-2"
+                role="img"
+                aria-label="Imagen del juego Domino"
+              >
+                <img
+                  class="img"
+                  src="imagenes/juego/domino.png"
+                  alt="relacionados"
+                />
+              </div>
+              <div class="container-11">
+                <div class="div-wrapper">
+                  <h3 class="text-wrapper-4">Domino</h3>
+                </div>
+                <div class="div-wrapper">
+                  <p class="text-wrapper-5">Un clásico juego de estrategia.</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="card-juegos">
+              <div
+                class="image-3"
+                role="img"
+                aria-label="Imagen del juego Rompecabezas"
+              >
+                <img
+                  class="img"
+                  src="imagenes/juego/rompecabeza.png"
+                  alt="relacionados"
+                />
+              </div>
+              <div class="container-11">
+                <div class="div-wrapper">
+                  <h3 class="text-wrapper-4">Rompecabezas</h3>
+                </div>
+                <div class="div-wrapper">
+                  <p class="text-wrapper-5">Un desafío numérico</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="card-juegos">
+              <div
+                class="image-4"
+                role="img"
+                aria-label="Imagen del juego Tetris"
+              >
+                <img
+                  class="img"
+                  src="imagenes/juego/tetris.png"
+                  alt="relacionados"
+                />
+              </div>
+              <div class="container-11">
+                <div class="div-wrapper">
+                  <h3 class="text-wrapper-4">Tetris</h3>
+                </div>
+                <div class="div-wrapper">
+                  <p class="text-wrapper-5">
+                    Rompecabeza de estrategia combinada
+                  </p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="inicio-footer">
+        <div class="logo">
+          <img src="iconos/icono-logo.svg" alt="Logo GameHub" />
+          <a href="index.html">
+            <h1>GameHub</h1>
+          </a>
+        </div>
+
+        <h4 class="texto-footer">
+          La plataforma de juegos online para estudiantes de TUDAI(UNICEN).
+        </h4>
+
+        <div class="redes-footer">
+          <button class="btn-red-social">
+            <img src="iconos/icono-whatsapp.svg" />
+          </button>
+          <button class="btn-red-social">
+            <img src="iconos/icono-instagram.svg" />
+          </button>
+          <button class="btn-red-social">
+            <img src="iconos/icono-facebook.svg" />
+          </button>
+          <button class="btn-red-social">
+            <img src="iconos/icono-youtube.svg" />
+          </button>
+        </div>
+      </div>
+
+      <div class="categoria-footer">
+        <h4 class="titulo-seccion-footer">Categorías</h4>
+        <ul>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Aventura</a>
+          </li>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Acción</a>
+          </li>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Deporte</a>
+          </li>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Estrategía</a>
+          </li>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Puzzle</a>
+          </li>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Terror</a>
+          </li>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">RPG</a>
+          </li>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Simulación</a>
+          </li>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Carreras</a>
+          </li>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Multijugador</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="soporte-footer">
+        <h4 class="titulo-seccion-footer">Soporte</h4>
+        <ul>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Contacto</a>
+          </li>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Preguntas frecuentes</a>
+          </li>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Soluciones</a>
+          </li>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Politica de privacidad</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="comunidad-footer">
+        <h4 class="titulo-seccion-footer">Comunidad</h4>
+        <ul>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Foro</a>
+          </li>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Blog</a>
+          </li>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Eventos</a>
+          </li>
+          <li class="opcion-footer">
+            <a href="#" class="texto-footer acceso">Discord</a>
+          </li>
+        </ul>
+      </div>
+      n
+
+      <div class="fin-footer">
+        <p class="texto-footer">
+          &copy;2025 GameHub. Todos los derechos reservados.
+        </p>
+        <form class="buscar-juego">
+          <button>
+            <img src="iconos/icono-lupa.svg" alt="Buscar juego" />
+          </button>
+          <input
+            type="text"
+            name="campo-busqueda"
+            placeholder="Buscar juegos..."
+            id="campo-busqueda"
+          />
+        </form>
+      </div>
+    </footer>
+
+    <script
+      type="module"
+      src="javascript/flappy-bird/utils/flappy-bird.js"
+    ></script>
+    <script type="module" src="javascript/carrusel.js"></script>
+    <script type="module" src="javascript/home.js"></script>
+  </body>
 </html>
