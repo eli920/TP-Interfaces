@@ -168,10 +168,23 @@ export class Juego {
       obstaculo.actualizar();
 
       // Verificar colisión
+      // if (obstaculo.colisionaCon(this.jugador) && !this.jugador.invulnerable) {
+      //   this.jugador.morir();
+      //   this.terminarJuego();
+      // }
+      // Verificar colisión
       if (obstaculo.colisionaCon(this.jugador) && !this.jugador.invulnerable) {
-        this.jugador.morir();
-        this.terminarJuego();
-      }
+          // Activar animación de explosión
+          this.jugador.morir();
+
+          // Esperar a que termine la animación ANTES de terminar el juego
+          setTimeout(() => {
+              this.terminarJuego();
+          }, 900); // mismo tiempo que tu animación CSS
+
+          // NO seguir procesando este obstáculo
+          return false;
+}
 
       // Verificar si pasó el obstáculo
       if (obstaculo.haPasadoAlJugador(this.jugador)) {
@@ -233,6 +246,13 @@ export class Juego {
 
   manejarColeccionable(item) {
     const valor = COLLECTIBLE_VALUES[item.tipo];
+
+      // nuevo
+    this.jugador.elemento.classList.add('recolectar');
+    setTimeout(() => {
+      this.jugador.elemento.classList.remove('recolectar');
+    }, 300);
+
 
     switch (item.tipo) {
       case 'moneda':
@@ -332,11 +352,14 @@ export class Juego {
       CONFIG.CANVAS_WIDTH / 2,
       CONFIG.CANVAS_HEIGHT / 2 + 60
     );
+
+    //Detener el loop luego de dibujar el Game Over
+    this.estaEjecutando = false;
   }
 
   terminarJuego() {
     this.juegoTerminado = true;
-    this.estaEjecutando = false;
+    // this.estaEjecutando = false;
   }
 
   ganar() {
@@ -346,6 +369,12 @@ export class Juego {
 
   reiniciar() {
     this.estaEjecutando = false;
+
+  //nuevo 
+  if (this.jugador) {
+    this.jugador.destruir();
+  }
+
     if (this.loopId != null) {
       cancelAnimationFrame(this.loopId);
       this.loopId = null;
@@ -362,6 +391,11 @@ export class Juego {
 
   detener() {
     this.estaEjecutando = false;
+
+    //nuevo
+    if (this.jugador) {
+      this.jugador.destruir();
+    }
 
     if (this.loopId !== null) {
       cancelAnimationFrame(this.loopId);
