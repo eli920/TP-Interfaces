@@ -81,12 +81,7 @@ export class Juego {
     document.getElementById(idPantalla)?.classList.add('active');
   }
 
-  /*mostrarMenu() {
-    document.getElementById('portada-juego').style.display = 'none';
-    document.getElementById('game-container').style.display = 'block';
-    this.mostrarPantalla('menu-screen');
-  }*/
-
+ 
   iniciarJuego() {
     this.mostrarPantalla('game-screen');
 
@@ -167,11 +162,7 @@ export class Juego {
     this.obstaculos = this.obstaculos.filter((obstaculo) => {
       obstaculo.actualizar();
 
-      // Verificar colisión
-      // if (obstaculo.colisionaCon(this.jugador) && !this.jugador.invulnerable) {
-      //   this.jugador.morir();
-      //   this.terminarJuego();
-      // }
+     
       // Verificar colisión
       if (obstaculo.colisionaCon(this.jugador) && !this.jugador.invulnerable) {
           // Activar animación de explosión
@@ -184,7 +175,7 @@ export class Juego {
 
           // NO seguir procesando este obstáculo
           return false;
-}
+      }
 
       // Verificar si pasó el obstáculo
       if (obstaculo.haPasadoAlJugador(this.jugador)) {

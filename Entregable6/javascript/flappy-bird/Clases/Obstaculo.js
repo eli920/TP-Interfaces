@@ -78,18 +78,21 @@ export class Obstaculo {
   }
 
   colisionaCon(jugador) {
-    if (
-      jugador.x + jugador.ancho > this.x &&
-      jugador.x < this.x + this.ancho
-    ) {
-      if (
-        jugador.y < this.alturaSuperior ||
-        jugador.y + jugador.alto > this.yInferior
-      ) {
-        return true;
-      }
-    }
-    return false;
+    const r = jugador.getRect();   // hitbox real con alas
+
+    // Colisión con el tubo superior
+    const choqueSuperior =
+        r.x < this.x + this.ancho &&
+        r.x + r.width > this.x &&
+        r.y < this.alturaSuperior;
+
+    // Colisión con el tubo inferior
+    const choqueInferior =
+        r.x < this.x + this.ancho &&
+        r.x + r.width > this.x &&
+        r.y + r.height > this.yInferior;
+
+    return choqueSuperior || choqueInferior;
   }
 
   haPasadoAlJugador(jugador) {

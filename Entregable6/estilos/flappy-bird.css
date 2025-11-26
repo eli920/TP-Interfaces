@@ -113,34 +113,7 @@
     z-index: 20; /* Por encima del canvas */
 }
 
-/* ============================================
-   ANIMACIONES KEYFRAME PARA FLAPPY BIRD
-   ============================================ */
 
-/* Animación de entrada del murciélago */
-/* @keyframes batEntrance {
-    0% {
-        transform: scale(0) rotate(-180deg);
-        opacity: 0;
-    }
-    50% {
-        transform: scale(1.2) rotate(10deg);
-    }
-    100% {
-        transform: scale(1) rotate(0deg);
-        opacity: 1;
-    }
-} */
-
-/* Animación de aleteo del murciélago */
-/* @keyframes batFlap {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-5px);
-    }
-} */
 
 /* Animación de rotación para coleccionables */
 @keyframes itemRotate {
@@ -204,27 +177,6 @@
     }
 }
 
-/* Animación de deslizamiento de nubes */
-/* @keyframes cloudFloat {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-100px);
-    }
-} */
-
-/* Animación de parpadeo de estrellas */
-/* @keyframes starTwinkle {
-    0%, 100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-    50% {
-        opacity: 0.3;
-        transform: scale(0.8);
-    }
-} */
 
 /* Animación de aparición de obstáculos */
 @keyframes obstacleSlideIn {
@@ -584,7 +536,7 @@
 }
 
 
-/* ANIMACIÓN 2: EXPLOSIÓN */
+/* ANIMACIÓN: EXPLOSIÓN */
 @keyframes explotar {
     0% {
         transform: scale(1) rotate(0deg);
@@ -616,7 +568,7 @@
     animation: explotar 0.6s ease-out forwards;
 }
 
-/* ANIMACIÓN 3: INVULNERABILIDAD */
+/* ANIMACIÓN: INVULNERABILIDAD */
 @keyframes parpadeoInvulnerable {
     0%, 100% {
         opacity: 1;
@@ -634,7 +586,7 @@
     filter: drop-shadow(0 0 10px #64b5f6);
 }
 
-/* ANIMACIÓN 4: ENTRADA */
+/* ANIMACIÓN: ENTRADA */
 @keyframes entradaPajaro {
     0% {
         transform: scale(0) rotate(-180deg) translateX(-100px);
@@ -650,14 +602,14 @@
     }
 }
 
-/* ANIMACIÓN 5: VUELO IDLE */
+/* ANIMACIÓN: VUELO IDLE */
 @keyframes vueloIdle {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-3px); }
 }
 
 
-/* ANIMACIÓN 6: RECOLECTAR ITEM */
+/* ANIMACIÓN: RECOLECTAR ITEM */
 @keyframes recolectarItem {
     0% {
         transform: scale(1);
