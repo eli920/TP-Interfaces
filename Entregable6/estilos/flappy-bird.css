@@ -524,9 +524,9 @@
 /* ALA IZQUIERDA */
 .pajaro::before {
     background-image: url("../imagenes/juego/flappy-bird/ala_izq.png");
-    left: -6px;        
+    left: -3px;        
     transform-origin: right center;
-    transform: rotate(-10deg);   /*angulo natural sin aleteo*/
+    transform: rotate(-5deg);   /*angulo natural sin aleteo*/
 }
 
 /* ALA DERECHA */
