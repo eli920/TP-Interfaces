@@ -1,7 +1,6 @@
 import { Jugador } from './Jugador.js';
 import { Obstaculo } from './Obstaculo.js';
 import { Coleccionable } from './Coleccionable.js';
-import {Parallax} from './Parallax.js';
 import {
   CONFIG,
   COLLECTIBLE_TYPES,
@@ -19,7 +18,6 @@ export class Juego {
 
     // Elementos del juego
     this.jugador = null;
-    this.parallax = null;
     this.obstaculos = [];
     this.coleccionables = [];
 
@@ -85,15 +83,8 @@ export class Juego {
   iniciarJuego() {
     this.mostrarPantalla('game-screen');
 
-    //Si hay parallax anterior, entonces hay que detenerlo
-    if (this.parallax) this.parallax.detener();
-
     // Crear elementos del juego
     this.jugador = new Jugador(100, CONFIG.CANVAS_HEIGHT / 2, this.lienzo);
-
-    // Parallax
-    this.parallax = new Parallax();
-    this.parallax.inicializar();
 
     this.obstaculos = [];
     this.coleccionables = [];
@@ -108,7 +99,19 @@ export class Juego {
     /*Se crea un obstaculo para que aparezca más cerca a la hora de iniciar el juego*/
     this.obstaculos.push(new Obstaculo(CONFIG.CANVAS_WIDTH - 200, this.lienzo));
 
+    this.activarParallax();
+
     this.iniciar();
+  }
+
+  activarParallax() {
+    const parallaxContainer = document.querySelector(".parallax-bg");
+    parallaxContainer.classList.add("activo");
+  }
+
+  detenerParallax() {
+    const parallaxContainer = document.querySelector(".parallax-bg");
+    parallaxContainer.classList.remove("activo");
   }
 
   iniciar() {
@@ -142,9 +145,6 @@ export class Juego {
 
     this.contadorCuadros++;
 
-    // Actualizar background
-    this.parallax.actualizar();
-
     // Actualizar jugador
     this.jugador.actualizar();
 
@@ -162,7 +162,6 @@ export class Juego {
     this.obstaculos = this.obstaculos.filter((obstaculo) => {
       obstaculo.actualizar();
 
-     
       // Verificar colisión
       if (obstaculo.colisionaCon(this.jugador) && !this.jugador.invulnerable) {
           // Activar animación de explosión
@@ -350,7 +349,7 @@ export class Juego {
 
   terminarJuego() {
     this.juegoTerminado = true;
-    // this.estaEjecutando = false;
+    this.detenerParallax();
   }
 
   ganar() {
@@ -393,8 +392,6 @@ export class Juego {
       this.loopId = null;
     }
 
-    if (this.parallax) {
-      this.parallax.detener();
-    }
+    this.detenerParallax();
   }
 }

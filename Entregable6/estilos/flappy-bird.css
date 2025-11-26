@@ -2,7 +2,7 @@
    ESTILOS DEL JUEGO / PANTALLAS
    ============================================ */
 
-#contenido-juego {
+#contenido-juego { /*VER*/
     max-width: 1200px;
 }
 
@@ -74,17 +74,108 @@
     overflow: hidden;
     z-index: 1;
     pointer-events: none;
+    animation: parallax linear infinite;
+    animation-play-state: paused;
 }
 
-.parallax-bg img {
+/*Se activa la animación cuando se corre el juego*/
+.parallax-bg.activo {
+    animation-play-state: running;
+}
+
+@keyframes parallax {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-1200px);
+    }
+}
+
+/*Estilos paa todas las capas*/
+
+.parallax-layer {
     position: absolute;
-    width: 100%;
+    width: 2400px;
     height: 100%;
-    object-fit: cover;
-    object-position: center 35%; /* Ajusta verticalmente: 35% muestra un poco de suelo */
     top: 0;
     left: 0;
+    background-size: 1200px 100%;
+    background-position: center 35%;
+    background-repeat: repeat-x;
     will-change: transform;
+}
+
+#layer-1 {
+    background-image: url('../imagenes/juego/flappy-bird/parallax/01_Sky.png');
+    animation: parallax 90s linear infinite;
+    animation-play-state: inherit;
+}
+
+#layer-2 {
+    background-image: url('../imagenes/juego/flappy-bird/parallax/02_Stars.png');
+    animation: parallax 80s linear infinite;
+    animation-play-state: inherit;
+}
+
+#layer-3 {
+    background-image: url('../imagenes/juego/flappy-bird/parallax/03_Moon.png');
+    animation: parallax 70s linear infinite;
+    animation-play-state: inherit;
+}
+
+#layer-4 {
+    background-image: url('../imagenes/juego/flappy-bird/parallax/04_Cloud.png');
+    animation: parallax 52s linear infinite;
+    animation-play-state: inherit;
+}
+
+#layer-5 {
+    background-image: url('../imagenes/juego/flappy-bird/parallax/05_Cloud.png');
+    animation: parallax 50s linear infinite;
+    animation-play-state: inherit;
+}
+
+#layer-6 {
+    background-image: url('../imagenes/juego/flappy-bird/parallax/06_Cloud.png');
+    animation: parallax 48s linear infinite;
+    animation-play-state: inherit;
+}
+
+#layer-7 {
+    background-image: url('../imagenes/juego/flappy-bird/parallax/07_Cloud.png');
+    animation: parallax 46s linear infinite;
+    animation-play-state: inherit;
+}
+
+#layer-8 {
+    background-image: url('../imagenes/juego/flappy-bird/parallax/08_Cloud.png');
+    animation: parallax 44s linear infinite;
+    animation-play-state: inherit;
+}
+
+#layer-9 {
+    background-image: url('../imagenes/juego/flappy-bird/parallax/09_Cloudsmall.png');
+    animation: parallax 42s linear infinite;
+    animation-play-state: inherit;
+}
+
+#layer-10 {
+    background-image: url('../imagenes/juego/flappy-bird/parallax/10_Cloudsmall.png');
+    animation: parallax 40s linear infinite;
+    animation-play-state: inherit;
+}
+
+#layer-11 {
+    background-image: url('../imagenes/juego/flappy-bird/parallax/11_Mountains.png');
+    animation: parallax 15s linear infinite;
+    animation-play-state: inherit;
+}
+
+#layer-12 {
+    background-image: url('../imagenes/juego/flappy-bird/parallax/12_Desert.png');
+    animation: parallax 10s linear infinite;
+    animation-play-state: inherit;
 }
 
 /* CANVAS - Encima del parallax */
@@ -112,71 +203,6 @@
     justify-content: center;
     z-index: 20; /* Por encima del canvas */
 }
-
-
-
-/* Animación de rotación para coleccionables */
-@keyframes itemRotate {
-    0% {
-        transform: rotate(0deg) scale(1);
-    }
-    50% {
-        transform: rotate(180deg) scale(1.1);
-    }
-    100% {
-        transform: rotate(360deg) scale(1);
-    }
-}
-
-/* Animación de pulso para items */
-@keyframes itemPulse {
-    0%, 100% {
-        box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-    }
-    50% {
-        box-shadow: 0 0 30px rgba(255, 215, 0, 0.9);
-    }
-}
-
-/* Animación de explosión */
-@keyframes explode {
-    0% {
-        transform: scale(0);
-        opacity: 1;
-    }
-    50% {
-        transform: scale(1.5);
-        opacity: 0.7;
-    }
-    100% {
-        transform: scale(2.5);
-        opacity: 0;
-    }
-}
-
-/* Animación de parpadeo para invulnerabilidad */
-@keyframes blink {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.3;
-    }
-}
-
-/* Animación de sacudida cuando hay colisión */
-@keyframes shake {
-    0%, 100% {
-        transform: translateX(0);
-    }
-    10%, 30%, 50%, 70%, 90% {
-        transform: translateX(-5px);
-    }
-    20%, 40%, 60%, 80% {
-        transform: translateX(5px);
-    }
-}
-
 
 /* Animación de aparición de obstáculos */
 @keyframes obstacleSlideIn {
