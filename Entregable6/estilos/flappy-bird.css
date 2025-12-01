@@ -404,9 +404,9 @@
 }
 
 /* Animación para el fondo de parallax */
-.parallax-layer {
+/* .parallax-layer {
     animation: cloudFloat 30s linear infinite;
-}
+} */
 
 /* Efecto de partículas en el fondo */
 @keyframes backgroundParticle {
@@ -536,6 +536,16 @@
     transform-origin: left center;
     transform: rotate(10deg);    /* angulo natural sin aleteo*/
 }
+
+/* DEBUG — Visualizar círculo de colisión */
+.debug-hitbox-circle {
+    position: absolute;
+    border: 2px dashed rgba(255, 0, 0, 0.7); /* rojo punteado = debug */
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
 
 
 /* ===========================

@@ -77,23 +77,45 @@ export class Obstaculo {
     return this.x + this.ancho < 0;
   }
 
-  colisionaCon(jugador) {
-    const r = jugador.getRect();   // hitbox real con alas
 
-    // Colisión con el tubo superior
-    const choqueSuperior =
-        r.x < this.x + this.ancho &&
-        r.x + r.width > this.x &&
-        r.y < this.alturaSuperior;
+  //Detecta si un círculo toca un rectángulo, es la función matemática
+  colisionCirculoRectangulo(circulo, rx, ry, rw, rh) {
 
-    // Colisión con el tubo inferior
-    const choqueInferior =
-        r.x < this.x + this.ancho &&
-        r.x + r.width > this.x &&
-        r.y + r.height > this.yInferior;
+      const puntoCercanoX = Math.max(rx, Math.min(circulo.x, rx + rw));
+      const puntoCercanoY = Math.max(ry, Math.min(circulo.y, ry + rh));
 
-    return choqueSuperior || choqueInferior;
+      // Calcular la distancia entre el centro del círculo y ese punto
+      const dx = circulo.x - puntoCercanoX;  
+      const dy = circulo.y - puntoCercanoY;
+
+      // Si la distancia al cuadrado es menor al radio al cuadrado significa que hay colisión
+      return dx * dx + dy * dy < circulo.r * circulo.r;
   }
+
+  
+  // Usa círculo del jugador vs rectángulos del tubo para detectar colisión. Es la lógica del juego, decide contra qué rectángulos probar
+  colisionaCon(jugador) {
+      const c = jugador.getCirculo();
+
+      // Colisión con el tubo superior
+      if (this.colisionCirculoRectangulo(
+          c,
+          this.x,                        // x del tubo
+          0,                             // y del tubo superior
+          this.ancho,                    // ancho del tubo
+          this.alturaSuperior            // altura del tubo superior
+      )) {
+          return true;
+      }
+
+      // Colisión con el tubo inferior
+      if (this.colisionCirculoRectangulo(c, this.x,this.yInferior, this.ancho, CONFIG.CANVAS_HEIGHT - this.yInferior)) {
+          return true;
+      }
+
+      return false;
+  }
+
 
   haPasadoAlJugador(jugador) {
     if (!this.pasado && jugador.x > this.x + this.ancho) {

@@ -170,7 +170,7 @@ export class Juego {
           // Esperar a que termine la animación ANTES de terminar el juego
           setTimeout(() => {
               this.terminarJuego();
-          }, 900); // mismo tiempo que tu animación CSS
+          }, 600); // mismo tiempo que tu animación CSS
 
           // NO seguir procesando este obstáculo
           return false;
@@ -259,6 +259,10 @@ export class Juego {
   }
 
   renderizar() {
+    //Reestablece el tamaño real del canvas antes de dibujar
+    this.lienzo.width = CONFIG.CANVAS_WIDTH;
+    this.lienzo.height = CONFIG.CANVAS_HEIGHT;
+
     // Limpiar canvas
     this.contexto.clearRect(0, 0, CONFIG.CANVAS_WIDTH, CONFIG.CANVAS_HEIGHT);
 
